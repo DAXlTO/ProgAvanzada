@@ -3,11 +3,11 @@ import java.util.List;
 public class Tarea {
     String titulo;
     String descripcion;
-    List<Persona> personas;
+    private List<Persona> personas;
     Persona responsable;
     int prioridad;
-    String fechaIni;
-    String fechaFin;
+    private String fechaIni;
+    private String fechaFin;
     Boolean realizada;
     Resultado resultado;
     List<String> etiquetas;
@@ -23,4 +23,12 @@ public class Tarea {
         this.etiquetas = etiquetas;
     }
 
+
+    public List<Persona> getPersonas(){
+        return personas;
+    }
+
+    public Resultado getResultado() {
+        return resultado;
+    }
 }
