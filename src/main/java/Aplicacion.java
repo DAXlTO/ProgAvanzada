@@ -37,7 +37,7 @@ public class Aplicacion {
 
         Scanner teclado = new Scanner(System.in);
 
-        Tarea proyecto;
+        Proyecto proyecto = null;
         int opcion;
         do {
             opcion = menu(teclado);
@@ -49,13 +49,22 @@ public class Aplicacion {
                 case 1: {
                     System.out.print("Introduce el nombre del proyecto: ");
                     String nombreProyecto = teclado.nextLine();
-                    Proyecto nuevoProyecto = new Proyecto(nombreProyecto);
+                    proyecto = new Proyecto(nombreProyecto);
                     break;
                 }
 
                 case 2: {
-
-
+                    try {
+                        System.out.print("Introduce tu nombre: ");
+                        String nombrePersona = teclado.nextLine();
+                        System.out.print("Introduce tu correo electronico: ");
+                        String emailPersona = teclado.nextLine();
+                        proyecto.añadirPersona(new Persona(nombrePersona, emailPersona));
+                    }
+                    catch (NullPointerException ex){
+                        ex.printStackTrace();
+                        System.out.println("Proyecto no inicializado");
+                    }
                     break;
                 }
 
