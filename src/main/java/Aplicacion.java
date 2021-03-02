@@ -17,14 +17,18 @@ public class Aplicacion {
         System.out.println("============            MENU        =================");
         System.out.println("=====================================================");
         System.out.println("0. Salir");
-        System.out.println("1. Iniciar proyecto");
-        System.out.println("2. Consulta bicis alquiladas");
-        System.out.println("3. Alquilar bicicleta");
-        System.out.println("4. Devolver bicicleta");
+        System.out.println("1. Iniciar un nuevo proyecto");
+        System.out.println("2. Dar de a las personas que trabajan en el proyecto");
+        System.out.println("3. Dar de alta las tareas");
+        System.out.println("4. Marcar una tarea como finalizada");
+        System.out.println("5. Introducir o eliminar una persona de una tarea");
+        System.out.println("6. Listar las personas asignadas a un proyecto");
+        System.out.println("7. Listar las tareas de un proyecto");
+
         do {
-            System.out.print("\nElige una opcion (0..4): ");
+            System.out.print("\nElige una opcion (0..7): ");
             opcion = teclado.nextInt();
-        } while ( (opcion<0) || (opcion>4) );
+        } while ( (opcion<0) || (opcion>7) );
         teclado.nextLine(); // Elimina retorno de carro del buffer de entrada
         return opcion;
     }
@@ -41,9 +45,6 @@ public class Aplicacion {
 
         // Crea un gestor de alquiler de bicis
 
-
-        System.out.print("Introduce tu codigo de cliente (max. 8 caracteres): ");
-        String codcli = teclado.nextLine();
 
         int opcion;
         do {
