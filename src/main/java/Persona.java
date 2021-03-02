@@ -14,4 +14,7 @@ public class Persona {
     public List<Tarea> getLista() {
         return lista;
     }
+    public String getNombre(){
+        return nombre;
+    }
 }
