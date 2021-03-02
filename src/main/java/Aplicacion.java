@@ -1,10 +1,6 @@
-import java.io.IOException;
 import java.util.Scanner;
-import java.util.Vector;
-
 
 public class Aplicacion {
-
     /**
      * Muestra el menu de opciones y lee repetidamente de teclado hasta obtener una opcion valida
      * @param teclado
@@ -32,8 +28,6 @@ public class Aplicacion {
         teclado.nextLine(); // Elimina retorno de carro del buffer de entrada
         return opcion;
     }
-
-
     /**
      * Programa principal. Muestra el menú repetidamente y atiende las peticiones del cliente.
      *
@@ -43,36 +37,34 @@ public class Aplicacion {
 
         Scanner teclado = new Scanner(System.in);
 
-        // Crea un gestor de alquiler de bicis
-
-
+        Tarea proyecto;
         int opcion;
         do {
             opcion = menu(teclado);
             switch (opcion) {
-                case 0: // Cierra el gestor y sale del programa
-
-
+                case 0:
 
                     break;
 
-                case 1: { // Consulta bicis disponibles
+                case 1: {
+                    System.out.print("Introduce el nombre del proyecto: ");
+                    String nombreProyecto = teclado.nextLine();
+                    Proyecto nuevoProyecto = new Proyecto(nombreProyecto);
+                    break;
+                }
+
+                case 2: {
+
 
                     break;
                 }
 
-                case 2: { // Consulta bicis alquiladas por un cliente
-
-
-                    break;
-                }
-
-                case 3: { // Alquila una bici
+                case 3: {
 
                     break;
                 }
 
-                case 4: // Devuelve una bici
+                case 4:
 
                     break;
 

@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.List;
 
 public class Tarea {
@@ -6,13 +7,13 @@ public class Tarea {
     private List<Persona> personas;
     Persona responsable;
     int prioridad;
-    private String fechaIni;
-    private String fechaFin;
+    private LocalDate fechaIni;
+    private LocalDate fechaFin;
     Boolean realizada;
     Resultado resultado;
     List<String> etiquetas;
 
-    public Tarea(String titulo, String descripcion, List<Persona> personas, Persona responsable, int prioridad, String fechaIni, List<String> etiquetas){
+    public Tarea(String titulo, String descripcion, List<Persona> personas, Persona responsable, int prioridad, LocalDate fechaIni, List<String> etiquetas){
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.personas = personas;
@@ -22,7 +23,6 @@ public class Tarea {
         realizada = false;
         this.etiquetas = etiquetas;
     }
-
 
     public List<Persona> getPersonas(){
         return personas;
