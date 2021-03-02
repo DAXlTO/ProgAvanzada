@@ -5,10 +5,9 @@ public class Persona {
     String email;
     private List<Tarea> lista;
 
-    public Persona(String nombre, String email, List<Tarea> lista){
+    public Persona(String nombre, String email){
         this.nombre = nombre;
         this.email = email;
-        this.lista = lista;
     }
 
     public List<Tarea> getLista() {

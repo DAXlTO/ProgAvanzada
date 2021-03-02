@@ -10,7 +10,7 @@ public class Proyecto {
         this.nombre = nombre;
     }
 
-    private String añadirPersona(Persona persona){
+    public String añadirPersona(Persona persona){
         personas.add(persona);
         return persona.getNombre();
     }
