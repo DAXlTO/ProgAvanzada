@@ -62,7 +62,6 @@ public class Aplicacion {
                         proyecto.añadirPersona(new Persona(nombrePersona, emailPersona));
                     }
                     catch (NullPointerException ex){
-                        ex.printStackTrace();
                         System.out.println("Proyecto no inicializado");
                     }
                     break;
