@@ -4,7 +4,7 @@ import java.util.List;
 public class Persona {
     String nombre;
     String email;
-    private List<Tarea> lista;
+    private final List<Tarea> lista;
 
     public Persona(String nombre, String email){
         this.nombre = nombre;

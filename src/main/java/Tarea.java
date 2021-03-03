@@ -5,10 +5,10 @@ import java.util.List;
 public class Tarea {
     String titulo;
     String descripcion;
-    private List<Persona> personas;
+    private final List<Persona> personas;
     Persona responsable;
     int prioridad;
-    private LocalDate fechaIni;
+    private final LocalDate fechaIni;
     private LocalDate fechaFin;
     Boolean realizada;
     Resultado resultado;
@@ -27,6 +27,7 @@ public class Tarea {
 
     public void finalizarTarea(){
         realizada = true;
+        fechaFin = LocalDate.now();
     }
 
     public Persona getResponsable(){
@@ -55,4 +56,12 @@ public class Tarea {
     }
 
     public boolean getRealizada(){return realizada;}
+
+    public LocalDate getFechaIni() {
+        return fechaIni;
+    }
+
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
 }

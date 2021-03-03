@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class Proyecto {
     String nombre;
-    private Map<String,Tarea> tareas;
-    private List<Persona> personas;
+    private final Map<String,Tarea> tareas;
+    private final List<Persona> personas;
 
     public Proyecto(String nombre){
         this.nombre = nombre;
@@ -14,9 +14,8 @@ public class Proyecto {
         personas = new ArrayList<>();
     }
 
-    public String añadirPersona(Persona persona){
+    public void añadirPersona(Persona persona){
         personas.add(persona);
-        return persona.getNombre();
     }
 
 
@@ -31,9 +30,9 @@ public class Proyecto {
     }
 
     public void añadirTareaAPersona(Persona persona, String tarea){
-        for(int i = 0; i < personas.size();i++){
-            if(personas.get(i).equals(persona)) {
-                personas.get(i).añadirTarea(tareas.get(tarea));
+        for (Persona value : personas) {
+            if (value.equals(persona)) {
+                value.añadirTarea(tareas.get(tarea));
                 break;
             }
         }
@@ -41,17 +40,16 @@ public class Proyecto {
 
     public boolean eliminarPersonaDeTarea(String persona, String tarea){
         tareas.get(tarea).eliminarPersona(persona);
-        for(int i = 0; i < personas.size(); i++){
-            if(personas.get(i).getNombre().equals(persona)){
-                return personas.get(i).eliminarTarea(tarea);
+        for (Persona value : personas) {
+            if (value.getNombre().equals(persona)) {
+                return value.eliminarTarea(tarea);
             }
         }
         return false;
     }
 
-    public boolean finalizarTarea(String tarea){
+    public void finalizarTarea(String tarea){
         tareas.get(tarea).finalizarTarea();
-        return true;
     }
 
     public Map<String,Tarea> getTareas(){
