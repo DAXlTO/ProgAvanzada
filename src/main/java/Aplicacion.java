@@ -33,6 +33,29 @@ public class Aplicacion {
         teclado.nextLine(); // Elimina retorno de carro del buffer de entrada
         return opcion;
     }
+
+    public static void listarTareas(Proyecto proyecto){
+        List<String> tareas = proyecto.getNombreTareas();
+        for(int i = 0; i < tareas.size(); i++){
+            System.out.println(tareas.get(i));
+        }
+    }
+    public static void listarPersonas(Proyecto proyecto){
+        List<Persona> personas = proyecto.getPersonas();
+        for(int i = 0; i < personas.size(); i++){
+            System.out.println(i + ".- " + personas.get(i).getNombre());
+        }
+    }
+
+    public static Persona inputsPersona(){
+        Scanner teclado = new Scanner(System.in);
+        System.out.print("Introduce tu nombre: ");
+        String nombrePersona = teclado.nextLine();
+        System.out.print("Introduce tu correo electronico: ");
+        String emailPersona = teclado.nextLine();
+        return new Persona(nombrePersona, emailPersona);
+    }
+
     /**
      * Programa principal. Muestra el menú repetidamente y atiende las peticiones del cliente.
      *
@@ -146,26 +169,6 @@ public class Aplicacion {
     } // fin de main
 
 
-    public static void listarTareas(Proyecto proyecto){
-        List<String> tareas = proyecto.getNombreTareas();
-        for(int i = 0; i < tareas.size(); i++){
-            System.out.println(tareas.get(i));
-        }
-    }
-    public static void listarPersonas(Proyecto proyecto){
-        List<Persona> personas = proyecto.getPersonas();
-        for(int i = 0; i < personas.size(); i++){
-            System.out.println(i + ".- " + personas.get(i).getNombre());
-        }
-    }
 
-    public static Persona inputsPersona(){
-        Scanner teclado = new Scanner(System.in);
-        System.out.print("Introduce tu nombre: ");
-        String nombrePersona = teclado.nextLine();
-        System.out.print("Introduce tu correo electronico: ");
-        String emailPersona = teclado.nextLine();
-        return new Persona(nombrePersona, emailPersona);
-    }
 
 } // fin class

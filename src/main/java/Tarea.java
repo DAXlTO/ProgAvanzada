@@ -32,6 +32,7 @@ public class Tarea {
     public Persona getResponsable(){
         return responsable;
     }
+
     public void añadirPersona(Persona persona){
         personas.add(persona);
     }
