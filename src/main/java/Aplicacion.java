@@ -5,12 +5,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Aplicacion {
+
     /**
      * Muestra el menu de opciones y lee repetidamente de teclado hasta obtener una opcion valida
      * @param teclado
      * @return
      */
-
     public static int menu(Scanner teclado) {
         int opcion;
         System.out.println("\n\n");
@@ -25,7 +25,6 @@ public class Aplicacion {
         System.out.println("5. Eliminar una persona de una tarea");
         System.out.println("6. Listar las personas asignadas a un proyecto");
         System.out.println("7. Listar las tareas de un proyecto");
-
         do {
             System.out.print("\nElige una opcion (0..7): ");
             opcion = teclado.nextInt();
