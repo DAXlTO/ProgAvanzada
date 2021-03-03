@@ -28,6 +28,9 @@ public class Tarea {
         realizada = true;
     }
 
+    public Persona getResponsable(){
+        return responsable;
+    }
     public List<Persona> getPersonas(){
         return personas;
     }
@@ -35,4 +38,6 @@ public class Tarea {
     public Resultado getResultado() {
         return resultado;
     }
+
+    public boolean getRealizada(){return realizada;}
 }

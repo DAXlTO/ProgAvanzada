@@ -29,12 +29,27 @@ public class Proyecto {
         return true;
     }
 
+    public Map<String,Tarea> getTareas(){
+        return new HashMap<>(tareas);
+    }
+
     public List<Persona> getPersonas(){
-        return personas;
+        return new ArrayList<>(personas);
     }
 
     public List<String> getNombreTareas(){
         return new ArrayList<>(tareas.keySet());
+    }
+
+    public List<String> getTareasNoFinalizadas(){
+        List<String>  noFinalizadas= new ArrayList<>();
+
+        for(String key : tareas.keySet()){
+            if(!tareas.get(key).getRealizada()){
+                noFinalizadas.add(key);
+            }
+        }
+        return noFinalizadas;
     }
 
 }

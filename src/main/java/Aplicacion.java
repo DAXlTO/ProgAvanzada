@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Aplicacion {
@@ -69,9 +70,10 @@ public class Aplicacion {
                     System.out.print("Introduce la descripcion de la tarea: ");
                     String descripcion = teclado.nextLine();
 
-                    System.out.println("Elige a la persona responsable: ");
+                    System.out.println("Persona responsable: ");
                     listarPersonas(proyecto);
                     int persona = Integer.parseInt(teclado.nextLine());
+                    System.out.print("Elige el numero de la persona responsable");
                     Persona responsable = proyecto.getPersonas().get(persona);
 
                     System.out.print("Introduce la prioridad de la tarea (1-5): ");
@@ -80,13 +82,13 @@ public class Aplicacion {
                     Tarea tarea = new Tarea(nomTarea,descripcion,responsable,prioridad, LocalDate.now());
                     proyecto.añadirTarea(nomTarea,tarea);
 
-                    System.out.println("La tarea " + nomTarea + "ha sido añadida correctamente");
+                    System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente");
                     break;
                 }
 
                 case 3: {
                     System.out.println("¿Que tarea quieres marcar como finalizada? (Introduce el nombre): ");
-                    List<String> tareas = proyecto.getNombreTareas();
+                    List<String> tareas = proyecto.getTareasNoFinalizadas();
                     for(int i = 0; i < tareas.size(); i++){
                         System.out.println(tareas.get(i));
                     }
@@ -100,10 +102,18 @@ public class Aplicacion {
                     break;
                 }
 
-                case 4:
+                case 6: {
+                    Map<String,Tarea> tareas = proyecto.getTareas();
+                    for(String key : tareas.keySet()){
+                        System.out.println("Titulo: " + key);
+                        System.out.println("Responsable: " + tareas.get(key).getResponsable().getNombre());
+                        System.out.println("Realizada: " + tareas.get(key).getRealizada());
+                        System.out.println("");
+
+                    }
 
                     break;
-
+                }
             } // fin switch
 
         } while (opcion != 0);
@@ -118,7 +128,5 @@ public class Aplicacion {
             System.out.println(i + ".- " + personas.get(i).getNombre());
         }
     }
-
-
 
 } // fin class

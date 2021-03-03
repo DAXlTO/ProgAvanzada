@@ -12,4 +12,13 @@ public class Resultado {
     public String getIdentificador() {
         return identificador;
     }
+
+    @Override
+    public String toString() {
+        return "Resultado{" +
+                "identificador='" + identificador + '\'' +
+                ", horas=" + horas +
+                ", internoOcomercial='" + internoOcomercial + '\'' +
+                '}';
+    }
 }
