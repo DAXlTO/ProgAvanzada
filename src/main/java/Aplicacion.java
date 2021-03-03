@@ -21,9 +21,10 @@ public class Aplicacion {
         System.out.println("1. Dar de a las personas que trabajan en el proyecto");
         System.out.println("2. Dar de alta las tareas");
         System.out.println("3. Marcar una tarea como finalizada");
-        System.out.println("4. Introducir o eliminar una persona de una tarea");
-        System.out.println("5. Listar las personas asignadas a un proyecto");
-        System.out.println("6. Listar las tareas de un proyecto");
+        System.out.println("4. Introducir una persona en una tarea");
+        System.out.println("5. Eliminar una persona de una tarea");
+        System.out.println("6. Listar las personas asignadas a un proyecto");
+        System.out.println("7. Listar las tareas de un proyecto");
 
         do {
             System.out.print("\nElige una opcion (0..7): ");
@@ -50,16 +51,13 @@ public class Aplicacion {
             opcion = menu(teclado);
             switch (opcion) {
                 case 0:
-
+                    System.exit(0);
                     break;
 
                 case 1: {
-                    System.out.print("Introduce tu nombre: ");
-                    String nombrePersona = teclado.nextLine();
-                    System.out.print("Introduce tu correo electronico: ");
-                    String emailPersona = teclado.nextLine();
-                    proyecto.añadirPersona(new Persona(nombrePersona, emailPersona));
-                    System.out.println("Has añadido a " + nombrePersona + " al proyecto");
+                    Persona persona = inputsPersona();
+                    proyecto.añadirPersona(persona);
+                    System.out.println("Has añadido a " + persona.getNombre() + " al proyecto");
                     break;
                     }
 
@@ -96,13 +94,39 @@ public class Aplicacion {
                     System.out.println("Tarea finalizada");
                     break;
                 }
-
+                case 4: {
+                    Persona persona = inputsPersona();
+                    System.out.println("¿A que tarea le quieres añadir?");
+                    listarTareas(proyecto);
+                    String tarea = teclado.nextLine();
+                    System.out.println("Se ha agregado a " + proyecto.añadirPersonaATarea(tarea,persona) + "a la tarea " + tarea);
+                    proyecto.añadirTareaAPersona(persona,tarea);
+                    break;
+                }
                 case 5: {
+                    System.out.println("¿A que persona quieres eliminar?");
+                    List<Persona> personas = proyecto.getPersonas();
+                    for(int i = 0; i < personas.size();i++){
+                        System.out.println(personas.get(i).getNombre());
+                    }
+                    System.out.println("Introduce su nombre: ");
+                    String persona = teclado.nextLine();
+
+                    System.out.println("¿De que tarea le quieres eliminar?");
+                    listarTareas(proyecto);
+                    String tarea = teclado.nextLine();
+
+                    proyecto.eliminarPersonaDeTarea(persona,tarea);
+
+
+                    break;
+                }
+                case 6: {
                    listarPersonas(proyecto);
                     break;
                 }
 
-                case 6: {
+                case 7: {
                     Map<String,Tarea> tareas = proyecto.getTareas();
                     for(String key : tareas.keySet()){
                         System.out.println("Titulo: " + key);
@@ -122,11 +146,26 @@ public class Aplicacion {
     } // fin de main
 
 
+    public static void listarTareas(Proyecto proyecto){
+        List<String> tareas = proyecto.getNombreTareas();
+        for(int i = 0; i < tareas.size(); i++){
+            System.out.println(tareas.get(i));
+        }
+    }
     public static void listarPersonas(Proyecto proyecto){
         List<Persona> personas = proyecto.getPersonas();
         for(int i = 0; i < personas.size(); i++){
             System.out.println(i + ".- " + personas.get(i).getNombre());
         }
+    }
+
+    public static Persona inputsPersona(){
+        Scanner teclado = new Scanner(System.in);
+        System.out.print("Introduce tu nombre: ");
+        String nombrePersona = teclado.nextLine();
+        System.out.print("Introduce tu correo electronico: ");
+        String emailPersona = teclado.nextLine();
+        return new Persona(nombrePersona, emailPersona);
     }
 
 } // fin class
