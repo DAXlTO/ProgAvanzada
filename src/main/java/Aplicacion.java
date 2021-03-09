@@ -29,7 +29,7 @@ public class Aplicacion {
             System.out.print("\nElige una opcion (0..7): ");
             opcion = teclado.nextInt();
         } while ( (opcion<0) || (opcion>7) );
-        teclado.nextLine(); // Elimina retorno de carro del buffer de entrada
+        teclado.nextLine();
         return opcion;
     }
 
@@ -73,6 +73,7 @@ public class Aplicacion {
             opcion = menu(teclado);
             switch (opcion) {
                 case 0:
+                    System.out.println("Has terminado de editar el proyecto " + nombreProyecto);
                     System.exit(0);
                     break;
 
@@ -139,15 +140,12 @@ public class Aplicacion {
                     String tarea = teclado.nextLine();
 
                     proyecto.eliminarPersonaDeTarea(persona,tarea);
-
-
                     break;
                 }
                 case 6: {
                    listarPersonas(proyecto);
                     break;
                 }
-
                 case 7: {
                     Map<String,Tarea> tareas = proyecto.getTareas();
                     for(String key : tareas.keySet()){
@@ -155,19 +153,12 @@ public class Aplicacion {
                         System.out.println("Responsable: " + tareas.get(key).getResponsable().getNombre());
                         System.out.println("Realizada: " + tareas.get(key).getRealizada());
                         System.out.println("");
-
                     }
-
                     break;
                 }
-            } // fin switch
-
-        } while (opcion != 0);
-
-        System.exit(0);
-    } // fin de main
-
-
-
-
-} // fin class
+            }
+        }
+        while (opcion != 0);
+            System.exit(0);
+    }
+}
