@@ -11,6 +11,7 @@ public class Aplicacion {
      * @param teclado
      * @return
      */
+    /*
     public static int menu(Scanner teclado) {
         int opcion;
         System.out.println("\n\n");
@@ -31,6 +32,41 @@ public class Aplicacion {
         } while ( (opcion<0) || (opcion>7) );
         teclado.nextLine();
         return opcion;
+    }
+     */
+
+    public enum OpcionesMenu{
+        SALIR("Salir"),
+        DAR_ALTA_PERSONA("Dar de a las personas que trabajan en el proyecto"),
+        DAR_ALTA_TAREA("Dar de alta las tareas"),
+        MARCAR_FINALIZADA("Marcar una tarea como finalizada"),
+        AÑADIR_PERSONA("Añadir una persona a una tarea"),
+        ELIMINAR_PERSONA("ELiminar una persona de una tarea"),
+        LISTAR_PERSONAS("Listar las personas asignadas a un proyecto"),
+        LISTAR_TAREAS("Listar las tareas de un proyecto");
+
+        private String descripcion;
+
+        private OpcionesMenu(String descripcion) {
+            this.descripcion = descripcion;
+        }
+        public String getDescripcion() {
+            return descripcion;
+        }
+
+        public static OpcionesMenu getOpcion(int posicion){
+            return values()[posicion];
+        }
+        public static String getMenu(){
+            StringBuilder sb = new StringBuilder();
+            for (OpcionesMenu opcion : OpcionesMenu.values()) {
+                sb.append(opcion.ordinal());
+                sb.append(".-");
+                sb.append(opcion.getDescripcion());
+                sb.append("\n");
+            }
+            return sb.toString();
+        }
     }
 
     public static void listarTareas(Proyecto proyecto){
@@ -61,30 +97,30 @@ public class Aplicacion {
      * @param args
      */
     public static void main(String[] args)  {
-
         Scanner teclado = new Scanner(System.in);
-
         System.out.print("Introduce el nombre del proyecto: ");
         String nombreProyecto = teclado.nextLine();
         Proyecto proyecto = new Proyecto(nombreProyecto);
         System.out.println("Has creado un nuevo proyecto llamado " + nombreProyecto);
-        int opcion;
-        do {
-            opcion = menu(teclado);
-            switch (opcion) {
-                case 0:
+
+        System.out.println(OpcionesMenu.getMenu());
+        System.out.println("ELige una opcion (0..7)");
+        byte opcion = teclado.nextByte();
+        OpcionesMenu opcionMenu = OpcionesMenu.getOpcion(opcion);
+            switch (opcionMenu) {
+                case SALIR:
                     System.out.println("Has terminado de editar el proyecto " + nombreProyecto);
                     System.exit(0);
                     break;
 
-                case 1: {
+                case DAR_ALTA_PERSONA: {
                     Persona persona = inputsPersona();
                     proyecto.añadirPersona(persona);
                     System.out.println("Has añadido a " + persona.getNombre() + " al proyecto");
                     break;
                     }
 
-                case 2: {
+                case DAR_ALTA_TAREA: {
                     System.out.print("Introduce el nombre de la tarea: ");
                     String nomTarea = teclado.nextLine();
 
@@ -107,7 +143,7 @@ public class Aplicacion {
                     break;
                 }
 
-                case 3: {
+                case MARCAR_FINALIZADA: {
                     System.out.println("¿Que tarea quieres marcar como finalizada? (Introduce el nombre): ");
                     List<String> tareas = proyecto.getTareasNoFinalizadas();
                     for(int i = 0; i < tareas.size(); i++){
@@ -117,7 +153,7 @@ public class Aplicacion {
                     System.out.println("Tarea finalizada");
                     break;
                 }
-                case 4: {
+                case AÑADIR_PERSONA: {
                     Persona persona = inputsPersona();
                     System.out.println("¿A que tarea le quieres añadir?");
                     listarTareas(proyecto);
@@ -126,7 +162,7 @@ public class Aplicacion {
                     proyecto.añadirTareaAPersona(persona,tarea);
                     break;
                 }
-                case 5: {
+                case ELIMINAR_PERSONA: {
                     System.out.println("¿A que persona quieres eliminar?");
                     List<Persona> personas = proyecto.getPersonas();
                     for(int i = 0; i < personas.size();i++){
@@ -142,11 +178,11 @@ public class Aplicacion {
                     proyecto.eliminarPersonaDeTarea(persona,tarea);
                     break;
                 }
-                case 6: {
+                case LISTAR_PERSONAS: {
                    listarPersonas(proyecto);
                     break;
                 }
-                case 7: {
+                case LISTAR_TAREAS: {
                     Map<String,Tarea> tareas = proyecto.getTareas();
                     for(String key : tareas.keySet()){
                         System.out.println("Titulo: " + key);
@@ -157,8 +193,5 @@ public class Aplicacion {
                     break;
                 }
             }
-        }
-        while (opcion != 0);
-            System.exit(0);
     }
 }
