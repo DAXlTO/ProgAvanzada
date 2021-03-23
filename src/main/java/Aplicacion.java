@@ -69,7 +69,7 @@ public class Aplicacion {
         System.out.println("Has creado un nuevo proyecto llamado " + nombreProyecto);
 
         System.out.println(OpcionesMenu.getMenu());
-        System.out.println("ELige una opcion (0..7)");
+        System.out.print("ELige una opcion (0..7):");
         int opcion = teclado.nextInt();
         OpcionesMenu opcionMenu = OpcionesMenu.getOpcion(opcion);
         while (opcion != 0) {
@@ -83,7 +83,7 @@ public class Aplicacion {
                 case DAR_ALTA_PERSONA: {
                     Persona persona = inputsPersona();
                     proyecto.añadirPersona(persona);
-                    System.out.println("Has añadido a " + persona.getNombre() + " al proyecto");
+                    System.out.println("Has añadido a " + persona.getNombre() + " al proyecto\n");
                     break;
                 }
 
@@ -105,7 +105,7 @@ public class Aplicacion {
                     Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, LocalDate.now());
                     proyecto.añadirTarea(nomTarea, tarea);
 
-                    System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente");
+                    System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente\n");
                     break;
                 }
 
@@ -116,7 +116,7 @@ public class Aplicacion {
                         System.out.println(tareas.get(i));
                     }
                     proyecto.finalizarTarea(atributos.nextLine());
-                    System.out.println("Tarea finalizada");
+                    System.out.println("Tarea finalizada\n");
                     break;
                 }
                 case AÑADIR_PERSONA: {
@@ -124,7 +124,7 @@ public class Aplicacion {
                     System.out.println("¿A que tarea le quieres añadir?");
                     listarTareas(proyecto);
                     String tarea = atributos.nextLine();
-                    System.out.println("Se ha agregado a " + proyecto.añadirPersonaATarea(tarea, persona) + "a la tarea " + tarea);
+                    System.out.println("Se ha agregado a " + proyecto.añadirPersonaATarea(tarea, persona) + "a la tarea " + tarea+"\n");
                     proyecto.añadirTareaAPersona(persona, tarea);
                     break;
                 }
@@ -142,6 +142,7 @@ public class Aplicacion {
                     String tarea = atributos.nextLine();
 
                     proyecto.eliminarPersonaDeTarea(persona, tarea);
+                    System.out.println("Tarea eliminada correctamente\n");
                     break;
                 }
                 case LISTAR_PERSONAS: {
@@ -159,7 +160,7 @@ public class Aplicacion {
                     break;
                 }
             }
-            System.out.println("ELige una opcion(0..7)");
+            System.out.print("ELige una opcion(0..7):");
             opcion = teclado.nextInt();
             opcionMenu = OpcionesMenu.getOpcion(opcion);
         }
