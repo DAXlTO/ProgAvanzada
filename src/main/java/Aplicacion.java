@@ -6,35 +6,6 @@ import java.util.Scanner;
 
 public class Aplicacion {
 
-    /**
-     * Muestra el menu de opciones y lee repetidamente de teclado hasta obtener una opcion valida
-     * @param teclado
-     * @return
-     */
-    /*
-    public static int menu(Scanner teclado) {
-        int opcion;
-        System.out.println("\n\n");
-        System.out.println("=====================================================");
-        System.out.println("============            MENU        =================");
-        System.out.println("=====================================================");
-        System.out.println("0. Salir");
-        System.out.println("1. Dar de a las personas que trabajan en el proyecto");
-        System.out.println("2. Dar de alta las tareas");
-        System.out.println("3. Marcar una tarea como finalizada");
-        System.out.println("4. Introducir una persona en una tarea");
-        System.out.println("5. Eliminar una persona de una tarea");
-        System.out.println("6. Listar las personas asignadas a un proyecto");
-        System.out.println("7. Listar las tareas de un proyecto");
-        do {
-            System.out.print("\nElige una opcion (0..7): ");
-            opcion = teclado.nextInt();
-        } while ( (opcion<0) || (opcion>7) );
-        teclado.nextLine();
-        return opcion;
-    }
-     */
-
     public enum OpcionesMenu{
         SALIR("Salir"),
         DAR_ALTA_PERSONA("Dar de a las personas que trabajan en el proyecto"),
@@ -91,11 +62,6 @@ public class Aplicacion {
         return new Persona(nombrePersona, emailPersona);
     }
 
-    /**
-     * Programa principal. Muestra el menú repetidamente y atiende las peticiones del cliente.
-     *
-     * @param args
-     */
     public static void main(String[] args)  {
         Scanner teclado = new Scanner(System.in);
         System.out.print("Introduce el nombre del proyecto: ");
@@ -105,8 +71,10 @@ public class Aplicacion {
 
         System.out.println(OpcionesMenu.getMenu());
         System.out.println("ELige una opcion (0..7)");
-        byte opcion = teclado.nextByte();
+        int opcion = teclado.nextInt();
         OpcionesMenu opcionMenu = OpcionesMenu.getOpcion(opcion);
+        while (opcion != 0) {
+            Scanner atributos = new Scanner(System.in);
             switch (opcionMenu) {
                 case SALIR:
                     System.out.println("Has terminado de editar el proyecto " + nombreProyecto);
@@ -118,26 +86,25 @@ public class Aplicacion {
                     proyecto.añadirPersona(persona);
                     System.out.println("Has añadido a " + persona.getNombre() + " al proyecto");
                     break;
-                    }
+                }
 
                 case DAR_ALTA_TAREA: {
                     System.out.print("Introduce el nombre de la tarea: ");
-                    String nomTarea = teclado.nextLine();
+                    String nomTarea = atributos.nextLine();
 
                     System.out.print("Introduce la descripcion de la tarea: ");
-                    String descripcion = teclado.nextLine();
+                    String descripcion = atributos.nextLine();
 
-                    System.out.println("Persona responsable: ");
+                    System.out.println("Elige el numero de la persona responsable: ");
                     listarPersonas(proyecto);
-                    int persona = Integer.parseInt(teclado.nextLine());
-                    System.out.print("Elige el numero de la persona responsable");
+                    int persona = Integer.parseInt(atributos.nextLine());
                     Persona responsable = proyecto.getPersonas().get(persona);
 
                     System.out.print("Introduce la prioridad de la tarea (1-5): ");
-                    int prioridad = Integer.parseInt(teclado.nextLine());
+                    int prioridad = Integer.parseInt(atributos.nextLine());
 
-                    Tarea tarea = new Tarea(nomTarea,descripcion,responsable,prioridad, LocalDate.now());
-                    proyecto.añadirTarea(nomTarea,tarea);
+                    Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, LocalDate.now());
+                    proyecto.añadirTarea(nomTarea, tarea);
 
                     System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente");
                     break;
@@ -146,10 +113,10 @@ public class Aplicacion {
                 case MARCAR_FINALIZADA: {
                     System.out.println("¿Que tarea quieres marcar como finalizada? (Introduce el nombre): ");
                     List<String> tareas = proyecto.getTareasNoFinalizadas();
-                    for(int i = 0; i < tareas.size(); i++){
+                    for (int i = 0; i < tareas.size(); i++) {
                         System.out.println(tareas.get(i));
                     }
-                    proyecto.finalizarTarea(teclado.nextLine());
+                    proyecto.finalizarTarea(atributos.nextLine());
                     System.out.println("Tarea finalizada");
                     break;
                 }
@@ -157,34 +124,34 @@ public class Aplicacion {
                     Persona persona = inputsPersona();
                     System.out.println("¿A que tarea le quieres añadir?");
                     listarTareas(proyecto);
-                    String tarea = teclado.nextLine();
-                    System.out.println("Se ha agregado a " + proyecto.añadirPersonaATarea(tarea,persona) + "a la tarea " + tarea);
-                    proyecto.añadirTareaAPersona(persona,tarea);
+                    String tarea = atributos.nextLine();
+                    System.out.println("Se ha agregado a " + proyecto.añadirPersonaATarea(tarea, persona) + "a la tarea " + tarea);
+                    proyecto.añadirTareaAPersona(persona, tarea);
                     break;
                 }
                 case ELIMINAR_PERSONA: {
                     System.out.println("¿A que persona quieres eliminar?");
                     List<Persona> personas = proyecto.getPersonas();
-                    for(int i = 0; i < personas.size();i++){
+                    for (int i = 0; i < personas.size(); i++) {
                         System.out.println(personas.get(i).getNombre());
                     }
                     System.out.println("Introduce su nombre: ");
-                    String persona = teclado.nextLine();
+                    String persona = atributos.nextLine();
 
                     System.out.println("¿De que tarea le quieres eliminar?");
                     listarTareas(proyecto);
-                    String tarea = teclado.nextLine();
+                    String tarea = atributos.nextLine();
 
-                    proyecto.eliminarPersonaDeTarea(persona,tarea);
+                    proyecto.eliminarPersonaDeTarea(persona, tarea);
                     break;
                 }
                 case LISTAR_PERSONAS: {
-                   listarPersonas(proyecto);
+                    listarPersonas(proyecto);
                     break;
                 }
                 case LISTAR_TAREAS: {
-                    Map<String,Tarea> tareas = proyecto.getTareas();
-                    for(String key : tareas.keySet()){
+                    Map<String, Tarea> tareas = proyecto.getTareas();
+                    for (String key : tareas.keySet()) {
                         System.out.println("Titulo: " + key);
                         System.out.println("Responsable: " + tareas.get(key).getResponsable().getNombre());
                         System.out.println("Realizada: " + tareas.get(key).getRealizada());
@@ -193,5 +160,9 @@ public class Aplicacion {
                     break;
                 }
             }
+            System.out.println("ELige una opcion(0..7)");
+            opcion = teclado.nextInt();
+            opcionMenu = OpcionesMenu.getOpcion(opcion);
+        }
     }
 }
