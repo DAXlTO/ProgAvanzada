@@ -22,6 +22,7 @@ public class Menu {
         public static OpcionesMenu getOpcion(int posicion){
             return values()[posicion];
         }
+
         public static String getMenu(){
             StringBuilder sb = new StringBuilder();
             for (OpcionesMenu opcion : OpcionesMenu.values()) {

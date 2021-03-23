@@ -190,6 +190,8 @@ public class Aplicacion {
         for(int i = 0; i < personas.size(); i++){
             System.out.println(i + ".- " + personas.get(i).getNombre());
         }
+        if(personas.size() == 0)
+            System.out.println("No hay personas en el proyecto.");
     }
 
     public static void listarTareas(Proyecto proyecto){
