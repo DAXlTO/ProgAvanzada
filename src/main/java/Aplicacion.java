@@ -45,6 +45,7 @@ public class Aplicacion {
             System.out.println(tareas.get(i));
         }
     }
+
     public static void listarPersonas(Proyecto proyecto){
         List<Persona> personas = proyecto.getPersonas();
         for(int i = 0; i < personas.size(); i++){
@@ -69,7 +70,7 @@ public class Aplicacion {
         System.out.println("Has creado un nuevo proyecto llamado " + nombreProyecto);
 
         System.out.println(OpcionesMenu.getMenu());
-        System.out.println("ELige una opcion (0..7)");
+        System.out.print("ELige una opcion (0..7)");
         int opcion = teclado.nextInt();
         OpcionesMenu opcionMenu = OpcionesMenu.getOpcion(opcion);
         while (opcion != 0) {
@@ -159,7 +160,7 @@ public class Aplicacion {
                     break;
                 }
             }
-            System.out.println("ELige una opcion(0..7)");
+            System.out.print("ELige una opcion(0..7)");
             opcion = teclado.nextInt();
             opcionMenu = OpcionesMenu.getOpcion(opcion);
         }
