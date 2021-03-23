@@ -14,7 +14,7 @@ public class Tarea {
     Resultado resultado;
     List<String> etiquetas;
 
-    public Tarea(String titulo, String descripcion, Persona responsable, int prioridad, LocalDate fechaIni){
+    public Tarea(String titulo, String descripcion, Persona responsable, int prioridad, List<String> etiquetas, LocalDate fechaIni){
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.responsable = responsable;

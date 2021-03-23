@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -40,6 +41,7 @@ public class Aplicacion {
                         System.out.println(tareas.get(i));
                     }
                     proyecto.finalizarTarea(atributos.nextLine());
+                    System.out.println("¿Que tipo de resultado es?");
                     System.out.println("Tarea finalizada");
                     break;
                 }
@@ -89,7 +91,11 @@ public class Aplicacion {
         System.out.print("Introduce la prioridad de la tarea (1-5): ");
         int prioridad = Integer.parseInt(atributos.nextLine());
 
-        Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, LocalDate.now());
+        System.out.print("¿Quieres poner alguna etiqueta relacionada con el proyecto?");
+        List<String> etiquetas = Collections.singletonList(atributos.nextLine());
+
+
+        Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, etiquetas, LocalDate.now());
         proyecto.añadirTarea(nomTarea, tarea);
 
         System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente");
