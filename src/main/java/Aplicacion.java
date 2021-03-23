@@ -81,8 +81,13 @@ public class Aplicacion {
     }
 
     public static void darBajaPersona(Proyecto proyecto){
-        System.out.println("¿Que persona quieres eliminar del proyecto?");
+        List<Persona> personas = proyecto.getPersonas();
         listarPersonas(proyecto);
+        if(personas.size() == 0) {
+            System.out.println("No hay personas en el proyecto.");
+            return;
+        }
+        System.out.println("¿Que persona quieres eliminar del proyecto?");
         int listaPersonas = Integer.parseInt(atributos.nextLine());
         Persona personaELiminada = proyecto.getPersonas().get(listaPersonas);
         proyecto.eliminarPersona(listaPersonas);
@@ -213,8 +218,9 @@ public class Aplicacion {
         for(int i = 0; i < personas.size(); i++){
             System.out.println(i + ".- " + personas.get(i).getNombre());
         }
-        if(personas.size() == 0)
+        if(personas.size() == 0) {
             System.out.println("No hay personas en el proyecto.");
+        }
     }
 
     public static void listarTareas(Proyecto proyecto){
