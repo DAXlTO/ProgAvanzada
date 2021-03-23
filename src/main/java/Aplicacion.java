@@ -84,7 +84,6 @@ public class Aplicacion {
         List<Persona> personas = proyecto.getPersonas();
         listarPersonas(proyecto);
         if(personas.size() == 0) {
-            System.out.println("No hay personas en el proyecto.");
             return;
         }
         System.out.println("¿Que persona quieres eliminar del proyecto?");
