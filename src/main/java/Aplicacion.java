@@ -31,6 +31,11 @@ public class Aplicacion {
                     darAltaPersona(proyecto);
                     break;
                 }
+                case DAR_BAJA_PERSONA:{
+
+
+                    break;
+                }
 
                 case DAR_ALTA_TAREA: {
                     darAltaTarea(proyecto);
@@ -55,6 +60,12 @@ public class Aplicacion {
                 }
                 case LISTAR_TAREAS: {
                     listarTareas(proyecto);
+                    break;
+                }
+
+                case LISTAR_PERSONAS_DE_TAREA: {
+
+
                     break;
                 }
             }
@@ -98,8 +109,12 @@ public class Aplicacion {
     }
 
     public static void marcarFinalizada(Proyecto proyecto){
-        System.out.println("¿Que tarea quieres marcar como finalizada? (Introduce el nombre): ");
         List<String> tareasNoFinalizadas = proyecto.getTareasNoFinalizadas();
+        if (tareasNoFinalizadas.size() == 0){
+            System.out.println("No hay tareas NO FINALIZADAS");
+            return;
+        }
+        System.out.println("¿Que tarea quieres marcar como finalizada? (Introduce el nombre): ");
         for (int i = 0; i < tareasNoFinalizadas.size(); i++) {
             System.out.println(tareasNoFinalizadas.get(i));
         }
@@ -201,6 +216,9 @@ public class Aplicacion {
             System.out.println("Responsable: " + tareas.get(key).getResponsable().getNombre());
             System.out.println("Realizada: " + tareas.get(key).getRealizada());
             System.out.println("");
+        }
+        if (tareas.size() == 0){
+            System.out.println("No hay tareas en este proyecto");
         }
     }
 
