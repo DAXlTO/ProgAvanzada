@@ -69,6 +69,10 @@ public class Proyecto {
         return new ArrayList<>(personas);
     }
 
+    public Tarea getTarea(String tarea){
+        return tareas.get(tarea);
+    }
+
     public String getTipoTarea(String tarea){
        return tareas.get(tarea).tipo;
     }

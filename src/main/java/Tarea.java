@@ -6,7 +6,7 @@ import java.util.List;
 public class Tarea {
     String titulo;
     String descripcion;
-    private final List<Persona> personas;
+    private List<Persona> personas;
     Persona responsable;
     int prioridad;
     private final LocalDate fechaIni;

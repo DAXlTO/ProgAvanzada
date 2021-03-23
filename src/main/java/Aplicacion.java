@@ -140,8 +140,7 @@ public class Aplicacion {
 
         System.out.println("Interno o comercial");
         String internoOcomercial = atributos.nextLine();
-
-
+                    
         if(tipo.equals("Documento")){
             System.out.println("¿Que formato tiene?");
             String formato = atributos.nextLine();
@@ -202,6 +201,7 @@ public class Aplicacion {
         String tarea = atributos.nextLine();
         System.out.println("Se ha agregado a " + proyecto.añadirPersonaATarea(tarea, persona) + "a la tarea " + tarea);
         proyecto.añadirTareaAPersona(persona, tarea);
+        proyecto.añadirPersonaATarea(tarea,persona);
     }
 
     public static void eliminarPersona(Proyecto proyecto){
@@ -239,6 +239,10 @@ public class Aplicacion {
             System.out.println("Titulo: " + key);
             System.out.println("Responsable: " + tareas.get(key).getResponsable().getNombre());
             System.out.println("Realizada: " + tareas.get(key).getRealizada());
+            System.out.println("Participantes: ");
+            List<Persona> per = tareas.get(key).getPersonas();
+            for (int i = 0; i < per.size(); i++)
+                System.out.println(per.get(i));
             System.out.println("");
         }
         if (tareas.size() == 0){
@@ -247,7 +251,7 @@ public class Aplicacion {
     }
 
     public static void listarPersonasDeTarea(Proyecto proyecto){
-       /* Map<String, Tarea> tareas = proyecto.getTareas();
+        Map<String, Tarea> tareas = proyecto.getTareas();
         if (tareas.size() == 0){
             System.out.println("No hay tareas en este proyecto");
             return;
@@ -257,11 +261,16 @@ public class Aplicacion {
             System.out.println("No hay personas en el proyecto.");
             return;
         }
-        System.out.println("Elige el numero de la tarea de la que quieres ver las personas que participan: ");
+        System.out.println("Elige la tarea de la que quieres ver las personas que participan: ");
         listarNombreTareas(proyecto);
-        int tareaSeleccionada = Integer.parseInt(atributos.nextLine());
-
-        */
+        String tareaSeleccionada = atributos.nextLine();
+        /*
+        List<Persona> personasTarea = proyecto.getTarea(tareaSeleccionada).getPersonas();
+        System.out.println("Las personas que trabajan en esta tarea son: ");
+        for(int i = 0; i < personasTarea.size(); i++){
+            System.out.println(personasTarea.get(i));
+        }
+         */
     }
 
     public static void listarNombreTareas(Proyecto proyecto){
