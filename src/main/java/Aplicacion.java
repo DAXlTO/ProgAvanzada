@@ -193,8 +193,13 @@ public class Aplicacion {
         }
         System.out.println("¿A que persona quieres añadir?");
         String persona = atributos.nextLine();
-        System.out.println("¿A que tarea le quieres añadir?");
+        Map<String, Tarea> tareas = proyecto.getTareas();
         listarNombreTareas(proyecto);
+        if (tareas.size() == 0){
+            System.out.println("No hay tareas en este proyecto");
+            return;
+        }
+        System.out.println("¿A que tarea le quieres añadir?");
         String tarea = atributos.nextLine();
         System.out.println("Se ha agregado a " + proyecto.añadirPersonaATarea(tarea, persona) + "a la tarea " + tarea);
         proyecto.añadirTareaAPersona(persona, tarea);
@@ -206,17 +211,16 @@ public class Aplicacion {
         if(personas.size() == 0) {
             return;
         }
-        System.out.println("Introduce el nombre de la persona que quieres eliminar: ");
+        System.out.println("Introduce el numero de la persona que quieres eliminar: ");
         String persona = atributos.nextLine();
-
-        System.out.println("¿De que tarea le quieres eliminar?");
         Map<String, Tarea> tareas = proyecto.getTareas();
         listarNombreTareas(proyecto);
         if (tareas.size() == 0){
             System.out.println("No hay tareas en este proyecto");
+            return;
         }
+        System.out.println("¿De que tarea le quieres eliminar?");
         String tarea = atributos.nextLine();
-
         proyecto.eliminarPersonaDeTarea(persona, tarea);
     }
 
