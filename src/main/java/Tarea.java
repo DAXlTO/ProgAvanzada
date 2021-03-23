@@ -22,7 +22,7 @@ public class Tarea {
         this.fechaIni = fechaIni;
         realizada = false;
         personas = new ArrayList<>();
-        this.etiquetas = new ArrayList<>();
+        this.etiquetas = etiquetas;
     }
 
     public void finalizarTarea(){
