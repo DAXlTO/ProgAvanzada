@@ -53,8 +53,8 @@ public class Proyecto {
         return false;
     }
 
-    public void finalizarTarea(String tarea){
-        tareas.get(tarea).finalizarTarea();
+    public void finalizarTarea(String tarea, Resultado resultado){
+        tareas.get(tarea).finalizarTarea(resultado);
     }
 
     public Map<String,Tarea> getTareas(){
@@ -63,6 +63,10 @@ public class Proyecto {
 
     public List<Persona> getPersonas(){
         return new ArrayList<>(personas);
+    }
+
+    public String getTipoTarea(String tarea){
+       return tareas.get(tarea).tipo;
     }
 
     public List<String> getNombreTareas(){

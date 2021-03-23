@@ -13,21 +13,24 @@ public class Tarea {
     Boolean realizada;
     Resultado resultado;
     List<String> etiquetas;
+    String tipo;
 
-    public Tarea(String titulo, String descripcion, Persona responsable, int prioridad, List<String> etiquetas, LocalDate fechaIni){
+    public Tarea(String titulo, String descripcion, Persona responsable, int prioridad, List<String> etiquetas, String tipo){
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.responsable = responsable;
         this.prioridad = prioridad;
-        this.fechaIni = fechaIni;
+        this.fechaIni = LocalDate.now();
         realizada = false;
         personas = new ArrayList<>();
         this.etiquetas = etiquetas;
+        this.tipo = tipo;
     }
 
-    public void finalizarTarea(){
+    public void finalizarTarea(Resultado resultado){
         realizada = true;
         fechaFin = LocalDate.now();
+        this.resultado = resultado;
     }
 
     public Persona getResponsable(){

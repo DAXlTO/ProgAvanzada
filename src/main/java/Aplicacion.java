@@ -6,7 +6,10 @@ import java.util.Scanner;
 
 public class Aplicacion {
 
+    private static final Scanner atributos = new Scanner(System.in);
+
     public static void main(String[] args)  {
+
         Scanner teclado = new Scanner(System.in);
         System.out.print("Introduce el nombre del proyecto: ");
         String nombreProyecto = teclado.nextLine();
@@ -35,14 +38,7 @@ public class Aplicacion {
                 }
 
                 case MARCAR_FINALIZADA: {
-                    System.out.println("¿Que tarea quieres marcar como finalizada? (Introduce el nombre): ");
-                    List<String> tareas = proyecto.getTareasNoFinalizadas();
-                    for (int i = 0; i < tareas.size(); i++) {
-                        System.out.println(tareas.get(i));
-                    }
-                    proyecto.finalizarTarea(atributos.nextLine());
-                    System.out.println("¿Que tipo de resultado es?");
-                    System.out.println("Tarea finalizada");
+                    marcarFinalizada(proyecto);
                     break;
                 }
                 case AÑADIR_PERSONA: {
@@ -68,7 +64,8 @@ public class Aplicacion {
         }
     }
 
-    private static final Scanner atributos = new Scanner(System.in);
+    public void filtraOpcion(){}
+
 
     public static void darAltaPersona(Proyecto proyecto){
         Persona persona = inputsPersona();
@@ -94,11 +91,74 @@ public class Aplicacion {
         System.out.print("¿Quieres poner alguna etiqueta relacionada con el proyecto?");
         List<String> etiquetas = Collections.singletonList(atributos.nextLine());
 
+        System.out.print("Introduce el tipo de tarea (Documento/PaginaWeb/Programa): ");
+        String resultado = atributos.nextLine();
 
-        Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, etiquetas, LocalDate.now());
+        Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, etiquetas,resultado);
         proyecto.añadirTarea(nomTarea, tarea);
 
         System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente");
+    }
+
+    public static void marcarFinalizada(Proyecto proyecto){
+        System.out.println("¿Que tarea quieres marcar como finalizada? (Introduce el nombre): ");
+        List<String> tareasNoFinalizadas = proyecto.getTareasNoFinalizadas();
+        for (int i = 0; i < tareasNoFinalizadas.size(); i++) {
+            System.out.println(tareasNoFinalizadas.get(i));
+        }
+        String tarea = atributos.nextLine();
+        String tipo = proyecto.getTipoTarea(tarea);
+
+        System.out.println("Introduce un identificador del resultado");
+        String identificador = atributos.nextLine();
+
+        System.out.println("Introduce las horas ");
+        int horas = Integer.parseInt(atributos.nextLine());
+
+        System.out.println("Interno o comercial");
+        String internoOcomercial = atributos.nextLine();
+
+
+        if(tipo.equals("Documento")){
+            System.out.println("¿Que formato tiene?");
+            String formato = atributos.nextLine();
+
+            System.out.println("¿Cuantas paginas tiene?");
+            int numPag = Integer.parseInt(atributos.nextLine());
+
+            System.out.println("¿Que espacio tiene?");
+            Float espacio = Float.valueOf(atributos.nextLine());
+            Resultado resultado = new ResultadoDocumento(identificador,horas,internoOcomercial,formato,numPag,espacio);
+            proyecto.finalizarTarea(tarea,resultado);
+
+        }else if(tipo.equals("PaginaWeb")){
+            System.out.println("¿Es estatica o dinamica?");
+            String estaticaOdinamica = atributos.nextLine();
+
+            System.out.println("¿En que lenguaje esta desarrolada?");
+            String lenguaje = atributos.nextLine();
+
+            System.out.println("¿Que backend utiliza");
+            String backend = atributos.nextLine();
+
+            Resultado resultado = new ResultadoPaginaWeb(identificador, horas,internoOcomercial,estaticaOdinamica,lenguaje,backend);
+            proyecto.finalizarTarea(tarea,resultado);
+
+        }else{
+            System.out.println("¿En que lenguaje esta?");
+            String lenguaje = atributos.nextLine();
+
+            System.out.println("¿Cuantas lineas tienes?");
+            int numero_lineas = Integer.parseInt(atributos.nextLine());
+
+            System.out.println("¿Que modulos utiliza?");
+            int numero_modulos = Integer.parseInt(atributos.nextLine());
+
+            Resultado resultado = new ResultadoPrograma(identificador,horas,internoOcomercial,lenguaje,numero_lineas,numero_modulos);
+            proyecto.finalizarTarea(tarea,resultado);
+        }
+
+        System.out.println("Tarea finalizada");
     }
 
     public static void añadirPersona(Proyecto proyecto){
@@ -151,6 +211,8 @@ public class Aplicacion {
             System.out.println(tareas.get(i));
         }
     }
+
+
 
     public static Persona inputsPersona(){
         Scanner teclado = new Scanner(System.in);
