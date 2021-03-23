@@ -97,7 +97,7 @@ public class Aplicacion {
         Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, etiquetas,resultado);
         proyecto.añadirTarea(nomTarea, tarea);
 
-        System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente");
+        System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni());
     }
 
     public static void marcarFinalizada(Proyecto proyecto){
@@ -158,7 +158,7 @@ public class Aplicacion {
             proyecto.finalizarTarea(tarea,resultado);
         }
 
-        System.out.println("Tarea finalizada");
+        System.out.println("Tarea finalizada el " + LocalDate.now());
     }
 
     public static void añadirPersona(Proyecto proyecto){
