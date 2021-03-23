@@ -87,7 +87,9 @@ public class Aplicacion {
                     break;
                 }
                 case AÑADIR_PERSONA: {
-                    Persona persona = inputsPersona();
+                    System.out.println("¿A que persona quieres añadir?");
+                    listarPersonas(proyecto);
+                    String persona = atributos.nextLine();
                     System.out.println("¿A que tarea le quieres añadir?");
                     listarTareas(proyecto);
                     String tarea = atributos.nextLine();

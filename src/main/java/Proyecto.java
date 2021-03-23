@@ -24,12 +24,17 @@ public class Proyecto {
         return tarea.titulo;
     }
 
-    public String añadirPersonaATarea(String nomTarea, Persona persona){
-        tareas.get(nomTarea).añadirPersona(persona);
-        return persona.getNombre();
+    public String añadirPersonaATarea(String nomTarea, String persona){
+        String nombre = "";
+        for(int i = 0; i < personas.size(); i++)
+            if (personas.get(i).getNombre().equals(persona)){
+                tareas.get(nomTarea).añadirPersona(personas.get(i));
+                nombre = personas.get(i).getNombre();
+            }
+        return nombre;
     }
 
-    public void añadirTareaAPersona(Persona persona, String tarea){
+    public void añadirTareaAPersona(String persona, String tarea){
         for (Persona value : personas) {
             if (value.equals(persona)) {
                 value.añadirTarea(tareas.get(tarea));
