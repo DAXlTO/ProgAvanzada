@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -16,9 +15,9 @@ public class Aplicacion {
         LISTAR_PERSONAS("Listar las personas asignadas a un proyecto"),
         LISTAR_TAREAS("Listar las tareas de un proyecto");
 
-        private String descripcion;
+        private final String descripcion;
 
-        private OpcionesMenu(String descripcion) {
+        OpcionesMenu(String descripcion) {
             this.descripcion = descripcion;
         }
         public String getDescripcion() {
