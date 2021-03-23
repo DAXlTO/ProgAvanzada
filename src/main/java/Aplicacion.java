@@ -64,9 +64,6 @@ public class Aplicacion {
         }
     }
 
-    public void filtraOpcion(){}
-
-
     public static void darAltaPersona(Proyecto proyecto){
         Persona persona = inputsPersona();
         proyecto.añadirPersona(persona);
@@ -211,8 +208,6 @@ public class Aplicacion {
             System.out.println(tareas.get(i));
         }
     }
-
-
 
     public static Persona inputsPersona(){
         Scanner teclado = new Scanner(System.in);
