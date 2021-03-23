@@ -32,8 +32,7 @@ public class Aplicacion {
                     break;
                 }
                 case DAR_BAJA_PERSONA:{
-
-
+                    darBajaPersona(proyecto);
                     break;
                 }
 
@@ -76,9 +75,18 @@ public class Aplicacion {
     }
 
     public static void darAltaPersona(Proyecto proyecto){
-        Persona persona = inputsPersona();
-        proyecto.añadirPersona(persona);
-        System.out.println("Has añadido a " + persona.getNombre() + " al proyecto");
+        Persona personaAñadida = inputsPersona();
+        proyecto.añadirPersona(personaAñadida);
+        System.out.println("Has añadido a " + personaAñadida.getNombre() + " al proyecto");
+    }
+
+    public static void darBajaPersona(Proyecto proyecto){
+        System.out.println("¿Que persona quieres eliminar del proyecto?");
+        listarPersonas(proyecto);
+        int listaPersonas = Integer.parseInt(atributos.nextLine());
+        Persona personaELiminada = proyecto.getPersonas().get(listaPersonas);
+        proyecto.eliminarPersona(listaPersonas);
+        System.out.println("Has eliminado a " + personaELiminada.getNombre() + " del proyecto");
     }
 
     public static void darAltaTarea(Proyecto proyecto){

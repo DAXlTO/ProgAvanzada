@@ -18,6 +18,10 @@ public class Proyecto {
         personas.add(persona);
     }
 
+    public void eliminarPersona(int persona) {
+        personas.remove(persona);
+    }
+
 
     public String añadirTarea(String nomTarea ,Tarea tarea){
         tareas.put(nomTarea,tarea);
