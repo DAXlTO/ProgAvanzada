@@ -63,8 +63,7 @@ public class Aplicacion {
                 }
 
                 case LISTAR_PERSONAS_DE_TAREA: {
-
-
+                    listarPersonasDeTarea(proyecto);
                     break;
                 }
             }
@@ -245,6 +244,24 @@ public class Aplicacion {
         if (tareas.size() == 0){
             System.out.println("No hay tareas en este proyecto");
         }
+    }
+
+    public static void listarPersonasDeTarea(Proyecto proyecto){
+       /* Map<String, Tarea> tareas = proyecto.getTareas();
+        if (tareas.size() == 0){
+            System.out.println("No hay tareas en este proyecto");
+            return;
+        }
+        List<Persona> personas = proyecto.getPersonas();
+        if(personas.size() == 0) {
+            System.out.println("No hay personas en el proyecto.");
+            return;
+        }
+        System.out.println("Elige el numero de la tarea de la que quieres ver las personas que participan: ");
+        listarNombreTareas(proyecto);
+        int tareaSeleccionada = Integer.parseInt(atributos.nextLine());
+
+        */
     }
 
     public static void listarNombreTareas(Proyecto proyecto){
