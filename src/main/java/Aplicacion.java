@@ -115,6 +115,7 @@ public class Aplicacion {
 
         Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, etiquetas,resultado);
         proyecto.añadirTarea(nomTarea, tarea);
+        proyecto.añadirPersonaATarea(nomTarea,responsable.getNombre());
 
         System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni());
     }
@@ -201,7 +202,6 @@ public class Aplicacion {
         String tarea = atributos.nextLine();
         System.out.println("Se ha agregado a " + proyecto.añadirPersonaATarea(tarea, persona) + "a la tarea " + tarea);
         proyecto.añadirTareaAPersona(persona, tarea);
-        proyecto.añadirPersonaATarea(tarea,persona);
     }
 
     public static void eliminarPersona(Proyecto proyecto){
@@ -264,13 +264,13 @@ public class Aplicacion {
         System.out.println("Elige la tarea de la que quieres ver las personas que participan: ");
         listarNombreTareas(proyecto);
         String tareaSeleccionada = atributos.nextLine();
-        /*
+
         List<Persona> personasTarea = proyecto.getTarea(tareaSeleccionada).getPersonas();
         System.out.println("Las personas que trabajan en esta tarea son: ");
         for(int i = 0; i < personasTarea.size(); i++){
             System.out.println(personasTarea.get(i));
         }
-         */
+
     }
 
     public static void listarNombreTareas(Proyecto proyecto){

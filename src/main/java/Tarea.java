@@ -10,6 +10,14 @@ public class Tarea {
     Persona responsable;
     int prioridad;
     private final LocalDate fechaIni;
+
+    @Override
+    public String toString() {
+        return "Tarea{" +
+                "titulo='" + titulo + '\'' +
+                '}';
+    }
+
     private LocalDate fechaFin;
     Boolean realizada;
     Resultado resultado;

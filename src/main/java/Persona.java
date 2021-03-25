@@ -16,6 +16,7 @@ public class Persona {
         lista.add(tarea);
     }
 
+
     public boolean eliminarTarea(String tarea){
         for(int i = 0; i < lista.size(); i++){
             if(lista.get(i).titulo.equals(tarea)){
@@ -24,6 +25,15 @@ public class Persona {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                ", lista=" + lista +
+                '}';
     }
 
     public List<Tarea> getLista() {

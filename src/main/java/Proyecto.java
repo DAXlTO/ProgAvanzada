@@ -30,17 +30,18 @@ public class Proyecto {
 
     public String añadirPersonaATarea(String nomTarea, String persona){
         String nombre = "";
-        for(int i = 0; i < personas.size(); i++)
-            if (personas.get(i).getNombre().equals(persona)){
+        for(int i = 0; i < personas.size(); i++){
+            if (personas.get(i).nombre.equals(persona)){
+                añadirTareaAPersona(persona,nomTarea);
                 tareas.get(nomTarea).añadirPersona(personas.get(i));
-                nombre = personas.get(i).getNombre();
             }
+        }
         return nombre;
     }
 
     public void añadirTareaAPersona(String persona, String tarea){
         for (Persona value : personas) {
-            if (value.equals(persona)) {
+            if (value.getNombre().equals(persona)) {
                 value.añadirTarea(tareas.get(tarea));
                 break;
             }
