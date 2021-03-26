@@ -9,18 +9,18 @@ public class Aplicacion {
     private static final Scanner atributos = new Scanner(System.in);
 
     public static void main(String[] args)  {
-
         Scanner teclado = new Scanner(System.in);
         System.out.print("Introduce el nombre del proyecto: ");
         String nombreProyecto = teclado.nextLine();
         Proyecto proyecto = new Proyecto(nombreProyecto);
-        System.out.println("Has creado un nuevo proyecto llamado " + nombreProyecto);
+        System.out.println("Has creado un nuevo proyecto llamado " + nombreProyecto + "\n");
+        int opcion;
 
-        System.out.println(Menu.OpcionesMenu.getMenu());
-        System.out.print("ELige una opcion (0..7): ");
-        int opcion = teclado.nextInt();
-        Menu.OpcionesMenu opcionMenu = Menu.OpcionesMenu.getOpcion(opcion);
-        while (opcion != 0) {
+        do {
+            System.out.println(Menu.OpcionesMenu.getMenu());
+            System.out.print("ELige una opcion (0..7): ");
+            opcion = teclado.nextInt();
+            Menu.OpcionesMenu opcionMenu = Menu.OpcionesMenu.getOpcion(opcion);
             switch (opcionMenu) {
                 case SALIR:
                     System.out.println("Has terminado de editar el proyecto " + nombreProyecto);
@@ -61,22 +61,18 @@ public class Aplicacion {
                     listarTareas(proyecto);
                     break;
                 }
-
                 case LISTAR_PERSONAS_DE_TAREA: {
                     listarPersonasDeTarea(proyecto);
                     break;
                 }
             }
-            System.out.print("ELige una opcion(0..7): ");
-            opcion = teclado.nextInt();
-            opcionMenu = Menu.OpcionesMenu.getOpcion(opcion);
-        }
+        }while (opcion != 0);
     }
 
     public static void darAltaPersona(Proyecto proyecto){
         Persona personaAñadida = inputsPersona();
         proyecto.añadirPersona(personaAñadida);
-        System.out.println("Has añadido a " + personaAñadida.getNombre() + " al proyecto");
+        System.out.println("Has añadido a " + personaAñadida.getNombre() + " al proyecto\n");
     }
 
     public static void darBajaPersona(Proyecto proyecto){
@@ -89,7 +85,7 @@ public class Aplicacion {
         int listaPersonas = Integer.parseInt(atributos.nextLine());
         Persona personaELiminada = proyecto.getPersonas().get(listaPersonas);
         proyecto.eliminarPersona(listaPersonas);
-        System.out.println("Has eliminado a " + personaELiminada.getNombre() + " del proyecto");
+        System.out.println("Has eliminado a " + personaELiminada.getNombre() + " del proyecto\n");
     }
 
     public static void darAltaTarea(Proyecto proyecto){
@@ -117,7 +113,7 @@ public class Aplicacion {
         proyecto.añadirTarea(nomTarea, tarea);
         proyecto.añadirPersonaATarea(nomTarea,responsable.getNombre());
 
-        System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni());
+        System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni() + "\n");
     }
 
     public static void marcarFinalizada(Proyecto proyecto){
@@ -181,7 +177,7 @@ public class Aplicacion {
             proyecto.finalizarTarea(tarea,resultado);
         }
 
-        System.out.println("Tarea finalizada el " + LocalDate.now());
+        System.out.println("Tarea finalizada el " + LocalDate.now() + "\n");
     }
 
     public static void añadirPersona(Proyecto proyecto){
@@ -200,7 +196,7 @@ public class Aplicacion {
         }
         System.out.println("¿A que tarea le quieres añadir?");
         String tarea = atributos.nextLine();
-        System.out.println("Se ha agregado a " + proyecto.añadirPersonaATarea(tarea, persona) + "a la tarea " + tarea);
+        System.out.println("Se ha agregado a " + proyecto.añadirPersonaATarea(tarea, persona) + "a la tarea " + tarea + "\n");
         proyecto.añadirTareaAPersona(persona, tarea);
     }
 
@@ -210,7 +206,7 @@ public class Aplicacion {
         if(personas.size() == 0) {
             return;
         }
-        System.out.println("Introduce el numero de la persona que quieres eliminar: ");
+        System.out.println("Introduce el nombre de la persona que quieres eliminar: ");
         String persona = atributos.nextLine();
         Map<String, Tarea> tareas = proyecto.getTareas();
         listarNombreTareas(proyecto);
@@ -221,6 +217,7 @@ public class Aplicacion {
         System.out.println("¿De que tarea le quieres eliminar?");
         String tarea = atributos.nextLine();
         proyecto.eliminarPersonaDeTarea(persona, tarea);
+        System.out.println("Has eliminado a " + persona + " de " + tarea + "\n");
     }
 
     public static void listarPersonas(Proyecto proyecto){
@@ -270,7 +267,6 @@ public class Aplicacion {
         for(int i = 0; i < personasTarea.size(); i++){
             System.out.println(personasTarea.get(i));
         }
-
     }
 
     public static void listarNombreTareas(Proyecto proyecto){
