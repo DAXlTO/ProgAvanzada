@@ -82,7 +82,7 @@ public class Aplicacion {
 
         System.out.println("¿Que persona quieres eliminar?");
         int listaPersonas = elegirPersona(proyecto);
-        Persona personaELiminada = proyecto.getPersonas().get(listaPersonas);
+        Persona personaELiminada = personas.get(listaPersonas);
 
         proyecto.eliminarPersona(listaPersonas);
         System.out.println("Has eliminado a " + personaELiminada.getNombre() + " del proyecto\n");
