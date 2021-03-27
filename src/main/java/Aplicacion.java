@@ -15,7 +15,6 @@ public class Aplicacion {
         Proyecto proyecto = new Proyecto(nombreProyecto);
         System.out.println("Has creado un nuevo proyecto llamado " + nombreProyecto + "\n");
         int opcion;
-
         do {
             System.out.println(Menu.OpcionesMenu.getMenu());
             System.out.print("ELige una opcion (0..7): ");
@@ -77,13 +76,14 @@ public class Aplicacion {
 
     public static void darBajaPersona(Proyecto proyecto){
         List<Persona> personas = proyecto.getPersonas();
-        listarPersonas(proyecto);
         if(personas.size() == 0) {
             return;
         }
-        System.out.println("¿Que persona quieres eliminar del proyecto(Introduce el numero)?");
-        int listaPersonas = Integer.parseInt(atributos.nextLine());
+
+        System.out.println("¿Que persona quieres eliminar?");
+        int listaPersonas = elegirPersona(proyecto);
         Persona personaELiminada = proyecto.getPersonas().get(listaPersonas);
+
         proyecto.eliminarPersona(listaPersonas);
         System.out.println("Has eliminado a " + personaELiminada.getNombre() + " del proyecto\n");
     }
@@ -95,9 +95,9 @@ public class Aplicacion {
         System.out.print("Introduce la descripcion de la tarea: ");
         String descripcion = atributos.nextLine();
 
-        System.out.println("Elige el numero de la persona responsable: ");
-        listarPersonas(proyecto);
-        int persona = Integer.parseInt(atributos.nextLine());
+        System.out.println("¿Que persona quieres que sea responsable?");
+        int persona = elegirPersona(proyecto);
+
         Persona responsable = proyecto.getPersonas().get(persona);
 
         System.out.print("Introduce la prioridad de la tarea (1-5): ");
@@ -111,9 +111,11 @@ public class Aplicacion {
 
         Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, etiquetas,resultado);
         proyecto.añadirTarea(nomTarea, tarea);
-        proyecto.añadirPersonaATarea(nomTarea,responsable.getNombre());
 
-        System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni() + "\n");
+        if(proyecto.añadirPersonaATarea(nomTarea,responsable.getNombre()) )
+            System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni() + "\n");
+        else
+            System.out.println("Hubo un problema al dar de alta la tarea");
     }
 
     public static void marcarFinalizada(Proyecto proyecto){
@@ -122,55 +124,56 @@ public class Aplicacion {
             System.out.println("No hay tareas NO FINALIZADAS");
             return;
         }
-        System.out.println("¿Que tarea quieres marcar como finalizada? (Introduce el nombre): ");
+        System.out.println("¿Que tarea quieres marcar como finalizada?");
         for (int i = 0; i < tareasNoFinalizadas.size(); i++) {
-            System.out.println(tareasNoFinalizadas.get(i));
+            System.out.println(i + ".- " + tareasNoFinalizadas.get(i));
         }
-        String tarea = atributos.nextLine();
+        System.out.print("Introduce el numero de la tarea: ");
+        String tarea = tareasNoFinalizadas.get(Integer.parseInt(atributos.nextLine()));
         String tipo = proyecto.getTipoTarea(tarea);
 
-        System.out.println("Introduce un identificador del resultado");
+        System.out.print("Introduce un identificador del resultado: ");
         String identificador = atributos.nextLine();
 
-        System.out.println("Introduce las horas ");
+        System.out.print("Introduce las horas utilizadas en la tarea: ");
         int horas = Integer.parseInt(atributos.nextLine());
 
-        System.out.println("Interno o comercial");
+        System.out.print("Interno o Comercial: ");
         String internoOcomercial = atributos.nextLine();
                     
         if(tipo.equals("Documento")){
-            System.out.println("¿Que formato tiene?");
+            System.out.print("Introduce el formato: ");
             String formato = atributos.nextLine();
 
-            System.out.println("¿Cuantas paginas tiene?");
+            System.out.print("Introduce el numero de paginas: ");
             int numPag = Integer.parseInt(atributos.nextLine());
 
-            System.out.println("¿Que espacio tiene?");
+            System.out.print("Introduce el espacio utilizado: ");
             Float espacio = Float.valueOf(atributos.nextLine());
             Resultado resultado = new ResultadoDocumento(identificador,horas,internoOcomercial,formato,numPag,espacio);
             proyecto.finalizarTarea(tarea,resultado);
 
         }else if(tipo.equals("PaginaWeb")){
-            System.out.println("¿Es estatica o dinamica?");
+            System.out.print("¿Es estatica o dinamica?");
             String estaticaOdinamica = atributos.nextLine();
 
-            System.out.println("¿En que lenguaje esta desarrolada?");
+            System.out.print("¿En que lenguaje esta desarrolada?");
             String lenguaje = atributos.nextLine();
 
-            System.out.println("¿Que backend utiliza");
+            System.out.print("¿Que backend utiliza");
             String backend = atributos.nextLine();
 
             Resultado resultado = new ResultadoPaginaWeb(identificador, horas,internoOcomercial,estaticaOdinamica,lenguaje,backend);
             proyecto.finalizarTarea(tarea,resultado);
 
         }else{
-            System.out.println("¿En que lenguaje esta?");
+            System.out.print("Introduce el lenguaje del codigo: ");
             String lenguaje = atributos.nextLine();
 
-            System.out.println("¿Cuantas lineas tienes?");
+            System.out.print("Introduce el numero de lineas: ");
             int numero_lineas = Integer.parseInt(atributos.nextLine());
 
-            System.out.println("¿Que modulos utiliza?");
+            System.out.print("Introduce el numero de modulos utilizados: ");
             int numero_modulos = Integer.parseInt(atributos.nextLine());
 
             Resultado resultado = new ResultadoPrograma(identificador,horas,internoOcomercial,lenguaje,numero_lineas,numero_modulos);
@@ -181,53 +184,56 @@ public class Aplicacion {
     }
 
     public static void añadirPersona(Proyecto proyecto){
-        List<Persona> personas = proyecto.getPersonas();
-        listarPersonas(proyecto);
-        if(personas.size() == 0) {
-            return;
-        }
-        System.out.println("¿A que persona quieres añadir?");
-        String persona = atributos.nextLine();
-        Map<String, Tarea> tareas = proyecto.getTareas();
-        listarNombreTareas(proyecto);
-        if (tareas.size() == 0){
+        if (proyecto.getNumeroTareas() == 0){
             System.out.println("No hay tareas en este proyecto");
             return;
         }
         System.out.println("¿A que tarea le quieres añadir?");
-        String tarea = atributos.nextLine();
-        System.out.println("Se ha agregado a " + proyecto.añadirPersonaATarea(tarea, persona) + "a la tarea " + tarea + "\n");
+        String tarea = elegirTarea(proyecto);
+
+        List<Persona> personas = proyecto.getPersonas();
+        if(personas.size() == 0) {
+            return;
+        }
+        System.out.println("¿A que persona quieres añadir a esta tarea?");
+        String persona = personas.get(elegirPersona(proyecto)).getNombre();
+
+        if(proyecto.añadirPersonaATarea(tarea, persona))
+            System.out.println("Se ha agregado a " + persona + " a la tarea " + tarea + "\n");
         proyecto.añadirTareaAPersona(persona, tarea);
     }
 
     public static void eliminarPersona(Proyecto proyecto){
-        List<Persona> personas = proyecto.getPersonas();
-        listarPersonas(proyecto);
-        if(personas.size() == 0) {
-            return;
-        }
-        System.out.println("Introduce el nombre de la persona que quieres eliminar: ");
-        String persona = atributos.nextLine();
         Map<String, Tarea> tareas = proyecto.getTareas();
-        listarNombreTareas(proyecto);
         if (tareas.size() == 0){
             System.out.println("No hay tareas en este proyecto");
             return;
         }
         System.out.println("¿De que tarea le quieres eliminar?");
-        String tarea = atributos.nextLine();
+        String tarea = elegirTarea(proyecto);
+
+
+        List<Persona> personas = tareas.get(tarea).getPersonas();
+        if(personas.size() == 0) {
+            return;
+        }
+        System.out.println("¿A que persona quieres eliminar? ");
+        String persona = personas.get(elegirPersona(proyecto)).getNombre();
+
         proyecto.eliminarPersonaDeTarea(persona, tarea);
         System.out.println("Has eliminado a " + persona + " de " + tarea + "\n");
     }
 
     public static void listarPersonas(Proyecto proyecto){
         List<Persona> personas = proyecto.getPersonas();
-        for(int i = 0; i < personas.size(); i++){
-            System.out.println(i + ".- " + personas.get(i).getNombre());
-        }
         if(personas.size() == 0) {
             System.out.println("No hay personas en el proyecto.");
         }
+        for(int i = 0; i < personas.size(); i++){
+            System.out.println(i + ".- " + personas.get(i).getNombre());
+        }
+
+        System.out.println();
     }
 
     public static void listarTareas(Proyecto proyecto){
@@ -250,37 +256,49 @@ public class Aplicacion {
     public static void listarPersonasDeTarea(Proyecto proyecto){
         Map<String, Tarea> tareas = proyecto.getTareas();
         if (tareas.size() == 0){
-            System.out.println("No hay tareas en este proyecto");
+            System.out.println("No hay tareas en este proyecto\n");
             return;
         }
         List<Persona> personas = proyecto.getPersonas();
         if(personas.size() == 0) {
-            System.out.println("No hay personas en el proyecto.");
+            System.out.println("No hay personas en el proyecto.\n");
             return;
         }
         System.out.println("Escribe la tarea de la que quieres ver las personas que participan: ");
-        listarNombreTareas(proyecto);
-        String tareaSeleccionada = atributos.nextLine();
+        String tareaSeleccionada = elegirTarea(proyecto);
 
         List<Persona> personasTarea = proyecto.getTarea(tareaSeleccionada).getPersonas();
         System.out.println("Las personas que trabajan en esta tarea son: ");
         for(int i = 0; i < personasTarea.size(); i++){
             System.out.println(personasTarea.get(i));
         }
+        System.out.println();
     }
 
     public static void listarNombreTareas(Proyecto proyecto){
         List<String> tareas = proyecto.getNombreTareas();
         for(int i = 0; i < tareas.size(); i++){
-            System.out.println(tareas.get(i));
+            System.out.println(i + ".- " + tareas.get(i));
         }
+    }
+
+    public static int elegirPersona(Proyecto proyecto){
+        listarPersonas(proyecto);
+        System.out.print("Introduce el numero de la persona: ");
+        return Integer.parseInt(atributos.nextLine());
+    }
+
+    public static String elegirTarea(Proyecto proyecto){
+        listarNombreTareas(proyecto);
+        System.out.print("Elige el numero de la tarea: ");
+        return proyecto.getNombreTareas().get(Integer.parseInt(atributos.nextLine()));
     }
 
     public static Persona inputsPersona(){
         Scanner teclado = new Scanner(System.in);
-        System.out.print("Introduce tu nombre: ");
+        System.out.print("Introduce el nombre de la persona: ");
         String nombrePersona = teclado.nextLine();
-        System.out.print("Introduce tu correo electronico: ");
+        System.out.print("Introduce el correo electronico: ");
         String emailPersona = teclado.nextLine();
         return new Persona(nombrePersona, emailPersona);
     }

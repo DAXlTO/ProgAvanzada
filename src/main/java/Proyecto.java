@@ -28,15 +28,15 @@ public class Proyecto {
         return tarea.titulo;
     }
 
-    public String añadirPersonaATarea(String nomTarea, String persona){
-        String nombre = "";
+    public boolean añadirPersonaATarea(String nomTarea, String persona){
         for(int i = 0; i < personas.size(); i++){
             if (personas.get(i).nombre.equals(persona)){
                 añadirTareaAPersona(persona,nomTarea);
                 tareas.get(nomTarea).añadirPersona(personas.get(i));
+                return true;
             }
         }
-        return nombre;
+        return false;
     }
 
     public void añadirTareaAPersona(String persona, String tarea){
@@ -73,6 +73,8 @@ public class Proyecto {
     public Tarea getTarea(String tarea){
         return tareas.get(tarea);
     }
+
+    public int getNumeroTareas(){return tareas.size();}
 
     public String getTipoTarea(String tarea){
        return tareas.get(tarea).tipo;
