@@ -29,11 +29,8 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" +
-                "nombre='" + nombre + '\'' +
-                ", email='" + email + '\'' +
-                ", lista=" + lista +
-                '}';
+        return "Nombre: " + nombre +
+                ", email: " + email;
     }
 
     public List<Tarea> getLista() {
