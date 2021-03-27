@@ -264,7 +264,6 @@ public class Aplicacion {
             System.out.println("No hay personas en el proyecto.\n");
             return;
         }
-        System.out.println("Escribe la tarea de la que quieres ver las personas que participan: ");
         String tareaSeleccionada = elegirTarea(proyecto);
 
         List<Persona> personasTarea = proyecto.getTarea(tareaSeleccionada).getPersonas();
