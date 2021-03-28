@@ -23,9 +23,13 @@ class ProyectoTest {
         Tarea tarea1 = new Tarea("Salon","Recoger",responsable1,2,etiquetas,"PaginaWeb");
         proyecto.añadirTarea(tarea1.getTitulo(),tarea1);
 
+        Tarea tarea2 = new Tarea("Comer","Desayuno",responsable,8, etiquetas,"Programa");
+        proyecto.añadirTarea(tarea2.getTitulo(),tarea2);
+
         Map<String,Tarea> tareas = new HashMap<>();
         tareas.put(tarea.getTitulo(),tarea);
         tareas.put(tarea1.getTitulo(),tarea1);
+        tareas.put(tarea2.getTitulo(),tarea2);
 
         assertEquals(proyecto.getTareas(),tareas);
     }
