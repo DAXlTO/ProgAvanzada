@@ -1,12 +1,10 @@
 package programa;
 
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProyectoTest {
@@ -16,11 +14,13 @@ class ProyectoTest {
         //Añadiendo tareas...
         Proyecto proyecto = new Proyecto("Prueba");
         Persona responsable = new Persona("Daniel","daniel@uji.es");
+        Persona responsable1 = new Persona("Sergio", "sergio@uji.es");
+
         List<String> etiquetas = new ArrayList<>();
         Tarea tarea = new Tarea("Cocina","Limpiar",responsable,3, etiquetas,"Documento");
         proyecto.añadirTarea(tarea.getTitulo(),tarea);
 
-        Tarea tarea1 = new Tarea("Salon","Recoger",responsable,2,etiquetas,"PaginaWeb");
+        Tarea tarea1 = new Tarea("Salon","Recoger",responsable1,2,etiquetas,"PaginaWeb");
         proyecto.añadirTarea(tarea1.getTitulo(),tarea1);
 
         Map<String,Tarea> tareas = new HashMap<>();
@@ -53,15 +53,19 @@ class ProyectoTest {
     @Test
     void añadirPersonaATarea() {
         Proyecto proyecto = new Proyecto("Prueba");
-        Persona responsable = new Persona("Daniel","daniel@uji.es");
+        Persona añadida = new Persona("Sergio", "sergio@uji.es");
+        Persona añadida1 = new Persona("Daniel","daniel@uji.es");
         List<String> etiquetas = new ArrayList<>();
-        Tarea tarea = new Tarea("Cocina","Limpiar",responsable,3, etiquetas,"Documento");
+        Tarea tarea = new Tarea("Cocina","Limpiar",añadida,3, etiquetas,"Documento");
 
-        proyecto.añadirPersona(responsable);
+        proyecto.añadirPersona(añadida);
+        proyecto.añadirPersona(añadida1);
         proyecto.añadirTarea(tarea.getTitulo(),tarea);
-        proyecto.añadirPersonaATarea(tarea.getTitulo(),responsable.getNombre());
+        proyecto.añadirPersonaATarea(tarea.getTitulo(),añadida.getNombre());
+        proyecto.añadirPersonaATarea(tarea.getTitulo(),añadida1.getNombre());
 
-        tarea.añadirPersona(responsable);
+        tarea.añadirPersona(añadida);
+        tarea.añadirPersona(añadida1);
         Map<String,Tarea> tareas = new HashMap<>();
         tareas.put(tarea.getTitulo(),tarea);
         assertEquals(proyecto.getTareas(),tareas);
@@ -71,15 +75,18 @@ class ProyectoTest {
     void eliminarPersonaDeTarea() {
         //Eliminamos a la persona del proyecto
         Proyecto proyecto = new Proyecto("Prueba");
-        Persona responsable = new Persona("Daniel","daniel@uji.es");
+        Persona eliminada = new Persona("Daniel","daniel@uji.es");
+        Persona eliminada1 = new Persona("Sergio", "sergio@uji.es");
         List<String> etiquetas = new ArrayList<>();
-        Tarea tarea = new Tarea("Cocina","Limpiar",responsable,3, etiquetas,"Documento");
+        Tarea tarea = new Tarea("Cocina","Limpiar",eliminada,3, etiquetas,"Documento");
 
-        proyecto.añadirPersona(responsable);
+        proyecto.añadirPersona(eliminada);
+        proyecto.añadirPersona(eliminada1);
         proyecto.añadirTarea(tarea.getTitulo(),tarea);
-        proyecto.añadirPersonaATarea(tarea.getTitulo(),responsable.getNombre());
-        proyecto.eliminarPersonaDeTarea(responsable.getNombre(),tarea.getTitulo());
-
+        proyecto.añadirPersonaATarea(tarea.getTitulo(),eliminada.getNombre());
+        proyecto.eliminarPersonaDeTarea(eliminada.getNombre(),tarea.getTitulo());
+        proyecto.añadirPersonaATarea(tarea.getTitulo(),eliminada1.getNombre());
+        proyecto.eliminarPersonaDeTarea(eliminada1.getNombre(),tarea.getTitulo());
 
         assertEquals(proyecto.getTarea(tarea.getTitulo()).getPersonas(),etiquetas);
     }
