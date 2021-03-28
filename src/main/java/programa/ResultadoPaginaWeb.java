@@ -1,3 +1,5 @@
+package programa;
+
 public class ResultadoPaginaWeb extends Resultado{
 
     String estaticaOdinamica;

@@ -1,3 +1,5 @@
+package programa;
+
 public class Menu {
 
     public enum OpcionesMenu{

@@ -1,3 +1,5 @@
+package programa;
+
 public class ResultadoPrograma extends Resultado{
 
     String lenguaje;

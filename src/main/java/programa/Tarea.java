@@ -1,6 +1,7 @@
+package programa;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class Tarea {
@@ -10,14 +11,6 @@ public class Tarea {
     Persona responsable;
     int prioridad;
     private final LocalDate fechaIni;
-
-    @Override
-    public String toString() {
-        return "Tarea{" +
-                "titulo='" + titulo + '\'' +
-                '}';
-    }
-
     private LocalDate fechaFin;
     Boolean realizada;
     Resultado resultado;
@@ -58,7 +51,9 @@ public class Tarea {
             }
         }
     }
-
+    public String getTitulo() {
+        return titulo;
+    }
     public List<Persona> getPersonas(){
         return personas;
     }
@@ -75,5 +70,12 @@ public class Tarea {
 
     public LocalDate getFechaFin() {
         return fechaFin;
+    }
+
+    @Override
+    public String toString() {
+        return "Tarea{" +
+                "titulo='" + titulo + '\'' +
+                '}';
     }
 }

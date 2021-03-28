@@ -1,3 +1,5 @@
+package programa;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +27,7 @@ public class Proyecto {
 
     public String añadirTarea(String nomTarea ,Tarea tarea){
         tareas.put(nomTarea,tarea);
-        return tarea.titulo;
+        return tarea.getTitulo();
     }
 
     public boolean añadirPersonaATarea(String nomTarea, String persona){

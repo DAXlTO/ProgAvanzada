@@ -1,3 +1,5 @@
+package programa;
+
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -180,7 +182,7 @@ public class Aplicacion {
             proyecto.finalizarTarea(tarea,resultado);
         }
 
-        System.out.println("Tarea finalizada el " + LocalDate.now() + "\n");
+        System.out.println("programa.Tarea finalizada el " + LocalDate.now() + "\n");
     }
 
     public static void añadirPersona(Proyecto proyecto){

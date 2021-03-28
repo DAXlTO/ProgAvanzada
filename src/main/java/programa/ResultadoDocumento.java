@@ -1,3 +1,5 @@
+package programa;
+
 public class ResultadoDocumento extends Resultado{
 
     String formato;
