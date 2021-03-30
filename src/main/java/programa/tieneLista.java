@@ -2,6 +2,6 @@ package programa;
 
 import java.util.List;
 
-public interface tieneLista<E> {
-    List<E> getLista();
+public interface tieneLista<T> {
+    List<T> getLista();
 }

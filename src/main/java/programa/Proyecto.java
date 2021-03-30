@@ -96,4 +96,7 @@ public class Proyecto {
         return noFinalizadas;
     }
 
+    public <T extends tieneLista> List<T> listasVacias(List<T> lista) {
+        return UtilidadesParaLista.elementosConListaVacia(lista);
+    }
 }

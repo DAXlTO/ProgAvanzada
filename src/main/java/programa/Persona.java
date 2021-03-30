@@ -3,7 +3,7 @@ package programa;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persona {
+public class Persona implements tieneLista{
     String nombre;
     String email;
     private final List<Tarea> lista;
@@ -38,8 +38,8 @@ public class Persona {
     public List<Tarea> getLista() {
         return lista;
     }
+
     public String getNombre(){
         return nombre;
     }
-
 }

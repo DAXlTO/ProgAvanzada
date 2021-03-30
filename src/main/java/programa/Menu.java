@@ -12,7 +12,9 @@ public class Menu {
         ELIMINAR_PERSONA("ELiminar una persona de una tarea"),
         LISTAR_PERSONAS("Listar las personas asignadas a un proyecto"),
         LISTAR_TAREAS("Listar las tareas de un proyecto"),
-        LISTAR_PERSONAS_DE_TAREA("Listar las personas que hay en cada tarea");
+        LISTAR_PERSONAS_DE_TAREA("Listar las personas que hay en cada tarea"),
+        LISTAR_PERSONAS_SIN_TAREAS("Lista las personas que no tienen ninguna tarea asignada"),
+        LISTAR_TAREAS_SIN_PERSONAS("Lista las tareas que no tienen ninguna persona asignada");
 
         private final String descripcion;
 

@@ -66,6 +66,10 @@ public class Aplicacion {
                     listarPersonasDeTarea(proyecto);
                     break;
                 }
+                case LISTAR_PERSONAS_SIN_TAREAS: {
+                    listarPersonasSinTareas(proyecto);
+                    break;
+                }
             }
         }while (opcion != 0);
     }
@@ -274,6 +278,13 @@ public class Aplicacion {
             System.out.println(personasTarea.get(i));
         }
         System.out.println();
+    }
+
+    public static void listarPersonasSinTareas(Proyecto proyecto){
+        List<Persona> listaPersonas = proyecto.listasVacias(proyecto.getPersonas());
+        for (int i = 0; i < listaPersonas.size(); i ++){
+            System.out.println(listaPersonas.get(i));
+        }
     }
 
     public static void listarNombreTareas(Proyecto proyecto){
