@@ -18,13 +18,13 @@ class ProyectoTest {
 
         List<String> etiquetas = new ArrayList<>();
         Tarea tarea = new Tarea("Cocina","Limpiar",responsable,3, etiquetas,"Documento");
-        proyecto.añadirTarea(tarea.getTitulo(),tarea);
+        proyecto.añadirTarea(tarea);
 
         Tarea tarea1 = new Tarea("Salon","Recoger",responsable1,2,etiquetas,"PaginaWeb");
-        proyecto.añadirTarea(tarea1.getTitulo(),tarea1);
+        proyecto.añadirTarea(tarea1);
 
         Tarea tarea2 = new Tarea("Comer","Desayuno",responsable,8, etiquetas,"Programa");
-        proyecto.añadirTarea(tarea2.getTitulo(),tarea2);
+        proyecto.añadirTarea(tarea2);
 
         Map<String,Tarea> tareas = new HashMap<>();
         tareas.put(tarea.getTitulo(),tarea);
@@ -64,7 +64,7 @@ class ProyectoTest {
 
         proyecto.añadirPersona(añadida);
         proyecto.añadirPersona(añadida1);
-        proyecto.añadirTarea(tarea.getTitulo(),tarea);
+        proyecto.añadirTarea(tarea);
         proyecto.añadirPersonaATarea(tarea.getTitulo(),añadida.getNombre());
         proyecto.añadirPersonaATarea(tarea.getTitulo(),añadida1.getNombre());
 
@@ -86,7 +86,7 @@ class ProyectoTest {
 
         proyecto.añadirPersona(eliminada);
         proyecto.añadirPersona(eliminada1);
-        proyecto.añadirTarea(tarea.getTitulo(),tarea);
+        proyecto.añadirTarea(tarea);
         proyecto.añadirPersonaATarea(tarea.getTitulo(),eliminada.getNombre());
         proyecto.eliminarPersonaDeTarea(eliminada.getNombre(),tarea.getTitulo());
         proyecto.añadirPersonaATarea(tarea.getTitulo(),eliminada1.getNombre());

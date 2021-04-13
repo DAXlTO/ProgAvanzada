@@ -33,7 +33,6 @@ public class Proyecto {
     public boolean añadirPersonaATarea(String nomTarea, String persona){
         for(int i = 0; i < personas.size(); i++){
             if (personas.get(i).nombre.equals(persona)){
-                añadirTareaAPersona(persona,nomTarea);
                 tareas.get(nomTarea).añadirPersona(personas.get(i));
                 return true;
             }
@@ -98,5 +97,13 @@ public class Proyecto {
 
     public <T extends tieneLista> List<T> listasVacias(List<T> lista) {
         return UtilidadesParaLista.elementosConListaVacia(lista);
+    }
+
+    public List<Tarea> getTareasLista() {
+        List<Tarea> solucion = new ArrayList<Tarea>();
+        for (String key : tareas.keySet()) {
+            solucion.add(tareas.get(key));
+        }
+        return solucion;
     }
 }

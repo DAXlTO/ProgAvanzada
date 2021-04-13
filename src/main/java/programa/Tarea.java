@@ -74,9 +74,7 @@ public class Tarea implements tieneLista{
 
     @Override
     public String toString() {
-        return "Tarea{" +
-                "titulo='" + titulo + '\'' +
-                '}';
+        return "Tarea: " + titulo;
     }
 
     public List<Persona> getLista() {

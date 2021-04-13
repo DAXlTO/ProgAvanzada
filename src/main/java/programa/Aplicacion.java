@@ -66,9 +66,13 @@ public class Aplicacion {
                     listarPersonasDeTarea(proyecto);
                     break;
                 }
-                case LISTAR_PERSONAS_SIN_TAREAS: {
-                    listarPersonasSinTareas(proyecto);
+                case LISTAR_PERSONAS_NO_RESPONSABLES: {
+                    listarPersonasNoResponsables(proyecto);
                     break;
+                }
+                case LISTAR_TAREAS_SIN_PERSONAS: {
+                    listarTareasSinPersonas(proyecto);
+
                 }
             }
         }while (opcion != 0);
@@ -117,11 +121,8 @@ public class Aplicacion {
 
         Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, etiquetas,resultado);
         proyecto.añadirTarea(tarea);
-
-        if(proyecto.añadirPersonaATarea(nomTarea,responsable.getNombre()) )
-            System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni() + "\n");
-        else
-            System.out.println("Hubo un problema al dar de alta la tarea");
+        System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni() + "\n");
+        proyecto.añadirTareaAPersona(responsable.getNombre(), tarea.getTitulo());
     }
 
     public static void marcarFinalizada(Proyecto proyecto){
@@ -206,7 +207,6 @@ public class Aplicacion {
 
         if(proyecto.añadirPersonaATarea(tarea, persona))
             System.out.println("Se ha agregado a " + persona + " a la tarea " + tarea + "\n");
-        proyecto.añadirTareaAPersona(persona, tarea);
     }
 
     public static void eliminarPersona(Proyecto proyecto){
@@ -280,10 +280,17 @@ public class Aplicacion {
         System.out.println();
     }
 
-    public static void listarPersonasSinTareas(Proyecto proyecto){
-        List<Persona> listaPersonas = proyecto.listasVacias(proyecto.getPersonas());
+    public static void listarPersonasNoResponsables(Proyecto proyecto){
+        List<Persona> listaPersonas = UtilidadesParaLista.elementosConListaVacia(proyecto.getPersonas());
         for (int i = 0; i < listaPersonas.size(); i ++){
             System.out.println(listaPersonas.get(i));
+        }
+    }
+
+    public static void listarTareasSinPersonas(Proyecto proyecto){
+        List<Tarea> listaTareas = UtilidadesParaLista.elementosConListaVacia(proyecto.getTareasLista());
+        for (int i = 0; i < listaTareas.size(); i ++) {
+            System.out.println(listaTareas.get(i));
         }
     }
 

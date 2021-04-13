@@ -16,4 +16,15 @@ public class UtilidadesParaLista<T>{
         }
         return solucion;
     }
-}
+
+    public static <T extends tieneClave> boolean elementosNoRepetidos(List<T> list, T obj){
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i ++){
+                if (list.get(i).equals(obj)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+ }
