@@ -16,7 +16,11 @@ public class Proyecto {
         personas = new ArrayList<>();
     }
 
-    public void añadirPersona(Persona persona){
+    public void añadirPersona(Persona persona) throws PersonaRepetidaException {
+        for (int i = 0; i < personas.size(); i++) {
+            if (personas.get(i).getNombre().equals(persona.getNombre()))
+                throw new PersonaRepetidaException();
+        }
         personas.add(persona);
     }
 
@@ -25,7 +29,8 @@ public class Proyecto {
     }
 
 
-    public String añadirTarea(Tarea tarea){
+    public String añadirTarea(Tarea tarea) throws TareaException{
+
         tareas.put(tarea.getTitulo(),tarea);
         return tarea.getTitulo();
     }

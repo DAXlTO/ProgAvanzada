@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProyectoTest {
 
     @Test
-    void añadirTarea(){
+    void añadirTarea() throws TareaException {
         //Añadiendo tareas...
         Proyecto proyecto = new Proyecto("Prueba");
         Persona responsable = new Persona("Daniel","daniel@uji.es");
@@ -35,7 +35,7 @@ class ProyectoTest {
     }
 
     @Test
-    void añadirPersona(){
+    void añadirPersona() throws PersonaRepetidaException {
         //Con lista vacia
         Proyecto proyecto = new Proyecto("Prueba");
         assertEquals(proyecto.getPersonas(),new ArrayList<>());
@@ -55,7 +55,7 @@ class ProyectoTest {
     }
 
     @Test
-    void añadirPersonaATarea() {
+    void añadirPersonaATarea() throws PersonaRepetidaException, TareaException {
         Proyecto proyecto = new Proyecto("Prueba");
         Persona añadida = new Persona("Sergio", "sergio@uji.es");
         Persona añadida1 = new Persona("Daniel","daniel@uji.es");
@@ -76,7 +76,7 @@ class ProyectoTest {
     }
 
     @Test
-    void eliminarPersonaDeTarea() {
+    void eliminarPersonaDeTarea() throws PersonaRepetidaException, TareaException {
         //Eliminamos a la persona del proyecto
         Proyecto proyecto = new Proyecto("Prueba");
         Persona eliminada = new Persona("Daniel","daniel@uji.es");
