@@ -116,7 +116,7 @@ public class Aplicacion {
         String resultado = atributos.nextLine();
 
         Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, etiquetas,resultado);
-        proyecto.añadirTarea(nomTarea, tarea);
+        proyecto.añadirTarea(tarea);
 
         if(proyecto.añadirPersonaATarea(nomTarea,responsable.getNombre()) )
             System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni() + "\n");

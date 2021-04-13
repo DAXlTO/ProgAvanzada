@@ -25,8 +25,8 @@ public class Proyecto {
     }
 
 
-    public String añadirTarea(String nomTarea ,Tarea tarea){
-        tareas.put(nomTarea,tarea);
+    public String añadirTarea(Tarea tarea){
+        tareas.put(tarea.getTitulo(),tarea);
         return tarea.getTitulo();
     }
 
