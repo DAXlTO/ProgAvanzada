@@ -21,13 +21,11 @@ public class UtilidadesParaLista<T>{
     }
 
     public static <T extends tieneClave> boolean elementosNoRepetidos(List<T> list, T obj){
-        if (list.size() > 0) {
             for (int i = 0; i < list.size(); i ++){
-                if (list.get(i).equals(obj)){
+                if (list.get(i).getClave().equals(obj.getClave())){
                     return false;
                 }
             }
-        }
         return true;
     }
  }

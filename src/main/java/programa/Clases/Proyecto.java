@@ -23,11 +23,12 @@ public class Proyecto implements Serializable, tieneClave {
     }
 
     public void añadirPersona(Persona persona) throws PersonaRepetidaException {
-        for (int i = 0; i < personas.size(); i++) {
-            if (personas.get(i).getNombre().equals(persona.getNombre()))
-                throw new PersonaRepetidaException();
+        if(UtilidadesParaLista.elementosNoRepetidos(personas,persona)){
+            personas.add(persona);
+        }else{
+            throw new PersonaRepetidaException();
+
         }
-        personas.add(persona);
     }
 
     public void eliminarPersona(int persona) {
@@ -35,9 +36,13 @@ public class Proyecto implements Serializable, tieneClave {
     }
 
 
-    public String añadirTarea(Tarea tarea) throws TareaException {
+    public String añadirTarea(Tarea tarea) throws TareaRepetidaException {
+        if(UtilidadesParaLista.elementosNoRepetidos(getTareasLista(),tarea)){
+            tareas.put(tarea.getTitulo(),tarea);
+        }else{
+            throw new TareaRepetidaException();
 
-        tareas.put(tarea.getTitulo(),tarea);
+        }
         return tarea.getTitulo();
     }
 
@@ -137,16 +142,18 @@ public class Proyecto implements Serializable, tieneClave {
         }
     }
 
-    public static void cargarInformacion() {
+    public static Proyecto cargarInformacion() {
+        Proyecto proyecto = null;
         try {
-            Proyecto proyecto = new Proyecto("");
             FileInputStream fis = new FileInputStream("proyecto.bin");
             ObjectInputStream ois = new ObjectInputStream(fis);
             proyecto = (Proyecto) ois.readObject();
             ois.close();
+            return proyecto;
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+        return proyecto;
     }
 }

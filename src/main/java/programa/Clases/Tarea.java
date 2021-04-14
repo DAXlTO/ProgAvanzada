@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tarea implements tieneLista, Serializable {
+public class Tarea implements tieneLista, tieneClave, Serializable {
     String titulo;
     String descripcion;
     private List<Persona> personas;
@@ -57,6 +57,7 @@ public class Tarea implements tieneLista, Serializable {
     public String getTitulo() {
         return titulo;
     }
+
     public List<Persona> getPersonas(){
         return personas;
     }
@@ -83,4 +84,6 @@ public class Tarea implements tieneLista, Serializable {
     public List<Persona> getLista() {
         return personas;
     }
+
+    public String getClave() {return titulo; }
 }

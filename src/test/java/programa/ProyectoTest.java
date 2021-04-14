@@ -80,6 +80,8 @@ class ProyectoTest {
         Map<String,Tarea> tareas = new HashMap<>();
         tareas.put(tarea.getTitulo(),tarea);
         assertEquals(proyecto.getTareas(),tareas);
+
+        //assertThrows(tarea.añadirPersona(añadida1), TareaRepetidaException.class);
     }
 
     @Test

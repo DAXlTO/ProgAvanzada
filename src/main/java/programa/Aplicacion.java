@@ -6,6 +6,7 @@ import programa.Excepciones.PersonaRepetidaException;
 import programa.Excepciones.TareaException;
 import programa.Excepciones.TareaRepetidaException;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
@@ -18,10 +19,17 @@ public class Aplicacion {
     public static void main(String[] args){
         Proyecto proyecto = null;
         Scanner teclado = new Scanner(System.in);
-        System.out.print("Introduce el nombre del proyecto: ");
-        String nombreProyecto = teclado.nextLine();
-        Proyecto proyecto = new Proyecto(nombreProyecto);
-        System.out.println("Has creado un nuevo proyecto llamado " + nombreProyecto + "\n");
+
+        File in = new File("proyecto.bin");
+        if(in.exists()){
+            proyecto = Proyecto.cargarInformacion();
+        }
+        else{
+            System.out.print("Introduce el nombre del proyecto: ");
+            String nombreProyecto = teclado.nextLine();
+            proyecto = new Proyecto(nombreProyecto);
+            System.out.println("Has creado un nuevo proyecto llamado " + nombreProyecto + "\n");
+        }
         int opcion;
         do {
             System.out.println(Menu.OpcionesMenu.getMenu());
@@ -30,7 +38,8 @@ public class Aplicacion {
             Menu.OpcionesMenu opcionMenu = Menu.OpcionesMenu.getOpcion(opcion);
             switch (opcionMenu) {
                 case SALIR:
-                    System.out.println("Has terminado de editar el proyecto " + nombreProyecto);
+                    System.out.println("Has terminado de editar el proyecto " + proyecto.getNombre());
+                    Proyecto.almacenarInformacion(proyecto);
                     System.exit(0);
                     break;
 
@@ -141,8 +150,8 @@ public class Aplicacion {
             System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni() + "\n");
             proyecto.añadirTareaAPersona(responsable.getNombre(), tarea.getTitulo());
         }
-        catch (TareaException e) {
-            System.out.println("No hay personas en el proyecto");
+        catch (TareaRepetidaException e) {
+            System.out.println("El nombre de la tarea ya existe");
         }
         catch (PersonaNullException e){
             System.out.println("No hay personas en este proyecto");
@@ -352,5 +361,15 @@ public class Aplicacion {
         System.out.print("Introduce el correo electronico: ");
         String emailPersona = teclado.nextLine();
         return new Persona(nombrePersona, emailPersona);
+    }
+    public void almacenarInformacion(Proyecto proyecto ){
+        try{
+            FileOutputStream fos = new FileOutputStream("proyecto.bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(proyecto);
+            oos.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
