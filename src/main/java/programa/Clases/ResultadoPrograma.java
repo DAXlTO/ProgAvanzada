@@ -1,4 +1,4 @@
-package programa;
+package programa.Clases;
 
 public class ResultadoPrograma extends Resultado{
 

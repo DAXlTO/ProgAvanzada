@@ -1,10 +1,13 @@
-package programa;
+package programa.Clases;
 
+import programa.Interfaces.tieneLista;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tarea implements tieneLista{
+public class Tarea implements tieneLista, Serializable {
     String titulo;
     String descripcion;
     private List<Persona> personas;

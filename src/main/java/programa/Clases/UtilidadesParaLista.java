@@ -1,4 +1,7 @@
-package programa;
+package programa.Clases;
+
+import programa.Interfaces.tieneClave;
+import programa.Interfaces.tieneLista;
 
 import java.util.ArrayList;
 import java.util.List;

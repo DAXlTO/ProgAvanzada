@@ -1,9 +1,12 @@
-package programa;
+package programa.Clases;
 
+import programa.Interfaces.tieneLista;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persona implements tieneLista{
+public class Persona implements tieneLista, Serializable {
     String nombre;
     String email;
     private final List<Tarea> lista;

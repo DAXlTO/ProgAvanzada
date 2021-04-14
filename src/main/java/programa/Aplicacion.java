@@ -1,6 +1,12 @@
 package programa;
 
-import javax.jws.soap.SOAPBinding;
+import programa.Clases.*;
+import programa.Excepciones.PersonaNullException;
+import programa.Excepciones.PersonaRepetidaException;
+import programa.Excepciones.TareaException;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -203,7 +209,7 @@ public class Aplicacion {
             proyecto.finalizarTarea(tarea,resultado);
         }
 
-        System.out.println("programa.Tarea finalizada el " + LocalDate.now() + "\n");
+        System.out.println("programa.Clases.Tarea finalizada el " + LocalDate.now() + "\n");
     }
 
     public static void añadirPersona(Proyecto proyecto) {

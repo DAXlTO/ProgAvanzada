@@ -1,4 +1,4 @@
-package programa;
+package programa.Excepciones;
 
 public class PersonaNullException extends Exception{
     public PersonaNullException(){

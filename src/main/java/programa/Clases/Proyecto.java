@@ -1,11 +1,16 @@
-package programa;
+package programa.Clases;
 
+import programa.Excepciones.PersonaRepetidaException;
+import programa.Excepciones.TareaException;
+import programa.Interfaces.tieneLista;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Proyecto {
+public class Proyecto implements Serializable {
     String nombre;
     private final Map<String,Tarea> tareas;
     private final List<Persona> personas;
@@ -29,7 +34,7 @@ public class Proyecto {
     }
 
 
-    public String añadirTarea(Tarea tarea) throws TareaException{
+    public String añadirTarea(Tarea tarea) throws TareaException {
 
         tareas.put(tarea.getTitulo(),tarea);
         return tarea.getTitulo();
@@ -110,5 +115,29 @@ public class Proyecto {
             solucion.add(tareas.get(key));
         }
         return solucion;
+    }
+
+    public static void almacenarInformacion(Proyecto proyecto){
+        try{
+            FileOutputStream fos = new FileOutputStream("proyecto.bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(proyecto);
+            oos.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void cargarInformacion() {
+        try {
+            Proyecto proyecto = new Proyecto("");
+            FileInputStream fis = new FileInputStream("proyecto.bin");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            proyecto = (Proyecto) ois.readObject();
+            ois.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
