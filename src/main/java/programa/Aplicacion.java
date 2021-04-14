@@ -4,6 +4,7 @@ import programa.Clases.*;
 import programa.Excepciones.PersonaNullException;
 import programa.Excepciones.PersonaRepetidaException;
 import programa.Excepciones.TareaException;
+import programa.Excepciones.TareaRepetidaException;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -14,7 +15,8 @@ public class Aplicacion {
 
     private static final Scanner atributos = new Scanner(System.in);
 
-    public static void main(String[] args) throws PersonaRepetidaException, TareaException {
+    public static void main(String[] args){
+        Proyecto proyecto = null;
         Scanner teclado = new Scanner(System.in);
         System.out.print("Introduce el nombre del proyecto: ");
         String nombreProyecto = teclado.nextLine();
@@ -82,7 +84,7 @@ public class Aplicacion {
         }while (opcion != 0);
     }
 
-    public static void darAltaPersona(Proyecto proyecto) throws PersonaRepetidaException {
+    public static void darAltaPersona(Proyecto proyecto) {
         try {
             Persona personaAñadida = inputsPersona();
             proyecto.añadirPersona(personaAñadida);
@@ -218,9 +220,7 @@ public class Aplicacion {
             String tarea = elegirTarea(proyecto);
 
             List<Persona> personas = proyecto.getPersonas();
-            /*if (personas.size() == 0) {
-                return;
-            }*/
+
             System.out.println("¿A que persona quieres añadir a esta tarea?");
             String persona = personas.get(elegirPersona(proyecto)).getNombre();
 
@@ -279,7 +279,6 @@ public class Aplicacion {
             List<Persona> per = tareas.get(key).getPersonas();
             for (int i = 0; i < per.size(); i++)
                 System.out.println(per.get(i));
-            System.out.println("");
         }
         if (tareas.size() == 0){
             System.out.println("No hay tareas en este proyecto");
@@ -288,12 +287,12 @@ public class Aplicacion {
 
     public static void listarPersonasDeTarea(Proyecto proyecto) {
         try {
-            Map<String, Tarea> tareas = proyecto.getTareas();
             List<Persona> personas = proyecto.getPersonas();
             if (personas.size() == 0) {
                 System.out.println("No hay personas en el proyecto.\n");
                 return;
             }
+
             String tareaSeleccionada = elegirTarea(proyecto);
 
             List<Persona> personasTarea = proyecto.getTarea(tareaSeleccionada).getPersonas();

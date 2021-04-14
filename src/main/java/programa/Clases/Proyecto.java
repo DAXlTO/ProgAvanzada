@@ -2,15 +2,16 @@ package programa.Clases;
 
 import programa.Excepciones.PersonaRepetidaException;
 import programa.Excepciones.TareaException;
+import programa.Excepciones.TareaRepetidaException;
+import programa.Interfaces.tieneClave;
 import programa.Interfaces.tieneLista;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Proyecto implements Serializable {
+public class Proyecto implements Serializable, tieneClave {
     String nombre;
     private final Map<String,Tarea> tareas;
     private final List<Persona> personas;
@@ -94,6 +95,14 @@ public class Proyecto implements Serializable {
     public List<String> getNombreTareas(){
         return new ArrayList<>(tareas.keySet());
     }
+
+    public String getNombre(){return nombre;}
+
+    @Override
+    public List getClave() {
+        return personas;
+    }
+
 
     public List<String> getTareasNoFinalizadas(){
         List<String>  noFinalizadas= new ArrayList<>();

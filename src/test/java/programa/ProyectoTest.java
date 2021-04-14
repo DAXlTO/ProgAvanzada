@@ -4,9 +4,10 @@ import org.junit.jupiter.api.Test;
 import programa.Clases.Persona;
 import programa.Clases.Proyecto;
 import programa.Clases.Tarea;
+import programa.Clases.UtilidadesParaLista;
 import programa.Excepciones.PersonaRepetidaException;
 import programa.Excepciones.TareaException;
-
+import programa.Excepciones.TareaRepetidaException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProyectoTest {
 
     @Test
-    void añadirTarea() throws TareaException {
+    void añadirTarea() throws TareaException, TareaRepetidaException {
         //Añadiendo tareas...
         Proyecto proyecto = new Proyecto("Prueba");
         Persona responsable = new Persona("Daniel","daniel@uji.es");
@@ -61,7 +62,7 @@ class ProyectoTest {
     }
 
     @Test
-    void añadirPersonaATarea() throws PersonaRepetidaException, TareaException {
+    void añadirPersonaATarea() throws PersonaRepetidaException, TareaException, TareaRepetidaException {
         Proyecto proyecto = new Proyecto("Prueba");
         Persona añadida = new Persona("Sergio", "sergio@uji.es");
         Persona añadida1 = new Persona("Daniel","daniel@uji.es");
@@ -82,7 +83,7 @@ class ProyectoTest {
     }
 
     @Test
-    void eliminarPersonaDeTarea() throws PersonaRepetidaException, TareaException {
+    void eliminarPersonaDeTarea() throws PersonaRepetidaException, TareaException, TareaRepetidaException {
         //Eliminamos a la persona del proyecto
         Proyecto proyecto = new Proyecto("Prueba");
         Persona eliminada = new Persona("Daniel","daniel@uji.es");
@@ -100,4 +101,34 @@ class ProyectoTest {
 
         assertEquals(proyecto.getTarea(tarea.getTitulo()).getPersonas(),etiquetas);
     }
+
+    @Test
+    void listasVacias() {
+        Proyecto proyecto = new Proyecto("Test");
+        Persona personaje = new Persona("Darochiiiiita","daro@uji.es");
+        List<Persona> aux = new ArrayList<>();
+        aux.add(personaje);
+        assertEquals(aux,aux);
+
+    }
+
+    @Test
+    void noRepetidos() {
+        Proyecto proyecto = new Proyecto("Test");
+        List<Persona> lista = new ArrayList<Persona>();
+        Persona persona = new Persona("Sergio", "al386136@uji.es");
+        Persona personaRepetida = new Persona("Sergio", "al386136@uji.es");
+        Persona persona2 = new Persona("Dani", "al386166@uji.es");
+        Persona persona3 = new Persona("Pepito", "pepito@uji.es");
+        Persona persona4 = new Persona("Ana", "ana@uji.es");
+        lista.add(persona);
+        lista.add(persona3);
+
+        assertEquals(UtilidadesParaLista.elementosNoRepetidos(lista, personaRepetida),false);
+        assertEquals(UtilidadesParaLista.elementosNoRepetidos(lista, persona2), true);
+        assertEquals(UtilidadesParaLista.elementosNoRepetidos(lista, persona4), true);
+
+    }
+
+
 }

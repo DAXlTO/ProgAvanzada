@@ -1,7 +1,7 @@
 package programa.Clases;
 
+import programa.Interfaces.tieneClave;
 import programa.Interfaces.tieneLista;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
