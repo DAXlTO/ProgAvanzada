@@ -149,11 +149,9 @@ public class Aplicacion {
             proyecto.añadirTarea(tarea);
             System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni() + "\n");
             proyecto.añadirTareaAPersona(responsable.getNombre(), tarea.getTitulo());
-        }
-        catch (TareaRepetidaException e) {
+        } catch (TareaRepetidaException e) {
             System.out.println("El nombre de la tarea ya existe");
-        }
-        catch (PersonaNullException e){
+        } catch (PersonaNullException e){
             System.out.println("No hay personas en este proyecto");
         }
     }
@@ -235,11 +233,9 @@ public class Aplicacion {
 
             if (proyecto.añadirPersonaATarea(tarea, persona))
                 System.out.println("Se ha agregado a " + persona + " a la tarea " + tarea + "\n");
-        }
-        catch (TareaException e){
+        } catch (TareaException e){
             System.out.println("No hay tareas en este proyecto");
-        }
-        catch (PersonaNullException e){
+        } catch (PersonaNullException e){
             System.out.println("No hay personas en este proyecto");
         }
     }
@@ -257,11 +253,9 @@ public class Aplicacion {
 
             proyecto.eliminarPersonaDeTarea(persona, tarea);
             System.out.println("Has eliminado a " + persona + " de " + tarea + "\n");
-        }
-        catch (TareaException e){
+        } catch (TareaException e){
             System.out.println("No hay tareas en este proyecto");
-        }
-        catch (PersonaNullException e){
+        } catch (PersonaNullException e){
             System.out.println("No hay personas en este proyecto");
         }
     }
@@ -274,7 +268,6 @@ public class Aplicacion {
         for(int i = 0; i < personas.size(); i++){
             System.out.println(i + ".- " + personas.get(i).getNombre());
         }
-
         System.out.println();
     }
 
@@ -310,8 +303,7 @@ public class Aplicacion {
                 System.out.println(personasTarea.get(i));
             }
             System.out.println();
-        }
-        catch (TareaException e){
+        } catch (TareaException e){
             System.out.println("No hay tareas en este proyecto");
         }
     }
@@ -361,15 +353,5 @@ public class Aplicacion {
         System.out.print("Introduce el correo electronico: ");
         String emailPersona = teclado.nextLine();
         return new Persona(nombrePersona, emailPersona);
-    }
-    public void almacenarInformacion(Proyecto proyecto ){
-        try{
-            FileOutputStream fos = new FileOutputStream("proyecto.bin");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(proyecto);
-            oos.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 }

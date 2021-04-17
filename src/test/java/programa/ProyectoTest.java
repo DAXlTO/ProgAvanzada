@@ -81,7 +81,6 @@ class ProyectoTest {
         tareas.put(tarea.getTitulo(),tarea);
         assertEquals(proyecto.getTareas(),tareas);
 
-        //assertThrows(tarea.añadirPersona(añadida1), TareaRepetidaException.class);
     }
 
     @Test
@@ -106,17 +105,17 @@ class ProyectoTest {
 
     @Test
     void listasVacias() {
-        Proyecto proyecto = new Proyecto("Test");
         Persona personaje = new Persona("Darochiiiiita","daro@uji.es");
         List<Persona> aux = new ArrayList<>();
         aux.add(personaje);
         assertEquals(aux,aux);
+        List<Persona> aux1 = new ArrayList<>();
+        assertNotEquals(aux, aux1);
 
     }
 
     @Test
     void noRepetidos() {
-        Proyecto proyecto = new Proyecto("Test");
         List<Persona> lista = new ArrayList<Persona>();
         Persona persona = new Persona("Sergio", "al386136@uji.es");
         Persona personaRepetida = new Persona("Sergio", "al386136@uji.es");
