@@ -1,10 +1,7 @@
 package programa;
 
 import org.junit.jupiter.api.Test;
-import programa.Clases.Persona;
-import programa.Clases.Proyecto;
-import programa.Clases.Tarea;
-import programa.Clases.UtilidadesParaLista;
+import programa.Clases.*;
 import programa.Excepciones.PersonaRepetidaException;
 import programa.Excepciones.TareaException;
 import programa.Excepciones.TareaRepetidaException;
@@ -15,7 +12,6 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProyectoTest {
-/*
     @Test
     void añadirTarea() throws TareaException, TareaRepetidaException {
         //Añadiendo tareas...
@@ -24,13 +20,13 @@ class ProyectoTest {
         Persona responsable1 = new Persona("Sergio", "sergio@uji.es");
 
         List<String> etiquetas = new ArrayList<>();
-        Tarea tarea = new Tarea("Cocina","Limpiar",responsable,3, etiquetas,"Documento");
+        Tarea tarea = new Tarea("Cocina","Limpiar",responsable,3, etiquetas,"Documento",12.5,new Urgente());
         proyecto.añadirTarea(tarea);
 
-        Tarea tarea1 = new Tarea("Salon","Recoger",responsable1,2,etiquetas,"PaginaWeb");
+        Tarea tarea1 = new Tarea("Salon","Recoger",responsable1,2,etiquetas,"PaginaWeb", 10, new Urgente());
         proyecto.añadirTarea(tarea1);
 
-        Tarea tarea2 = new Tarea("Comer","Desayuno",responsable,8, etiquetas,"Programa");
+        Tarea tarea2 = new Tarea("Comer","Desayuno",responsable,8, etiquetas,"Programa", 7.5, new ConsumoInterno());
         proyecto.añadirTarea(tarea2);
 
         Map<String,Tarea> tareas = new HashMap<>();
@@ -67,7 +63,7 @@ class ProyectoTest {
         Persona añadida = new Persona("Sergio", "sergio@uji.es");
         Persona añadida1 = new Persona("Daniel","daniel@uji.es");
         List<String> etiquetas = new ArrayList<>();
-        Tarea tarea = new Tarea("Cocina","Limpiar",añadida,3, etiquetas,"Documento");
+        Tarea tarea = new Tarea("Cocina","Limpiar",añadida,3, etiquetas,"Documento", 5, new Descuento());
 
         proyecto.añadirPersona(añadida);
         proyecto.añadirPersona(añadida1);
@@ -90,7 +86,7 @@ class ProyectoTest {
         Persona eliminada = new Persona("Daniel","daniel@uji.es");
         Persona eliminada1 = new Persona("Sergio", "sergio@uji.es");
         List<String> etiquetas = new ArrayList<>();
-        Tarea tarea = new Tarea("Cocina","Limpiar",eliminada,3, etiquetas,"Documento");
+        Tarea tarea = new Tarea("Cocina","Limpiar",eliminada,3, etiquetas,"Documento", 20, new Urgente());
 
         proyecto.añadirPersona(eliminada);
         proyecto.añadirPersona(eliminada1);
@@ -130,7 +126,4 @@ class ProyectoTest {
         assertEquals(UtilidadesParaLista.elementosNoRepetidos(lista, persona4), true);
 
     }
-
-
- */
 }
