@@ -1,5 +1,6 @@
 package programa.Clases;
 
+import programa.Interfaces.Importe;
 import programa.Interfaces.tieneClave;
 import programa.Interfaces.tieneLista;
 import java.io.Serializable;
@@ -19,8 +20,10 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
     Resultado resultado;
     List<String> etiquetas;
     String tipo;
+    double coste;
+    Importe importe;
 
-    public Tarea(String titulo, String descripcion, Persona responsable, int prioridad, List<String> etiquetas, String tipo){
+    public Tarea(String titulo, String descripcion, Persona responsable, int prioridad, List<String> etiquetas, String tipo, double coste, Importe importe){
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.responsable = responsable;
@@ -30,6 +33,8 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         personas = new ArrayList<>();
         this.etiquetas = etiquetas;
         this.tipo = tipo;
+        this.coste = coste;
+        this.importe = importe;
     }
 
     public void finalizarTarea(Resultado resultado){
@@ -85,5 +90,11 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         return personas;
     }
 
+
     public String getClave() {return titulo; }
+
+    public double calcularImporte(){
+        return importe.calcularImporte(coste);
+    }
 }
+

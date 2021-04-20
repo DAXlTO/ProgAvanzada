@@ -5,6 +5,7 @@ import programa.Excepciones.PersonaNullException;
 import programa.Excepciones.PersonaRepetidaException;
 import programa.Excepciones.TareaException;
 import programa.Excepciones.TareaRepetidaException;
+import programa.Interfaces.Importe;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -139,15 +140,36 @@ public class Aplicacion {
         System.out.print("Introduce la prioridad de la tarea (1-5): ");
         int prioridad = Integer.parseInt(atributos.nextLine());
 
-        System.out.print("¿Quieres poner alguna etiqueta relacionada con el proyecto?");
+        System.out.print("¿Quieres poner alguna etiqueta relacionada con el proyecto? ");
         List<String> etiquetas = Collections.singletonList(atributos.nextLine());
 
         System.out.print("Introduce el tipo de tarea (Documento/PaginaWeb/Programa): ");
         String resultado = atributos.nextLine();
 
-        Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, etiquetas,resultado);
+        System.out.print("Introduce el coste de la tarea ");
+        double coste = Double.parseDouble(atributos.nextLine());
+
+        System.out.println("Introduce el tipo de importe");
+        System.out.println("0- Consumo Interno");
+        System.out.println("1- Descuento");
+        System.out.println("2- Urgente");
+        int opcion = Integer.parseInt(atributos.nextLine());
+        Importe importe = new ConsumoInterno();
+        switch (opcion) {
+            case 0:
+                importe = new ConsumoInterno();
+                break;
+            case 1:
+                importe = new Descuento();
+                break;
+            case 2:
+                importe = new Urgente();
+                break;
+        }
+
+        Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, etiquetas,resultado,coste,importe);
             proyecto.añadirTarea(tarea);
-            System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni() + "\n");
+            System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni() + " con coste " + tarea.calcularImporte() +"\n");
             proyecto.añadirTareaAPersona(responsable.getNombre(), tarea.getTitulo());
         } catch (TareaRepetidaException e) {
             System.out.println("El nombre de la tarea ya existe");
