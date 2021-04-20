@@ -1,7 +1,6 @@
 package programa.Clases;
 
 import programa.Excepciones.PersonaRepetidaException;
-import programa.Excepciones.TareaException;
 import programa.Excepciones.TareaRepetidaException;
 import programa.Interfaces.tieneClave;
 import programa.Interfaces.tieneLista;
