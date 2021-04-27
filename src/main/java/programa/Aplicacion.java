@@ -18,19 +18,9 @@ public class Aplicacion {
     private static final Scanner atributos = new Scanner(System.in);
 
     public static void main(String[] args){
-        Proyecto proyecto = null;
         Scanner teclado = new Scanner(System.in);
+        Proyecto proyecto = inicializar(teclado);
 
-        File in = new File("proyecto.bin");
-        if(in.exists()){
-            proyecto = Proyecto.cargarInformacion();
-        }
-        else{
-            System.out.print("Introduce el nombre del proyecto: ");
-            String nombreProyecto = teclado.nextLine();
-            proyecto = new Proyecto(nombreProyecto);
-            System.out.println("Has creado un nuevo proyecto llamado " + nombreProyecto + "\n");
-        }
         int opcion;
         do {
             System.out.println(Menu.OpcionesMenu.getMenu());
@@ -366,6 +356,21 @@ public class Aplicacion {
         listarNombreTareas(proyecto);
         System.out.print("Elige el numero de la tarea: ");
         return proyecto.getNombreTareas().get(Integer.parseInt(atributos.nextLine()));
+    }
+
+    public static Proyecto inicializar(Scanner teclado){
+        Proyecto proyecto = null;
+        File in = new File("proyecto.bin");
+        if(in.exists()){
+            proyecto = Proyecto.cargarInformacion();
+        }
+        else{
+            System.out.print("Introduce el nombre del proyecto: ");
+            String nombreProyecto = teclado.nextLine();
+            proyecto = new Proyecto(nombreProyecto);
+            System.out.println("Has creado un nuevo proyecto llamado " + nombreProyecto + "\n");
+        }
+        return proyecto;
     }
 
     public static Persona inputsPersona(){
