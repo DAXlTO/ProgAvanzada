@@ -126,4 +126,21 @@ class ProyectoTest {
         assertTrue(UtilidadesParaLista.elementosNoRepetidos(lista, persona4));
 
     }
+
+    @Test
+    void calcularImporte(){
+        Proyecto proyecto = new Proyecto("Prueba");
+        Persona persona = new Persona("Sergio", "sergio@uji.es");
+        Persona persona1 = new Persona("Daniel","daniel@uji.es");
+        List<String> etiquetas = new ArrayList<>();
+        Tarea tareaConDescuento = new Tarea("Cocina","Limpiar",persona1,3, etiquetas,"Documento", 5, new Descuento());
+        Tarea tareaConsumoInterno = new Tarea("Lavar","Ropa",persona,1, etiquetas,"Programa", 7.50, new ConsumoInterno());
+        Tarea tareaUrgente = new Tarea("Programar","Codigo",persona,5, etiquetas,"Programa", 10, new Urgente());
+        Tarea tareaIncorrecta = new Tarea("Jugar","Rocket League",persona1,5, etiquetas,"Programa", 100, new Urgente());
+
+        assertEquals(tareaConDescuento.calcularImporte(), 4.50);
+        assertEquals(tareaConsumoInterno.calcularImporte(), 7.50);
+        assertEquals(tareaUrgente.calcularImporte(), 12.50);
+        assertNotEquals(tareaIncorrecta.calcularImporte(), 100);
+    }
 }
