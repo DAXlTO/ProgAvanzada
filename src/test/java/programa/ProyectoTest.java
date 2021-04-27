@@ -121,9 +121,9 @@ class ProyectoTest {
         lista.add(persona);
         lista.add(persona3);
 
-        assertEquals(UtilidadesParaLista.elementosNoRepetidos(lista, personaRepetida),false);
-        assertEquals(UtilidadesParaLista.elementosNoRepetidos(lista, persona2), true);
-        assertEquals(UtilidadesParaLista.elementosNoRepetidos(lista, persona4), true);
+        assertFalse(UtilidadesParaLista.elementosNoRepetidos(lista, personaRepetida));
+        assertTrue(UtilidadesParaLista.elementosNoRepetidos(lista, persona2));
+        assertTrue(UtilidadesParaLista.elementosNoRepetidos(lista, persona4));
 
     }
 }
