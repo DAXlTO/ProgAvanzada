@@ -8,19 +8,25 @@ public class VentanaAltaPersona extends JFrame{
         super("");
     }
     private void ejecuta() {
-        JFrame ventana = new JFrame("Opciones del Proyecto");
+        JFrame ventana = new JFrame("Dar de alta");
         Container contenedor = ventana.getContentPane();
-        contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.PAGE_AXIS));
+        JTextField nombre = new JTextField(20);
+        JLabel nom = new JLabel("Nombre: ");
+        JTextField correo = new JTextField(20);
+        JLabel mail = new JLabel("Correo electronico: ");
+        contenedor.setLayout(new FlowLayout());
+        contenedor.add(nom);
+        contenedor.add(nombre);
+        contenedor.add(mail);
+        contenedor.add(correo);
 
-        JButton boton = new JButton("Dar de alta a una persona");
-        boton = new JButton("Volver");
-        boton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        JButton boton = new JButton("Volver");
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
-        boton.setAlignmentX(Component.RIGHT_ALIGNMENT);
         contenedor.add(boton);
 
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.pack();
         ventana.setVisible(true);
     }
