@@ -8,7 +8,7 @@ public class Ventana extends JFrame {
         super("Inicio");
     }
     private void ejecuta() {
-        JFrame ventana = new JFrame("BorderLayout Manager");
+        JFrame ventana = new JFrame("Opciones del Proyecto");
         Container contenedor = ventana.getContentPane();
         contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.PAGE_AXIS));
 
@@ -18,6 +18,8 @@ public class Ventana extends JFrame {
 
         boton = new JButton("Dar de baja a una persona");
         boton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        boton.addActionListener(new BotonBajaPersona());
+
         contenedor.add(boton);
 
         boton = new JButton("Dar de alta una tarea");
