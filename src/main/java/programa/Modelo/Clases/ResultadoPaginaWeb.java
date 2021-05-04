@@ -1,4 +1,4 @@
-package programa.Clases;
+package programa.Modelo.Clases;
 
 public class ResultadoPaginaWeb extends Resultado{
 

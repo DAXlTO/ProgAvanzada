@@ -1,10 +1,10 @@
 package programa;
 
 import org.junit.jupiter.api.Test;
-import programa.Clases.*;
-import programa.Excepciones.PersonaRepetidaException;
-import programa.Excepciones.TareaException;
-import programa.Excepciones.TareaRepetidaException;
+import programa.Modelo.Clases.*;
+import programa.Modelo.Excepciones.PersonaRepetidaException;
+import programa.Modelo.Excepciones.TareaException;
+import programa.Modelo.Excepciones.TareaRepetidaException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

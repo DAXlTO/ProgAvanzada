@@ -1,4 +1,4 @@
-package programa.Clases;
+package programa.Modelo.Clases;
 
 public class Resultado {
     private String identificador;
@@ -17,7 +17,7 @@ public class Resultado {
 
     @Override
     public String toString() {
-        return "programa.Clases.Resultado{" +
+        return "programa.Modelo.Clases.Resultado{" +
                 "identificador='" + identificador + '\'' +
                 ", horas=" + horas +
                 ", internoOcomercial='" + internoOcomercial + '\'' +

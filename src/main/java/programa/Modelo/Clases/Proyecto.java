@@ -1,9 +1,9 @@
-package programa.Clases;
+package programa.Modelo.Clases;
 
-import programa.Excepciones.PersonaRepetidaException;
-import programa.Excepciones.TareaRepetidaException;
-import programa.Interfaces.tieneClave;
-import programa.Interfaces.tieneLista;
+import programa.Modelo.Excepciones.PersonaRepetidaException;
+import programa.Modelo.Excepciones.TareaRepetidaException;
+import programa.Modelo.Interfaces.tieneClave;
+import programa.Modelo.Interfaces.tieneLista;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;

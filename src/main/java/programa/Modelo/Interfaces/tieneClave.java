@@ -1,6 +1,4 @@
-package programa.Interfaces;
-
-import java.util.List;
+package programa.Modelo.Interfaces;
 
 public interface tieneClave<T> {
     T getClave();

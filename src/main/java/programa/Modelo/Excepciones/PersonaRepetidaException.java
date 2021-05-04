@@ -1,4 +1,4 @@
-package programa.Excepciones;
+package programa.Modelo.Excepciones;
 
 public class PersonaRepetidaException extends Exception{
     public PersonaRepetidaException() {

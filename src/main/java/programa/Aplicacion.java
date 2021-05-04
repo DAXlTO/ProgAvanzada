@@ -1,15 +1,13 @@
 package programa;
 
-import programa.Clases.*;
-import programa.Excepciones.PersonaNullException;
-import programa.Excepciones.PersonaRepetidaException;
-import programa.Excepciones.TareaException;
-import programa.Excepciones.TareaRepetidaException;
-import programa.Interfaces.Importe;
+import programa.Modelo.Clases.*;
+import programa.Modelo.Excepciones.PersonaNullException;
+import programa.Modelo.Excepciones.PersonaRepetidaException;
+import programa.Modelo.Excepciones.TareaException;
+import programa.Modelo.Excepciones.TareaRepetidaException;
+import programa.Modelo.Interfaces.Importe;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -230,7 +228,7 @@ public class Aplicacion {
             proyecto.finalizarTarea(tarea,resultado);
         }
 
-        System.out.println("programa.Clases.Tarea finalizada el " + LocalDate.now() + "\n");
+        System.out.println("programa.Modelo.Clases.Tarea finalizada el " + LocalDate.now() + "\n");
     }
 
     public static void añadirPersona(Proyecto proyecto) {
