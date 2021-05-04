@@ -3,12 +3,12 @@ package programa.vista;
 import javax.swing.*;
 import java.awt.*;
 
-public class VentanaAltaPersona extends JFrame{
-    private VentanaAltaPersona() {
+public class VentanaBajaPersona extends JFrame {
+    private VentanaBajaPersona() {
         super("");
     }
     private void ejecuta() {
-        JFrame ventana = new JFrame("Dar de alta a una persona");
+        JFrame ventana = new JFrame("Dar de baja a una persona");
         Container contenedor = ventana.getContentPane();
         contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.PAGE_AXIS));
 
@@ -25,9 +25,6 @@ public class VentanaAltaPersona extends JFrame{
         ventana.setVisible(true);
     }
     public static void main(String args) {
-        new VentanaAltaPersona().ejecuta();
+        new VentanaBajaPersona().ejecuta();
     }
 }
-
-
-
