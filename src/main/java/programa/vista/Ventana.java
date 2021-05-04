@@ -14,6 +14,7 @@ public class Ventana extends JFrame {
 
         JButton boton = new JButton("Dar de alta a una persona");
         boton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        boton.addActionListener(new BotonAltaPersona()); //Registro escuchador
         contenedor.add(boton);
 
         boton = new JButton("Dar de baja a una persona");
@@ -59,7 +60,7 @@ public class Ventana extends JFrame {
         contenedor.add(boton);
 
         boton = new JButton("Guardar y salir");
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        boton.setAlignmentX(Component.RIGHT_ALIGNMENT);
         contenedor.add(boton);
 
         ventana.pack();
