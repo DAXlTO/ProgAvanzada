@@ -1,8 +1,8 @@
-package programa.Modelo.Clases;
+package programa.modelo.clases;
 
-import programa.Modelo.Interfaces.Importe;
-import programa.Modelo.Interfaces.tieneClave;
-import programa.Modelo.Interfaces.tieneLista;
+import programa.modelo.interfaces.Importe;
+import programa.modelo.interfaces.tieneClave;
+import programa.modelo.interfaces.tieneLista;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;

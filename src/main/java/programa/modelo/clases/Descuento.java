@@ -1,6 +1,6 @@
-package programa.Modelo.Clases;
+package programa.modelo.clases;
 
-import programa.Modelo.Interfaces.Importe;
+import programa.modelo.interfaces.Importe;
 
 public class Descuento implements Importe {
 

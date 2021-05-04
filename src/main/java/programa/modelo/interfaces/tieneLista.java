@@ -1,4 +1,4 @@
-package programa.Modelo.Interfaces;
+package programa.modelo.interfaces;
 
 import java.util.List;
 

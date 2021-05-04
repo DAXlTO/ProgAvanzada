@@ -1,11 +1,11 @@
 package programa;
 
-import programa.Modelo.Clases.*;
-import programa.Modelo.Excepciones.PersonaNullException;
-import programa.Modelo.Excepciones.PersonaRepetidaException;
-import programa.Modelo.Excepciones.TareaException;
-import programa.Modelo.Excepciones.TareaRepetidaException;
-import programa.Modelo.Interfaces.Importe;
+import programa.modelo.clases.*;
+import programa.modelo.excepciones.PersonaNullException;
+import programa.modelo.excepciones.PersonaRepetidaException;
+import programa.modelo.excepciones.TareaException;
+import programa.modelo.excepciones.TareaRepetidaException;
+import programa.modelo.interfaces.Importe;
 
 import java.io.File;
 import java.time.LocalDate;

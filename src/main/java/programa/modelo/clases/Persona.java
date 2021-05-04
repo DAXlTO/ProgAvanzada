@@ -1,7 +1,7 @@
-package programa.Modelo.Clases;
+package programa.modelo.clases;
 
-import programa.Modelo.Interfaces.tieneClave;
-import programa.Modelo.Interfaces.tieneLista;
+import programa.modelo.interfaces.tieneClave;
+import programa.modelo.interfaces.tieneLista;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

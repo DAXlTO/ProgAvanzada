@@ -1,4 +1,4 @@
-package programa.Modelo.Excepciones;
+package programa.modelo.excepciones;
 
 public class PersonaNullException extends Exception{
     public PersonaNullException(){

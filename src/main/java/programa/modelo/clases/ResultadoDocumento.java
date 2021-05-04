@@ -1,4 +1,4 @@
-package programa.Modelo.Clases;
+package programa.modelo.clases;
 
 public class ResultadoDocumento extends Resultado{
 

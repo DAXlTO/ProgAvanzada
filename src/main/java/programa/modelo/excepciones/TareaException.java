@@ -1,4 +1,4 @@
-package programa.Modelo.Excepciones;
+package programa.modelo.excepciones;
 
 public class TareaException extends Exception{
     public TareaException(){

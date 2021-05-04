@@ -1,4 +1,4 @@
-package programa.Modelo.Clases;
+package programa.modelo.clases;
 
 public class Resultado {
     private String identificador;
