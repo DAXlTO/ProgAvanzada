@@ -1,19 +1,23 @@
 package programa.vista;
 
+import programa.modelo.clases.Proyecto;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class VentanaAltaPersona extends JFrame{
-    private VentanaAltaPersona() {
+public class VentanaAltaTarea extends JFrame{
+    private VentanaAltaTarea() {
         super("");
     }
-    private void ejecuta() {
-        JFrame ventana = new JFrame("Dar de alta persona");
+    private void ejecuta(Proyecto proyecto) {
+        JFrame ventana = new JFrame("Dar de alta tarea");
         Container contenedor = ventana.getContentPane();
+
         JTextField nombre = new JTextField(20);
-        JLabel nom = new JLabel("Nombre: ");
+        JLabel nom = new JLabel("Nombre de la tarea: ");
+
         JTextField correo = new JTextField(20);
-        JLabel mail = new JLabel("Correo electronico: ");
+        JLabel mail = new JLabel("Descripcion: ");
         contenedor.setLayout(new FlowLayout());
         contenedor.add(nom);
         contenedor.add(nombre);
@@ -30,10 +34,8 @@ public class VentanaAltaPersona extends JFrame{
         ventana.pack();
         ventana.setVisible(true);
     }
-    public static void main(String args) {
-        new VentanaAltaPersona().ejecuta();
+    public static void main(Proyecto proyecto) {
+        new VentanaAltaTarea().ejecuta(proyecto);
     }
+
 }
-
-
-

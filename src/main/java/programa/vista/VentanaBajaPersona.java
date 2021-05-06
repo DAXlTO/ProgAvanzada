@@ -1,13 +1,17 @@
 package programa.vista;
 
+import programa.modelo.clases.Proyecto;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class VentanaBajaPersona extends JFrame {
+
     private VentanaBajaPersona() {
         super("");
     }
-    private void ejecuta() {
+
+    private void ejecuta(Proyecto proyecto) {
         JFrame ventana = new JFrame("Dar de baja a una persona");
         Container contenedor = ventana.getContentPane();
         contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.PAGE_AXIS));
@@ -24,7 +28,8 @@ public class VentanaBajaPersona extends JFrame {
         ventana.pack();
         ventana.setVisible(true);
     }
-    public static void main(String args) {
-        new VentanaBajaPersona().ejecuta();
+
+    public static void main(Proyecto proyecto) {
+        new VentanaBajaPersona().ejecuta(proyecto);
     }
 }

@@ -1,5 +1,7 @@
 package programa.vista;
 
+import programa.modelo.clases.Proyecto;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,6 +10,7 @@ public class Ventana extends JFrame {
         super("Inicio");
     }
     private void ejecuta() {
+        Proyecto proyecto = new Proyecto("Pr");
         JFrame ventana = new JFrame("Opciones del Proyecto");
         Container contenedor = ventana.getContentPane();
         contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.PAGE_AXIS));
@@ -19,7 +22,7 @@ public class Ventana extends JFrame {
 
         boton = new JButton("Dar de baja a una persona");
         boton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        boton.addActionListener(new BotonBajaPersona());
+        boton.addActionListener(new BotonBajaPersona(proyecto));
 
         contenedor.add(boton);
 
