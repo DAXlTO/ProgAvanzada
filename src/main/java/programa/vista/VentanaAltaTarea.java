@@ -22,23 +22,30 @@ public class VentanaAltaTarea extends JFrame{
 
     private void ejecuta(Proyecto proyecto) {
         JFrame ventana = new JFrame("Dar de alta tarea");
-        Container contenedor = ventana.getContentPane();
+        JPanel contenedor = new JPanel();
+        ventana.add(contenedor);
 
         JTextField nombre = new JTextField(20);
         JLabel nom = new JLabel("Nombre de la tarea: ");
 
+
         JTextField des = new JTextField(20);
         JLabel descr = new JLabel("Descripcion: ");
 
+
         String[] personas = controlador.getPersonas(proyecto);
+        JLabel resp = new JLabel("Personas responsable: ");
+
         JComboBox per = new JComboBox(personas);
 
-        contenedor.add(per);
         contenedor.setLayout(new FlowLayout());
         contenedor.add(nom);
         contenedor.add(nombre);
         contenedor.add(descr);
         contenedor.add(des);
+        contenedor.add(resp);
+        contenedor.add(per);
+
 
         JButton boton = new JButton("Volver");
         contenedor.add(boton);
