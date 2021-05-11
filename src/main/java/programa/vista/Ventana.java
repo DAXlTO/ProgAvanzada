@@ -21,6 +21,7 @@ public class Ventana extends JFrame {
 
         JButton boton = new JButton("Dar de alta a una persona");
         boton.addActionListener(new BotonAltaPersona()); //Registro escuchador
+        boton.addActionListener(getAvanzar(ventana));
         contenedor.add(boton);
 
         boton = new JButton("Dar de baja a una persona");
