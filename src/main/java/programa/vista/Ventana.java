@@ -33,6 +33,9 @@ public class Ventana extends JFrame {
 
 
         boton = new JButton("Dar de alta una tarea");
+        boton.addActionListener(new BotonAltaTarea(proyecto,con,ventana)); //Registro escuchador
+        boton.addActionListener(getAvanzar(ventana));
+
         contenedor.add(boton);
 
         boton = new JButton("Marcar tarea como finalizada");
