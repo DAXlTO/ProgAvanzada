@@ -16,6 +16,7 @@ public class BotonBajaPersona implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println("Pulsaste el botón de dar de baja a una persona.");
         VentanaBajaPersona.main(proyecto);
     }
 }

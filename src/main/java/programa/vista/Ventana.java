@@ -68,6 +68,7 @@ public class Ventana extends JFrame {
     public static ActionListener getAvanzar(JFrame ventana){
         return actionEvent -> ventana.setVisible(false);
     }
+
     public static void main(String[] args) {
         new Ventana().ejecuta();
     }
