@@ -8,7 +8,6 @@ import java.util.List;
 
 public class ImplementacionControlador implements Controlador{
     private Modelo modelo;
-    //private Vista vista;
 
     public void altaPersona(String nombre, String email, Proyecto proyecto) {
         modelo = proyecto;
@@ -21,6 +20,12 @@ public class ImplementacionControlador implements Controlador{
         modelo = proyecto;
         return modelo.personas();
     }
+
+    public void eliminarPersona(int persona, Proyecto proyecto){
+        modelo = proyecto;
+        modelo.eliminarPersona(persona);
+    }
+
 
     public void setModelo(Modelo modelo){
         this.modelo=modelo;

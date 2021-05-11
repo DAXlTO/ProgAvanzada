@@ -27,7 +27,7 @@ public class Ventana extends JFrame {
         contenedor.add(boton);
 
         boton = new JButton("Dar de baja a una persona");
-        boton.addActionListener(new BotonBajaPersona(proyecto));
+        boton.addActionListener(new BotonBajaPersona(con,proyecto,ventana));
         boton.addActionListener(getAvanzar(ventana));
         contenedor.add(boton);
 

@@ -7,4 +7,5 @@ import java.util.List;
 public interface Modelo {
     void altaPersona(Persona persona);
     String[] personas();
+    void eliminarPersona(int persona);
 }

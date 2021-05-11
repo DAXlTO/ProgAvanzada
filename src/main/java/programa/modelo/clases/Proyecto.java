@@ -41,6 +41,7 @@ public class Proyecto implements Serializable, tieneClave, Modelo {
 
     public void eliminarPersona(int persona) {
         personas.remove(persona);
+        System.out.println("Todo ok");
     }
 
 
