@@ -1,5 +1,6 @@
 package programa.vista;
 
+import programa.controlador.Controlador;
 import programa.modelo.clases.Proyecto;
 
 import java.awt.event.ActionEvent;
@@ -8,9 +9,11 @@ import java.awt.event.ActionListener;
 public class BotonAltaTarea implements ActionListener {
 
     private Proyecto proyecto;
+    private Controlador controlador;
 
-    public BotonAltaTarea(Proyecto proyecto){
+    public BotonAltaTarea(Proyecto proyecto, Controlador controlador){
         this.proyecto = proyecto;
+        this.controlador = controlador;
     }
 
     @Override

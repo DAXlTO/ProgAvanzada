@@ -83,14 +83,7 @@ public class Aplicacion {
     }
 
     public static void darAltaPersona(Proyecto proyecto) {
-        try {
-            Persona personaAñadida = inputsPersona();
-            proyecto.añadirPersona(personaAñadida);
-            System.out.println("Has añadido a " + personaAñadida.getNombre() + " al proyecto\n");
-        }
-        catch (PersonaRepetidaException e){
-            System.out.println("La persona ya existe");
-        }
+
     }
 
     public static void darBajaPersona(Proyecto proyecto) {

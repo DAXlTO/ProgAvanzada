@@ -2,15 +2,18 @@ package programa.modelo.clases;
 
 import programa.modelo.excepciones.PersonaRepetidaException;
 import programa.modelo.excepciones.TareaRepetidaException;
+import programa.modelo.interfaces.Modelo;
 import programa.modelo.interfaces.tieneClave;
 import programa.modelo.interfaces.tieneLista;
+
+import javax.jws.WebParam;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Proyecto implements Serializable, tieneClave {
+public class Proyecto implements Serializable, tieneClave, Modelo {
     String nombre;
     private final Map<String,Tarea> tareas;
     private final List<Persona> personas;
@@ -21,12 +24,18 @@ public class Proyecto implements Serializable, tieneClave {
         personas = new ArrayList<>();
     }
 
-    public void añadirPersona(Persona persona) throws PersonaRepetidaException {
-        if(UtilidadesParaLista.elementosNoRepetidos(personas,persona)){
-            personas.add(persona);
-        }else{
-            throw new PersonaRepetidaException();
+    public void altaPersona(Persona persona) {
+        try{
+            if(UtilidadesParaLista.elementosNoRepetidos(personas,persona)){
+                personas.add(persona);
+                System.out.println(getPersonas());
+                System.out.println("Todo ha ido bien");
+            }else{
+                throw new PersonaRepetidaException();
 
+            }
+        }catch (PersonaRepetidaException ex){
+            ex.printStackTrace();
         }
     }
 

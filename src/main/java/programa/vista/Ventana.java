@@ -1,10 +1,11 @@
 package programa.vista;
 
+import programa.controlador.Controlador;
+import programa.controlador.ImplementacionControlador;
 import programa.modelo.clases.Proyecto;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Ventana extends JFrame {
@@ -14,13 +15,14 @@ public class Ventana extends JFrame {
     private void ejecuta() {
         Proyecto proyecto = new Proyecto("Pr");
         JFrame ventana = new JFrame("Opciones del Proyecto");
+        ventana.addWindowListener(new EscuchadorVentana());
         JPanel contenedor = new JPanel();
         contenedor.setLayout(new GridLayout(0,1,1,10));
         ventana.add(contenedor);
 
-
+        Controlador con = new ImplementacionControlador();
         JButton boton = new JButton("Dar de alta a una persona");
-        boton.addActionListener(new BotonAltaPersona()); //Registro escuchador
+        boton.addActionListener(new BotonAltaPersona(con,proyecto,ventana)); //Registro escuchador
         boton.addActionListener(getAvanzar(ventana));
         contenedor.add(boton);
 
