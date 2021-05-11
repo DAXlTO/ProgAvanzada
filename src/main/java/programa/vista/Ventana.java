@@ -4,6 +4,8 @@ import programa.modelo.clases.Proyecto;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Ventana extends JFrame {
     private Ventana() {
@@ -12,62 +14,58 @@ public class Ventana extends JFrame {
     private void ejecuta() {
         Proyecto proyecto = new Proyecto("Pr");
         JFrame ventana = new JFrame("Opciones del Proyecto");
-        Container contenedor = ventana.getContentPane();
-        contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.PAGE_AXIS));
+        JPanel contenedor = new JPanel();
+        contenedor.setLayout(new GridLayout(0,1,1,10));
+        ventana.add(contenedor);
+
 
         JButton boton = new JButton("Dar de alta a una persona");
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         boton.addActionListener(new BotonAltaPersona()); //Registro escuchador
         contenedor.add(boton);
 
         boton = new JButton("Dar de baja a una persona");
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         boton.addActionListener(new BotonBajaPersona(proyecto));
-
+        boton.addActionListener(getAvanzar(ventana));
         contenedor.add(boton);
 
+
         boton = new JButton("Dar de alta una tarea");
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contenedor.add(boton);
 
         boton = new JButton("Marcar tarea como finalizada");
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contenedor.add(boton);
 
         boton = new JButton("Añadir una persona a una tarea");
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contenedor.add(boton);
 
         boton = new JButton("Eliminar una persona de una tarea");
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contenedor.add(boton);
 
         boton = new JButton("Listar personas del proyecto");
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contenedor.add(boton);
 
         boton = new JButton("Listar tareas del proyecto");
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contenedor.add(boton);
 
         boton = new JButton("Listar las personas de una tarea");
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contenedor.add(boton);
 
         boton = new JButton("Listar las personas que no son responsables");
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contenedor.add(boton);
 
         boton = new JButton("Listar tareas sin personas");
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contenedor.add(boton);
 
         boton = new JButton("Guardar y salir");
-        boton.setAlignmentX(Component.RIGHT_ALIGNMENT);
         contenedor.add(boton);
 
         ventana.pack();
         ventana.setVisible(true);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public static ActionListener getAvanzar(JFrame ventana){
+        return actionEvent -> ventana.setVisible(false);
     }
     public static void main(String[] args) {
         new Ventana().ejecuta();
