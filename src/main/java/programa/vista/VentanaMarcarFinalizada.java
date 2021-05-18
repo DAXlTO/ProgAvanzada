@@ -1,0 +1,67 @@
+package programa.vista;
+
+import programa.controlador.Controlador;
+import programa.modelo.clases.Modelo;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class VentanaMarcarFinalizada extends JFrame implements Vista{
+    private Controlador controlador;
+    private Modelo modelo;
+    JFrame ventanAnterior;
+
+    private VentanaMarcarFinalizada(Controlador controlador, Modelo modelo, JFrame ventanAnterior) {
+        this.controlador = controlador;
+        this.modelo = modelo;
+        this.ventanAnterior=ventanAnterior;
+    }
+
+    public void ejecuta(Modelo modelo){
+        JFrame ventana = new JFrame("Marcar una tarea como finalizada");
+        JPanel contenedor = new JPanel();
+        ventana.add(contenedor);
+
+        String[] listaTareas = controlador.getTareas(modelo);
+        JLabel nombre = new JLabel("Nombre de la tarea: ");
+        JComboBox tareas = new JComboBox(listaTareas);
+        contenedor.add(tareas);
+
+        JComboBox resultado = new JComboBox()
+
+
+        JLabel horas = new JLabel("¿Cuantas horas se han trabajado? ");
+        JTextField respuestaHoras = new JTextField(20);
+
+        JLabel formato = new JLabel("¿Que formato se ha utilizado? ");
+        JTextField respuestaFormato = new JTextField(20);
+
+        contenedor.setLayout(new FlowLayout());
+        contenedor.add(nombre);
+        contenedor.add(tareas);
+        contenedor.add(horas);
+        contenedor.add(respuestaHoras);
+        contenedor.add(formato);
+        contenedor.add(respuestaFormato);
+
+        JButton boton = new JButton("Volver");
+        contenedor.add(boton);
+
+        boton = new JButton("Aceptar");
+        boton.addActionListener(actionEvent -> controlador.finalizarTarea(tareas.getSelectedIndex(), modelo));
+        contenedor.add(boton);
+
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.pack();
+        ventana.setVisible(true);
+    }
+
+    public static void main(Controlador controlador, Modelo modelo, JFrame ventana) {
+        new VentanaMarcarFinalizada(controlador, modelo,ventana).ejecuta(modelo);
+    }
+
+    @Override
+    public String getEntrada() {
+        return null;
+    }
+}

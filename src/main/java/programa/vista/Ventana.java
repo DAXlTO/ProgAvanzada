@@ -39,9 +39,13 @@ public class Ventana extends JFrame {
         contenedor.add(boton);
 
         boton = new JButton("Marcar tarea como finalizada");
+        boton.addActionListener(new BotonMarcarFinalizada(con, modelo, ventana));
+        boton.addActionListener(getAvanzar(ventana));
         contenedor.add(boton);
 
         boton = new JButton("Añadir una persona a una tarea");
+        boton.addActionListener(new BotonAñadirPersonaTarea(con,modelo,ventana));
+        boton.addActionListener(getAvanzar(ventana));
         contenedor.add(boton);
 
         boton = new JButton("Eliminar una persona de una tarea");

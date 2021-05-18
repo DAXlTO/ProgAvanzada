@@ -2,6 +2,7 @@ package programa.controlador;
 
 import programa.modelo.clases.Persona;
 import programa.modelo.clases.Modelo;
+import programa.modelo.clases.Resultado;
 import programa.vista.Vista;
 
 public class ImplementacionControlador implements Controlador{
@@ -19,13 +20,27 @@ public class ImplementacionControlador implements Controlador{
         return this.modelo.personas();
     }
 
+    public String[] getTareas(Modelo modelo){
+        this.modelo = modelo;
+        return this.modelo.tareas();
+    }
+
     public void eliminarPersona(int persona, Modelo modelo){
         this.modelo = modelo;
         this.modelo.eliminarPersona(persona);
     }
 
+    public void finalizarTarea(String tarea, Resultado resultado, Modelo modelo){
+        this.modelo = modelo;
+        this.modelo.finalizarTarea(tarea,resultado);
+    }
 
-    public void setModelo(programa.modelo.interfaces.Modelo modelo){
+    public boolean añadirPersonaATarea(String tarea, String persona, Modelo modelo){
+        this.modelo = modelo;
+        this.modelo.añadirPersonaATarea(tarea, persona);
+    }
+
+    public void setModelo(Modelo modelo){
         this.modelo=modelo;
     }
 }

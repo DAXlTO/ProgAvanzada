@@ -26,9 +26,8 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
         try{
             if(UtilidadesParaLista.elementosNoRepetidos(personas,persona)){
                 personas.add(persona);
-                System.out.println(getPersonas());
-                System.out.println("Todo ha ido bien");
-            }else{
+            }
+            else{
                 throw new PersonaRepetidaException();
 
             }
@@ -39,8 +38,6 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
 
     public void eliminarPersona(int persona) {
         personas.remove(persona);
-        System.out.println(getPersonas());
-        System.out.println("Todo ok");
     }
 
 
@@ -102,6 +99,16 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
         }
         return aux;
     }
+
+    public String[] tareas(){
+        String[] aux = new String[tareas.size()];
+        for(int i = 0; i < tareas.size(); i++){
+            aux[i] = tareas.get(i).toString();
+        }
+        return aux;
+    }
+
+
     public Tarea getTarea(String tarea){
         return tareas.get(tarea);
     }
