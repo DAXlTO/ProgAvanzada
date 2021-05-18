@@ -12,4 +12,6 @@ public interface Modelo {
     void eliminarPersona(int persona);
     void finalizarTarea(String tarea, Resultado resultado);
     boolean añadirPersonaATarea(String nombreTarea, String nombrePersona);
+    Importe comprobarImporte(String importe);
+
 }

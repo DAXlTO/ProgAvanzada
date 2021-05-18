@@ -3,6 +3,9 @@ package programa.controlador;
 import programa.modelo.clases.Persona;
 import programa.modelo.clases.Modelo;
 import programa.modelo.clases.Resultado;
+import programa.modelo.clases.Tarea;
+import programa.modelo.excepciones.TareaRepetidaException;
+import programa.modelo.interfaces.Importe;
 import programa.vista.Vista;
 
 public class ImplementacionControlador implements Controlador{
@@ -38,6 +41,19 @@ public class ImplementacionControlador implements Controlador{
     public boolean añadirPersonaATarea(String tarea, String persona, Modelo modelo){
         this.modelo = modelo;
         this.modelo.añadirPersonaATarea(tarea, persona);
+    }
+
+    public void altaTarea(Modelo modelo, String titulo, String descripcion, Persona responsable, int prioridad, String etiquetas, String tipo, Double coste, String importe){
+        this.modelo = modelo;
+
+        Importe impor = modelo.comprobarImporte(importe);
+        Tarea tarea = new Tarea(titulo,descripcion,responsable,prioridad,etiquetas,tipo,coste,impor);
+        try {
+            System.out.println(tarea.getTitulo()+tarea.getResponsable());
+            modelo.añadirTarea(tarea);
+        } catch (TareaRepetidaException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setModelo(Modelo modelo){

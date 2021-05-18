@@ -2,6 +2,7 @@ package programa.modelo.clases;
 
 import programa.modelo.excepciones.PersonaRepetidaException;
 import programa.modelo.excepciones.TareaRepetidaException;
+import programa.modelo.interfaces.Importe;
 import programa.modelo.interfaces.tieneClave;
 import programa.modelo.interfaces.tieneLista;
 
@@ -26,8 +27,9 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
         try{
             if(UtilidadesParaLista.elementosNoRepetidos(personas,persona)){
                 personas.add(persona);
-            }
-            else{
+                System.out.println(getPersonas());
+                System.out.println("Todo ha ido bien");
+            }else{
                 throw new PersonaRepetidaException();
 
             }
@@ -38,6 +40,7 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
 
     public void eliminarPersona(int persona) {
         personas.remove(persona);
+        System.out.println("Todo ok");
     }
 
 
@@ -108,7 +111,6 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
         return aux;
     }
 
-
     public Tarea getTarea(String tarea){
         return tareas.get(tarea);
     }
@@ -116,7 +118,7 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
     public int getNumeroTareas(){return tareas.size();}
 
     public String getTipoTarea(String tarea){
-       return tareas.get(tarea).tipo;
+        return tareas.get(tarea).tipo;
     }
 
     public List<String> getNombreTareas(){
@@ -164,6 +166,15 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
         }
     }
 
+    public Importe comprobarImporte(String importe){
+        Importe importe1 = new ConsumoInterno();
+        if(importe.equals("Descuento"))
+            importe1 = new Descuento();
+        else if(importe1.equals("Urgente"))
+            importe1 = new Urgente();
+        return importe1;
+
+    }
 
     public static Modelo cargarInformacion() {
         Modelo modelo = null;

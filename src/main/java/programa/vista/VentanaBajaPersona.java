@@ -2,10 +2,12 @@ package programa.vista;
 
 import programa.controlador.Controlador;
 import programa.modelo.clases.Modelo;
+import programa.modelo.clases.Persona;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class VentanaBajaPersona extends JFrame implements Vista{
     private Controlador controlador;
@@ -25,8 +27,12 @@ public class VentanaBajaPersona extends JFrame implements Vista{
         Container contenedor = ventana.getContentPane();
         contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.PAGE_AXIS));
 
-        String[] personas = controlador.getPersonas(modelo);
-        JComboBox per = new JComboBox(personas);
+        List<Persona> personas = controlador.getPersonas(modelo);
+        String[] persona = new String[personas.size()];
+        for (int i = 0; i < personas.size();i++){
+            persona[i]=personas.get(i).getNombre();
+        }
+        JComboBox per = new JComboBox(persona);
         contenedor.add(per);
 
 

@@ -2,9 +2,11 @@ package programa.vista;
 
 import programa.controlador.Controlador;
 import programa.modelo.clases.Modelo;
+import programa.modelo.clases.Persona;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class VentanaAñadirPersonaTarea extends JFrame implements Vista {
     private Controlador controlador;
@@ -28,22 +30,27 @@ public class VentanaAñadirPersonaTarea extends JFrame implements Vista {
         JComboBox tareas = new JComboBox(listaTareas);
         contenedor.add(tareas);
 
-        String[] listaPersonas = controlador.getPersonas(modelo);
+        List<Persona> listaPersonas = controlador.getPersonas(modelo);
+        String[] persona = new String[listaPersonas.size()];
+        for (int i = 0; i < listaPersonas.size();i++){
+            persona[i] = listaPersonas.get(i).getNombre();
+        }
         JLabel nombrePersona = new JLabel("Nombre de la persona: ");
-        JComboBox personas = new JComboBox(listaPersonas);
-        contenedor.add(personas);
+
+        JComboBox per = new JComboBox(persona);
+        contenedor.add(per);
 
         contenedor.setLayout(new FlowLayout());
         contenedor.add(nombreTarea);
         contenedor.add(tareas);
         contenedor.add(nombrePersona);
-        contenedor.add(personas);
+        contenedor.add(per);
 
         JButton boton = new JButton("Volver");
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
-        boton.addActionListener(actionEvent -> controlador.añadirPersonaATarea(tareas.getSelectedIndex(),personas.getSelectedIndex(), modelo));
+        boton.addActionListener(actionEvent -> controlador.añadirPersonaATarea(tareas.getSelectedIndex(),per.getSelectedIndex(), modelo));
         contenedor.add(boton);
 
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
