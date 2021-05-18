@@ -50,7 +50,7 @@ public class VentanaAñadirPersonaTarea extends JFrame implements Vista {
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
-        boton.addActionListener(actionEvent -> controlador.añadirPersonaATarea(tareas.getSelectedIndex(),per.getSelectedIndex(), modelo));
+        boton.addActionListener(actionEvent -> controlador.añadirPersonaATarea(listaTareas[tareas.getSelectedIndex()],listaPersonas.get(per.getSelectedIndex()).getNombre(), modelo));
         contenedor.add(boton);
 
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
