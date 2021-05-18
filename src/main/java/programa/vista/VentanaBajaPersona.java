@@ -1,7 +1,7 @@
 package programa.vista;
 
 import programa.controlador.Controlador;
-import programa.modelo.clases.Proyecto;
+import programa.modelo.clases.Modelo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +10,13 @@ import java.awt.event.ActionListener;
 public class VentanaBajaPersona extends JFrame implements Vista{
     private Controlador controlador;
     private int numeros;
-    private Proyecto proyecto;
+    private Modelo modelo;
     JFrame ventanAnterior;
 
-    private VentanaBajaPersona(Controlador controlador, Proyecto proyecto, JFrame ventanAnterior) {
+    private VentanaBajaPersona(Controlador controlador, Modelo modelo, JFrame ventanAnterior) {
         super("");
         this.controlador = controlador;
-        this.proyecto = proyecto;
+        this.modelo = modelo;
         this.ventanAnterior = ventanAnterior;
     }
 
@@ -25,7 +25,7 @@ public class VentanaBajaPersona extends JFrame implements Vista{
         Container contenedor = ventana.getContentPane();
         contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.PAGE_AXIS));
 
-        String[] personas = controlador.getPersonas(proyecto);
+        String[] personas = controlador.getPersonas(modelo);
         JComboBox per = new JComboBox(personas);
         contenedor.add(per);
 
@@ -39,7 +39,7 @@ public class VentanaBajaPersona extends JFrame implements Vista{
 
         boton = new JButton("Aceptar");
         boton.addActionListener(aceptar(ventana));
-        boton.addActionListener(actionEvent -> controlador.eliminarPersona(numeros,proyecto));
+        boton.addActionListener(actionEvent -> controlador.eliminarPersona(numeros, modelo));
         boton.setAlignmentX(Component.RIGHT_ALIGNMENT);
         contenedor.add(boton);
 
@@ -48,8 +48,8 @@ public class VentanaBajaPersona extends JFrame implements Vista{
         ventana.setVisible(true);
     }
 
-    public static void main(Controlador controlador, Proyecto proyecto, JFrame ventana) {
-        new VentanaBajaPersona(controlador, proyecto, ventana).ejecuta();
+    public static void main(Controlador controlador, Modelo modelo, JFrame ventana) {
+        new VentanaBajaPersona(controlador, modelo, ventana).ejecuta();
     }
 
     public ActionListener aceptar(JFrame ventana){

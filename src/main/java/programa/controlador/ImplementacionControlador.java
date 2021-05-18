@@ -1,33 +1,31 @@
 package programa.controlador;
 
 import programa.modelo.clases.Persona;
-import programa.modelo.clases.Proyecto;
-import programa.modelo.interfaces.Modelo;
-
-import java.util.List;
+import programa.modelo.clases.Modelo;
+import programa.vista.Vista;
 
 public class ImplementacionControlador implements Controlador{
-    private Modelo modelo;
+    private programa.modelo.interfaces.Modelo modelo;
+    private Vista vista;
 
-    public void altaPersona(String nombre, String email, Proyecto proyecto) {
-        modelo = proyecto;
-        //String entrada = vista.getEntrada();
+    public void altaPersona(String nombre, String email, Modelo modelo) {
+        this.modelo = modelo;
         Persona persona = new Persona(nombre,email);
-        modelo.altaPersona(persona);
+        this.modelo.altaPersona(persona);
     }
 
-    public String[] getPersonas(Proyecto proyecto){
-        modelo = proyecto;
-        return modelo.personas();
+    public String[] getPersonas(Modelo modelo){
+        this.modelo = modelo;
+        return this.modelo.personas();
     }
 
-    public void eliminarPersona(int persona, Proyecto proyecto){
-        modelo = proyecto;
-        modelo.eliminarPersona(persona);
+    public void eliminarPersona(int persona, Modelo modelo){
+        this.modelo = modelo;
+        this.modelo.eliminarPersona(persona);
     }
 
 
-    public void setModelo(Modelo modelo){
+    public void setModelo(programa.modelo.interfaces.Modelo modelo){
         this.modelo=modelo;
     }
 }

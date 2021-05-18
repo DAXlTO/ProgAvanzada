@@ -2,7 +2,7 @@ package programa.vista;
 
 import programa.controlador.Controlador;
 import programa.controlador.ImplementacionControlador;
-import programa.modelo.clases.Proyecto;
+import programa.modelo.clases.Modelo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ public class Ventana extends JFrame {
         super("Inicio");
     }
     private void ejecuta() {
-        Proyecto proyecto = new Proyecto("Pr");
+        Modelo modelo = new Modelo("Pr");
         JFrame ventana = new JFrame("Opciones del Proyecto");
         ventana.addWindowListener(new EscuchadorVentana());
         JPanel contenedor = new JPanel();
@@ -22,18 +22,18 @@ public class Ventana extends JFrame {
 
         Controlador con = new ImplementacionControlador();
         JButton boton = new JButton("Dar de alta a una persona");
-        boton.addActionListener(new BotonAltaPersona(con,proyecto,ventana)); //Registro escuchador
+        boton.addActionListener(new BotonAltaPersona(con, modelo,ventana)); //Registro escuchador
         boton.addActionListener(getAvanzar(ventana));
         contenedor.add(boton);
 
         boton = new JButton("Dar de baja a una persona");
-        boton.addActionListener(new BotonBajaPersona(con,proyecto,ventana));
+        boton.addActionListener(new BotonBajaPersona(con, modelo,ventana));
         boton.addActionListener(getAvanzar(ventana));
         contenedor.add(boton);
 
 
         boton = new JButton("Dar de alta una tarea");
-        boton.addActionListener(new BotonAltaTarea(proyecto,con,ventana)); //Registro escuchador
+        boton.addActionListener(new BotonAltaTarea(modelo,con,ventana)); //Registro escuchador
         boton.addActionListener(getAvanzar(ventana));
 
         contenedor.add(boton);

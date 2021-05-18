@@ -1,26 +1,25 @@
 package programa.vista;
 
 import programa.controlador.Controlador;
-import programa.modelo.clases.Proyecto;
+import programa.modelo.clases.Modelo;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
 public class VentanaAltaTarea extends JFrame{
 
     private Controlador controlador;
-    private Proyecto proyecto;
+    private Modelo modelo;
     JFrame ventanAnterior;
 
-    private VentanaAltaTarea(Controlador controlador, Proyecto proyecto, JFrame ventanAnterior) {
+    private VentanaAltaTarea(Controlador controlador, Modelo modelo, JFrame ventanAnterior) {
         super("");
         this.controlador = controlador;
-        this.proyecto = proyecto;
+        this.modelo = modelo;
         this.ventanAnterior=ventanAnterior;
     }
 
-    private void ejecuta(Proyecto proyecto) {
+    private void ejecuta(Modelo modelo) {
         JFrame ventana = new JFrame("Dar de alta tarea");
         JPanel contenedor = new JPanel();
         ventana.add(contenedor);
@@ -33,7 +32,7 @@ public class VentanaAltaTarea extends JFrame{
         JLabel descr = new JLabel("Descripcion: ");
 
 
-        String[] personas = controlador.getPersonas(proyecto);
+        String[] personas = controlador.getPersonas(modelo);
         JLabel resp = new JLabel("Personas responsable: ");
 
         JComboBox per = new JComboBox(personas);
@@ -57,8 +56,8 @@ public class VentanaAltaTarea extends JFrame{
         ventana.pack();
         ventana.setVisible(true);
     }
-    public static void main(Controlador controlador, Proyecto proyecto, JFrame ventana) {
-        new VentanaAltaTarea(controlador,proyecto,ventana).ejecuta(proyecto);
+    public static void main(Controlador controlador, Modelo modelo, JFrame ventana) {
+        new VentanaAltaTarea(controlador, modelo,ventana).ejecuta(modelo);
     }
 
 }

@@ -2,23 +2,21 @@ package programa.modelo.clases;
 
 import programa.modelo.excepciones.PersonaRepetidaException;
 import programa.modelo.excepciones.TareaRepetidaException;
-import programa.modelo.interfaces.Modelo;
 import programa.modelo.interfaces.tieneClave;
 import programa.modelo.interfaces.tieneLista;
 
-import javax.jws.WebParam;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Proyecto implements Serializable, tieneClave, Modelo {
+public class Modelo implements Serializable, tieneClave, programa.modelo.interfaces.Modelo {
     String nombre;
     private final Map<String,Tarea> tareas;
     private final List<Persona> personas;
 
-    public Proyecto(String nombre){
+    public Modelo(String nombre){
         this.nombre = nombre;
         tareas = new HashMap<>();
         personas = new ArrayList<>();
@@ -147,11 +145,11 @@ public class Proyecto implements Serializable, tieneClave, Modelo {
         return solucion;
     }
 
-    public static void almacenarInformacion(Proyecto proyecto){
+    public static void almacenarInformacion(Modelo modelo){
         try{
             FileOutputStream fos = new FileOutputStream("proyecto.bin");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(proyecto);
+            oos.writeObject(modelo);
             oos.close();
         }catch (Exception e){
             e.printStackTrace();
@@ -159,18 +157,18 @@ public class Proyecto implements Serializable, tieneClave, Modelo {
     }
 
 
-    public static Proyecto cargarInformacion() {
-        Proyecto proyecto = null;
+    public static Modelo cargarInformacion() {
+        Modelo modelo = null;
         try {
             FileInputStream fis = new FileInputStream("proyecto.bin");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            proyecto = (Proyecto) ois.readObject();
+            modelo = (Modelo) ois.readObject();
             ois.close();
-            return proyecto;
+            return modelo;
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        return proyecto;
+        return modelo;
     }
 }

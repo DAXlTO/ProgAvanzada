@@ -2,7 +2,6 @@ package programa;
 
 import programa.modelo.clases.*;
 import programa.modelo.excepciones.PersonaNullException;
-import programa.modelo.excepciones.PersonaRepetidaException;
 import programa.modelo.excepciones.TareaException;
 import programa.modelo.excepciones.TareaRepetidaException;
 import programa.modelo.interfaces.Importe;
@@ -17,7 +16,7 @@ public class Aplicacion {
 
     public static void main(String[] args){
         Scanner teclado = new Scanner(System.in);
-        Proyecto proyecto = inicializar(teclado);
+        Modelo modelo = inicializar(teclado);
 
         int opcion;
         do {
@@ -27,77 +26,77 @@ public class Aplicacion {
             Menu.OpcionesMenu opcionMenu = Menu.OpcionesMenu.getOpcion(opcion);
             switch (opcionMenu) {
                 case SALIR:
-                    System.out.println("Has terminado de editar el proyecto " + proyecto.getNombre());
-                    Proyecto.almacenarInformacion(proyecto);
+                    System.out.println("Has terminado de editar el proyecto " + modelo.getNombre());
+                    Modelo.almacenarInformacion(modelo);
                     System.exit(0);
                     break;
 
                 case DAR_ALTA_PERSONA: {
-                    darAltaPersona(proyecto);
+                    darAltaPersona(modelo);
                     break;
                 }
                 case DAR_BAJA_PERSONA:{
-                    darBajaPersona(proyecto);
+                    darBajaPersona(modelo);
                     break;
                 }
 
                 case DAR_ALTA_TAREA: {
-                    darAltaTarea(proyecto);
+                    darAltaTarea(modelo);
                     break;
                 }
 
                 case MARCAR_FINALIZADA: {
-                    marcarFinalizada(proyecto);
+                    marcarFinalizada(modelo);
                     break;
                 }
                 case AÑADIR_PERSONA: {
-                    añadirPersona(proyecto);
+                    añadirPersona(modelo);
                     break;
                 }
                 case ELIMINAR_PERSONA: {
-                    eliminarPersona(proyecto);
+                    eliminarPersona(modelo);
                     break;
                 }
                 case LISTAR_PERSONAS: {
-                    listarPersonas(proyecto);
+                    listarPersonas(modelo);
                     break;
                 }
                 case LISTAR_TAREAS: {
-                    listarTareas(proyecto);
+                    listarTareas(modelo);
                     break;
                 }
                 case LISTAR_PERSONAS_DE_TAREA: {
-                    listarPersonasDeTarea(proyecto);
+                    listarPersonasDeTarea(modelo);
                     break;
                 }
                 case LISTAR_PERSONAS_NO_RESPONSABLES: {
-                    listarPersonasNoResponsables(proyecto);
+                    listarPersonasNoResponsables(modelo);
                     break;
                 }
                 case LISTAR_TAREAS_SIN_PERSONAS: {
-                    listarTareasSinPersonas(proyecto);
+                    listarTareasSinPersonas(modelo);
 
                 }
             }
         }while (opcion != 0);
     }
 
-    public static void darAltaPersona(Proyecto proyecto) {
+    public static void darAltaPersona(Modelo modelo) {
 
     }
 
-    public static void darBajaPersona(Proyecto proyecto) {
+    public static void darBajaPersona(Modelo modelo) {
         try {
-            List<Persona> personas = proyecto.getPersonas();
+            List<Persona> personas = modelo.getPersonas();
             if (personas.size() == 0) {
                 return;
             }
 
             System.out.println("¿Que persona quieres eliminar?");
-            int listaPersonas = elegirPersona(proyecto);
+            int listaPersonas = elegirPersona(modelo);
             Persona personaELiminada = personas.get(listaPersonas);
 
-            proyecto.eliminarPersona(listaPersonas);
+            modelo.eliminarPersona(listaPersonas);
             System.out.println("Has eliminado a " + personaELiminada.getNombre() + " del proyecto\n");
         }
         catch (PersonaNullException e){
@@ -105,7 +104,7 @@ public class Aplicacion {
         }
     }
 
-    public static void darAltaTarea(Proyecto proyecto){
+    public static void darAltaTarea(Modelo modelo){
         try{
         System.out.print("Introduce el nombre de la tarea: ");
         String nomTarea = atributos.nextLine();
@@ -114,9 +113,9 @@ public class Aplicacion {
         String descripcion = atributos.nextLine();
 
         System.out.println("¿Que persona quieres que sea responsable?");
-        int persona = elegirPersona(proyecto);
+        int persona = elegirPersona(modelo);
 
-        Persona responsable = proyecto.getPersonas().get(persona);
+        Persona responsable = modelo.getPersonas().get(persona);
 
         System.out.print("Introduce la prioridad de la tarea (1-5): ");
         int prioridad = Integer.parseInt(atributos.nextLine());
@@ -149,9 +148,9 @@ public class Aplicacion {
         }
 
         Tarea tarea = new Tarea(nomTarea, descripcion, responsable, prioridad, etiquetas,resultado,coste,importe);
-            proyecto.añadirTarea(tarea);
+            modelo.añadirTarea(tarea);
             System.out.println("La tarea " + nomTarea + " ha sido añadida correctamente el " + tarea.getFechaIni() + " con coste " + tarea.calcularImporte() +"\n");
-            proyecto.añadirTareaAPersona(responsable.getNombre(), tarea.getTitulo());
+            modelo.añadirTareaAPersona(responsable.getNombre(), tarea.getTitulo());
         } catch (TareaRepetidaException e) {
             System.out.println("El nombre de la tarea ya existe");
         } catch (PersonaNullException e){
@@ -159,8 +158,8 @@ public class Aplicacion {
         }
     }
 
-    public static void marcarFinalizada(Proyecto proyecto){
-        List<String> tareasNoFinalizadas = proyecto.getTareasNoFinalizadas();
+    public static void marcarFinalizada(Modelo modelo){
+        List<String> tareasNoFinalizadas = modelo.getTareasNoFinalizadas();
         if (tareasNoFinalizadas.size() == 0){
             System.out.println("No hay tareas NO FINALIZADAS");
             return;
@@ -171,7 +170,7 @@ public class Aplicacion {
         }
         System.out.print("Introduce el numero de la tarea: ");
         String tarea = tareasNoFinalizadas.get(Integer.parseInt(atributos.nextLine()));
-        String tipo = proyecto.getTipoTarea(tarea);
+        String tipo = modelo.getTipoTarea(tarea);
 
         System.out.print("Introduce un identificador del resultado: ");
         String identificador = atributos.nextLine();
@@ -192,7 +191,7 @@ public class Aplicacion {
             System.out.print("Introduce el espacio utilizado: ");
             Float espacio = Float.valueOf(atributos.nextLine());
             Resultado resultado = new ResultadoDocumento(identificador,horas,internoOcomercial,formato,numPag,espacio);
-            proyecto.finalizarTarea(tarea,resultado);
+            modelo.finalizarTarea(tarea,resultado);
 
         }else if(tipo.equals("PaginaWeb")){
             System.out.print("¿Es estatica o dinamica?");
@@ -205,7 +204,7 @@ public class Aplicacion {
             String backend = atributos.nextLine();
 
             Resultado resultado = new ResultadoPaginaWeb(identificador, horas,internoOcomercial,estaticaOdinamica,lenguaje,backend);
-            proyecto.finalizarTarea(tarea,resultado);
+            modelo.finalizarTarea(tarea,resultado);
 
         }else{
             System.out.print("Introduce el lenguaje del codigo: ");
@@ -218,23 +217,23 @@ public class Aplicacion {
             int numero_modulos = Integer.parseInt(atributos.nextLine());
 
             Resultado resultado = new ResultadoPrograma(identificador,horas,internoOcomercial,lenguaje,numero_lineas,numero_modulos);
-            proyecto.finalizarTarea(tarea,resultado);
+            modelo.finalizarTarea(tarea,resultado);
         }
 
         System.out.println("programa.Modelo.Clases.Tarea finalizada el " + LocalDate.now() + "\n");
     }
 
-    public static void añadirPersona(Proyecto proyecto) {
+    public static void añadirPersona(Modelo modelo) {
         try {
             System.out.println("¿A que tarea le quieres añadir?");
-            String tarea = elegirTarea(proyecto);
+            String tarea = elegirTarea(modelo);
 
-            List<Persona> personas = proyecto.getPersonas();
+            List<Persona> personas = modelo.getPersonas();
 
             System.out.println("¿A que persona quieres añadir a esta tarea?");
-            String persona = personas.get(elegirPersona(proyecto)).getNombre();
+            String persona = personas.get(elegirPersona(modelo)).getNombre();
 
-            if (proyecto.añadirPersonaATarea(tarea, persona))
+            if (modelo.añadirPersonaATarea(tarea, persona))
                 System.out.println("Se ha agregado a " + persona + " a la tarea " + tarea + "\n");
         } catch (TareaException e){
             System.out.println("No hay tareas en este proyecto");
@@ -243,18 +242,18 @@ public class Aplicacion {
         }
     }
 
-    public static void eliminarPersona(Proyecto proyecto){
+    public static void eliminarPersona(Modelo modelo){
         try {
-            Map<String, Tarea> tareas = proyecto.getTareas();
+            Map<String, Tarea> tareas = modelo.getTareas();
             System.out.println("¿De que tarea le quieres eliminar?");
-            String tarea = elegirTarea(proyecto);
+            String tarea = elegirTarea(modelo);
 
             List<Persona> personas = tareas.get(tarea).getPersonas();
 
             System.out.println("¿A que persona quieres eliminar? ");
-            String persona = personas.get(elegirPersona(proyecto)).getNombre();
+            String persona = personas.get(elegirPersona(modelo)).getNombre();
 
-            proyecto.eliminarPersonaDeTarea(persona, tarea);
+            modelo.eliminarPersonaDeTarea(persona, tarea);
             System.out.println("Has eliminado a " + persona + " de " + tarea + "\n");
         } catch (TareaException e){
             System.out.println("No hay tareas en este proyecto");
@@ -263,8 +262,8 @@ public class Aplicacion {
         }
     }
 
-    public static void listarPersonas(Proyecto proyecto){
-        List<Persona> personas = proyecto.getPersonas();
+    public static void listarPersonas(Modelo modelo){
+        List<Persona> personas = modelo.getPersonas();
         if(personas.size() == 0) {
             System.out.println("No hay personas en el proyecto.");
         }
@@ -274,8 +273,8 @@ public class Aplicacion {
         System.out.println();
     }
 
-    public static void listarTareas(Proyecto proyecto){
-        Map<String, Tarea> tareas = proyecto.getTareas();
+    public static void listarTareas(Modelo modelo){
+        Map<String, Tarea> tareas = modelo.getTareas();
         for (String key : tareas.keySet()) {
             System.out.println("Titulo: " + key);
             System.out.println("Responsable: " + tareas.get(key).getResponsable().getNombre());
@@ -290,17 +289,17 @@ public class Aplicacion {
         }
     }
 
-    public static void listarPersonasDeTarea(Proyecto proyecto) {
+    public static void listarPersonasDeTarea(Modelo modelo) {
         try {
-            List<Persona> personas = proyecto.getPersonas();
+            List<Persona> personas = modelo.getPersonas();
             if (personas.size() == 0) {
                 System.out.println("No hay personas en el proyecto.\n");
                 return;
             }
 
-            String tareaSeleccionada = elegirTarea(proyecto);
+            String tareaSeleccionada = elegirTarea(modelo);
 
-            List<Persona> personasTarea = proyecto.getTarea(tareaSeleccionada).getPersonas();
+            List<Persona> personasTarea = modelo.getTarea(tareaSeleccionada).getPersonas();
             System.out.println("Las personas que trabajan en esta tarea son: ");
             for (int i = 0; i < personasTarea.size(); i++) {
                 System.out.println(personasTarea.get(i));
@@ -311,57 +310,57 @@ public class Aplicacion {
         }
     }
 
-    public static void listarPersonasNoResponsables(Proyecto proyecto){
-        List<Persona> listaPersonas = UtilidadesParaLista.elementosConListaVacia(proyecto.getPersonas());
+    public static void listarPersonasNoResponsables(Modelo modelo){
+        List<Persona> listaPersonas = UtilidadesParaLista.elementosConListaVacia(modelo.getPersonas());
         for (int i = 0; i < listaPersonas.size(); i ++){
             System.out.println(listaPersonas.get(i));
         }
     }
 
-    public static void listarTareasSinPersonas(Proyecto proyecto){
-        List<Tarea> listaTareas = UtilidadesParaLista.elementosConListaVacia(proyecto.getTareasLista());
+    public static void listarTareasSinPersonas(Modelo modelo){
+        List<Tarea> listaTareas = UtilidadesParaLista.elementosConListaVacia(modelo.getTareasLista());
         for (int i = 0; i < listaTareas.size(); i ++) {
             System.out.println(listaTareas.get(i));
         }
     }
 
-    public static void listarNombreTareas(Proyecto proyecto){
-        List<String> tareas = proyecto.getNombreTareas();
+    public static void listarNombreTareas(Modelo modelo){
+        List<String> tareas = modelo.getNombreTareas();
         for(int i = 0; i < tareas.size(); i++){
             System.out.println(i + ".- " + tareas.get(i));
         }
     }
 
-    public static int elegirPersona(Proyecto proyecto) throws PersonaNullException{
-        if (proyecto.getPersonas().size() == 0)
+    public static int elegirPersona(Modelo modelo) throws PersonaNullException{
+        if (modelo.getPersonas().size() == 0)
             throw new PersonaNullException();
-        listarPersonas(proyecto);
+        listarPersonas(modelo);
         System.out.print("Introduce el numero de la persona: ");
         return Integer.parseInt(atributos.nextLine());
     }
 
-    public static String elegirTarea(Proyecto proyecto) throws TareaException{
-        if (proyecto.getTareasLista().size() == 0){
+    public static String elegirTarea(Modelo modelo) throws TareaException{
+        if (modelo.getTareasLista().size() == 0){
             throw new TareaException();
         }
-        listarNombreTareas(proyecto);
+        listarNombreTareas(modelo);
         System.out.print("Elige el numero de la tarea: ");
-        return proyecto.getNombreTareas().get(Integer.parseInt(atributos.nextLine()));
+        return modelo.getNombreTareas().get(Integer.parseInt(atributos.nextLine()));
     }
 
-    public static Proyecto inicializar(Scanner teclado){
-        Proyecto proyecto = null;
+    public static Modelo inicializar(Scanner teclado){
+        Modelo modelo = null;
         File in = new File("proyecto.bin");
         if(in.exists()){
-            proyecto = Proyecto.cargarInformacion();
+            modelo = Modelo.cargarInformacion();
         }
         else{
             System.out.print("Introduce el nombre del proyecto: ");
             String nombreProyecto = teclado.nextLine();
-            proyecto = new Proyecto(nombreProyecto);
+            modelo = new Modelo(nombreProyecto);
             System.out.println("Has creado un nuevo proyecto llamado " + nombreProyecto + "\n");
         }
-        return proyecto;
+        return modelo;
     }
 
     public static Persona inputsPersona(){
