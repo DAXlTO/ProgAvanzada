@@ -31,6 +31,10 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
         JLabel tipo = new JLabel("Resultado: ");
         JComboBox type = new JComboBox(cadena);
 
+
+        String[] l = new String[2];
+        type.addActionListener(actionEvent -> Ventana.main(l));
+
         JLabel horas = new JLabel("¿Cuantas horas se han trabajado? ");
         JTextField respuestaHoras = new JTextField(20);
 
@@ -51,7 +55,7 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
-        boton.addActionListener(actionEvent -> controlador.finalizarTarea(listaTareas[tareas.getSelectedIndex()],type.getSelectedIndex(), modelo));
+        //boton.addActionListener(actionEvent -> controlador.finalizarTarea(listaTareas[tareas.getSelectedIndex()],type.getSelectedIndex(), modelo));
 
         contenedor.add(boton);
 

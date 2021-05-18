@@ -18,12 +18,12 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
     private LocalDate fechaFin;
     Boolean realizada;
     Resultado resultado;
-    List<String> etiquetas;
+    String etiquetas;
     String tipo;
     double coste;
     Importe importe;
 
-    public Tarea(String titulo, String descripcion, Persona responsable, int prioridad, List<String> etiquetas, String tipo, double coste, Importe importe){
+    public Tarea(String titulo, String descripcion, Persona responsable, int prioridad, String etiquetas, String tipo, double coste, Importe importe){
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.responsable = responsable;

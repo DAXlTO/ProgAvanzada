@@ -8,6 +8,8 @@ import programa.modelo.excepciones.TareaRepetidaException;
 import programa.modelo.interfaces.Importe;
 import programa.vista.Vista;
 
+import java.util.List;
+
 public class ImplementacionControlador implements Controlador{
     private programa.modelo.interfaces.Modelo modelo;
     private Vista vista;
@@ -18,9 +20,9 @@ public class ImplementacionControlador implements Controlador{
         this.modelo.altaPersona(persona);
     }
 
-    public String[] getPersonas(Modelo modelo){
+    public List<Persona> getPersonas(Modelo modelo){
         this.modelo = modelo;
-        return this.modelo.personas();
+        return this.modelo.getPersonas();
     }
 
     public String[] getTareas(Modelo modelo){
@@ -41,6 +43,7 @@ public class ImplementacionControlador implements Controlador{
     public boolean añadirPersonaATarea(String tarea, String persona, Modelo modelo){
         this.modelo = modelo;
         this.modelo.añadirPersonaATarea(tarea, persona);
+        return true;
     }
 
     public void altaTarea(Modelo modelo, String titulo, String descripcion, Persona responsable, int prioridad, String etiquetas, String tipo, Double coste, String importe){

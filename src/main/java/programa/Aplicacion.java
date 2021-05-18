@@ -121,7 +121,7 @@ public class Aplicacion {
         int prioridad = Integer.parseInt(atributos.nextLine());
 
         System.out.print("¿Quieres poner alguna etiqueta relacionada con el proyecto? ");
-        List<String> etiquetas = Collections.singletonList(atributos.nextLine());
+        String etiquetas = atributos.nextLine();
 
         System.out.print("Introduce el tipo de tarea (Documento/PaginaWeb/Programa): ");
         String resultado = atributos.nextLine();

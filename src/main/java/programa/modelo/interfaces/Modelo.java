@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface Modelo {
     void altaPersona(Persona persona);
-    String[] personas();
+    List<Persona> getPersonas();
     String[] tareas();
     void eliminarPersona(int persona);
     void finalizarTarea(String tarea, Resultado resultado);
