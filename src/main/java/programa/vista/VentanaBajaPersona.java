@@ -30,7 +30,6 @@ public class VentanaBajaPersona extends JFrame implements Vista{
         contenedor.add(per);
 
 
-
         JButton boton = new JButton("Dar de alta a una persona");
         boton = new JButton("Volver");
         boton.addActionListener(aceptar(ventana));
@@ -39,7 +38,7 @@ public class VentanaBajaPersona extends JFrame implements Vista{
 
         boton = new JButton("Aceptar");
         boton.addActionListener(aceptar(ventana));
-        boton.addActionListener(actionEvent -> controlador.eliminarPersona(numeros, modelo));
+        boton.addActionListener(actionEvent -> controlador.eliminarPersona(per.getSelectedIndex(), modelo));
         boton.setAlignmentX(Component.RIGHT_ALIGNMENT);
         contenedor.add(boton);
 

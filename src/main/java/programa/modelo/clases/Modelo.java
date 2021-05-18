@@ -39,6 +39,7 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
 
     public void eliminarPersona(int persona) {
         personas.remove(persona);
+        System.out.println(getPersonas());
         System.out.println("Todo ok");
     }
 
