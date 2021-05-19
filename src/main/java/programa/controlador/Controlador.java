@@ -14,5 +14,6 @@ public interface Controlador {
     void finalizarTarea(String tarea, Resultado resultado, Modelo modelo);
     boolean añadirPersonaATarea(String nombreTarea, String nombrePersona, Modelo modelo);
     void altaTarea(Modelo modelo, String titulo, String descripcion, Persona responsable, int prioridad, String etiquetas, String tipo, Double coste, String importe);
-
+    String[] getPersonasTarea(String tarea);
+    boolean darBajaPersonaTarea(String persona, String tarea, Modelo modelo);
 }

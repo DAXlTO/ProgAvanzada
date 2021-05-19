@@ -10,33 +10,74 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VentanaResultado extends JFrame {
+    String tipo;
+    JLabel formato = new JLabel();
+    JTextField format = new JTextField();
+    JLabel numero = new JLabel();
+    JTextField num = new JTextField();
+    JLabel espacio = new JLabel();
+    JTextField esp = new JTextField();
 
-    private VentanaResultado() {
-        super("Inicio");
+    private VentanaResultado(String tipo) {
+        super("");
+        this.tipo = tipo;
     }
 
-    public static Resultado getResultado(){
+    private void ejecuta(){
         Modelo modelo = new Modelo("Pr");
         JFrame ventana = new JFrame("Opciones del Proyecto");
         ventana.addWindowListener(new EscuchadorVentana());
         JPanel contenedor = new JPanel();
         contenedor.setLayout(new GridLayout(0,1,1,10));
         ventana.add(contenedor);
-
         Controlador con = new ImplementacionControlador();
-        JButton boton = new JButton("Dar de alta a una persona");
-        boton.addActionListener(new BotonAltaPersona(con, modelo,ventana)); //Registro escuchador
-        contenedor.add(boton);
 
+
+
+        if(tipo.equals("Documento")){
+            formato = new JLabel("Formato del documento: ");
+            format = new JTextField(20);
+
+             numero = new JLabel("Introduce el numero de paginas");
+             num = new JTextField(20);
+
+             espacio = new JLabel("Introduce el espacio utilizado");
+             esp = new JTextField(20);
+        }else if(tipo.equals("PaginaWeb")){
+             formato = new JLabel("Estatica o dinamica: ");
+             format = new JTextField(20);
+
+             numero = new JLabel("¿En que lenguaje esta desarrolada?");
+             num = new JTextField(20);
+
+             espacio = new JLabel("¿Que backend utiliza?");
+             esp = new JTextField(20);
+        }else{
+             formato = new JLabel("Lenguaje: ");
+             format = new JTextField(20);
+
+             numero = new JLabel("Numero de lineas");
+             num = new JTextField(20);
+
+             espacio = new JLabel("Modulos utilizados");
+             esp = new JTextField(20);
+        }
+
+        contenedor.setLayout(new FlowLayout());
+        contenedor.add(formato);
+        contenedor.add(format);
+        contenedor.add(numero);
+        contenedor.add(num);
+        contenedor.add(espacio);
+        contenedor.add(esp);
 
 
         ventana.pack();
         ventana.setVisible(true);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        return null;
     }
-    public static void main(String[] args) {
-        System.out.println(        new VentanaResultado().getResultado());
+    public static void main(String tipo) {
+        new VentanaResultado(tipo).ejecuta();
     }
 
 }

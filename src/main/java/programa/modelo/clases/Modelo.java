@@ -77,6 +77,7 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
         tareas.get(tarea).eliminarPersona(persona);
         for (Persona value : personas) {
             if (value.getNombre().equals(persona)) {
+                System.out.println("true");
                 return value.eliminarTarea(tarea);
             }
         }
@@ -99,8 +100,20 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
 
     public String[] tareas(){
         String[] aux = new String[tareas.size()];
-        for(int i = 0; i < tareas.size(); i++){
-            aux[i] = tareas.get(i).toString();
+        int i = 0;
+        for (String key : tareas.keySet()) {
+            aux[i] = key;
+            i++;
+        }
+        return aux;
+    }
+
+    public String[] getPersonasTarea(String tarea){
+        Tarea tar = tareas.get(tarea);
+        List<Persona> perso = tar.getPersonas();
+        String[] aux = new String[perso.size()];
+        for(int i = 0; i < perso.size(); i++){
+            aux[i] =perso.get(i).getNombre();
         }
         return aux;
     }

@@ -9,12 +9,12 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class VentanaAñadirPersonaTarea extends JFrame implements Vista {
+public class VentanaEliminarPersonaTarea extends JFrame implements Vista {
     private Controlador controlador;
     private Modelo modelo;
     JFrame ventanAnterior;
 
-    private VentanaAñadirPersonaTarea(Controlador controlador, Modelo modelo, JFrame ventanAnterior) {
+    private VentanaEliminarPersonaTarea(Controlador controlador, Modelo modelo, JFrame ventanAnterior) {
         this.controlador = controlador;
         this.modelo = modelo;
         this.ventanAnterior=ventanAnterior;
@@ -31,27 +31,17 @@ public class VentanaAñadirPersonaTarea extends JFrame implements Vista {
         JComboBox tareas = new JComboBox(listaTareas);
         contenedor.add(tareas);
 
-        List<Persona> listaPersonas = controlador.getPersonas(modelo);
-        String[] persona = new String[listaPersonas.size()];
-        for (int i = 0; i < listaPersonas.size();i++){
-            persona[i] = listaPersonas.get(i).getNombre();
-        }
-        JLabel nombrePersona = new JLabel("Nombre de la persona: ");
-
-        JComboBox per = new JComboBox(persona);
-        contenedor.add(per);
 
         contenedor.setLayout(new FlowLayout());
         contenedor.add(nombreTarea);
         contenedor.add(tareas);
-        contenedor.add(nombrePersona);
-        contenedor.add(per);
+
 
         JButton boton = new JButton("Volver");
         contenedor.add(boton);
 
-        boton = new JButton("Aceptar");
-        boton.addActionListener(actionEvent -> controlador.añadirPersonaATarea(listaTareas[tareas.getSelectedIndex()],listaPersonas.get(per.getSelectedIndex()).getNombre(), modelo));
+        boton = new JButton("Siguiente");
+        boton.addActionListener(new BotonSiguienteEliminarPersona(controlador,modelo,ventana,listaTareas[tareas.getSelectedIndex()]));
         boton.addActionListener(aceptar(ventana));
         contenedor.add(boton);
 
@@ -61,7 +51,7 @@ public class VentanaAñadirPersonaTarea extends JFrame implements Vista {
     }
 
     public static void main(Controlador controlador, Modelo modelo, JFrame ventana) {
-        new VentanaAñadirPersonaTarea(controlador, modelo,ventana).ejecuta(modelo);
+        new VentanaEliminarPersonaTarea(controlador, modelo,ventana).ejecuta(modelo);
     }
 
     public ActionListener aceptar(JFrame ventana){

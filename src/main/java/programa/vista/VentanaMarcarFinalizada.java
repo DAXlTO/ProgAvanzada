@@ -2,6 +2,7 @@ package programa.vista;
 
 import programa.controlador.Controlador;
 import programa.modelo.clases.Modelo;
+import programa.modelo.clases.Resultado;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,11 +11,15 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
     private Controlador controlador;
     private Modelo modelo;
     JFrame ventanAnterior;
+    Resultado resultado;
 
     private VentanaMarcarFinalizada(Controlador controlador, Modelo modelo, JFrame ventanAnterior) {
         this.controlador = controlador;
         this.modelo = modelo;
         this.ventanAnterior=ventanAnterior;
+    }
+    public void setResultado(Resultado resultado){
+        this.resultado = resultado;
     }
 
     public void ejecuta(Modelo modelo){
@@ -30,18 +35,13 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
         String[] cadena = {"Documento","PaginaWeb","Programa"};
         JLabel tipo = new JLabel("Resultado: ");
         JComboBox type = new JComboBox(cadena);
-
-
-        String[] l = new String[2];
-        type.addActionListener(actionEvent -> Ventana.main(l));
-
+        type.addActionListener(new BotonResultado(cadena[type.getSelectedIndex()]));
         JLabel horas = new JLabel("¿Cuantas horas se han trabajado? ");
         JTextField respuestaHoras = new JTextField(20);
 
         JLabel formato = new JLabel("¿Que formato se ha utilizado? ");
         JTextField respuestaFormato = new JTextField(20);
 
-        contenedor.setLayout(new FlowLayout());
         contenedor.add(nombre);
         contenedor.add(tareas);
         contenedor.add(horas);
@@ -50,6 +50,7 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
         contenedor.add(respuestaFormato);
         contenedor.add(tipo);
         contenedor.add(type);
+        contenedor.setLayout(new FlowLayout());
 
         JButton boton = new JButton("Volver");
         contenedor.add(boton);

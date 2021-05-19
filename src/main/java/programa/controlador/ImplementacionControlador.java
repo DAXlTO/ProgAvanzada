@@ -6,13 +6,11 @@ import programa.modelo.clases.Resultado;
 import programa.modelo.clases.Tarea;
 import programa.modelo.excepciones.TareaRepetidaException;
 import programa.modelo.interfaces.Importe;
-import programa.vista.Vista;
 
 import java.util.List;
 
 public class ImplementacionControlador implements Controlador{
-    private programa.modelo.interfaces.Modelo modelo;
-    private Vista vista;
+    private Modelo modelo;
 
     public void altaPersona(String nombre, String email, Modelo modelo) {
         this.modelo = modelo;
@@ -29,7 +27,14 @@ public class ImplementacionControlador implements Controlador{
         this.modelo = modelo;
         return this.modelo.tareas();
     }
+    public String[] getPersonasTarea(String tarea){
+        return modelo.getPersonasTarea(tarea);
+    }
 
+    public boolean darBajaPersonaTarea(String persona, String tarea, Modelo modelo){
+        this.modelo = modelo;
+        return modelo.eliminarPersonaDeTarea(persona,tarea);
+    }
     public void eliminarPersona(int persona, Modelo modelo){
         this.modelo = modelo;
         this.modelo.eliminarPersona(persona);

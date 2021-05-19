@@ -21,6 +21,7 @@ public class Ventana extends JFrame {
         ventana.add(contenedor);
 
         Controlador con = new ImplementacionControlador();
+
         JButton boton = new JButton("Dar de alta a una persona");
         boton.addActionListener(new BotonAltaPersona(con, modelo,ventana)); //Registro escuchador
         boton.addActionListener(getAvanzar(ventana));
@@ -49,6 +50,8 @@ public class Ventana extends JFrame {
         contenedor.add(boton);
 
         boton = new JButton("Eliminar una persona de una tarea");
+        boton.addActionListener(new BotonEliminarPersonaTarea(con,modelo,ventana));
+        boton.addActionListener(getAvanzar(ventana));
         contenedor.add(boton);
 
         boton = new JButton("Listar personas del proyecto");
