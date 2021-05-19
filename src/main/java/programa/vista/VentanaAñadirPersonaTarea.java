@@ -3,10 +3,12 @@ package programa.vista;
 import programa.controlador.Controlador;
 import programa.modelo.clases.Modelo;
 import programa.modelo.clases.Persona;
+import programa.modelo.clases.Tarea;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+import java.util.Map;
 
 public class VentanaAñadirPersonaTarea extends JFrame implements Vista {
     private Controlador controlador;
@@ -25,7 +27,7 @@ public class VentanaAñadirPersonaTarea extends JFrame implements Vista {
         JPanel contenedor = new JPanel();
         ventana.add(contenedor);
 
-        String[] listaTareas = controlador.getTareas(modelo);
+        Map<String, Tarea> listaTareas = controlador.getTareas(modelo);
         JLabel nombreTarea = new JLabel("Nombre de la tarea: ");
         JComboBox tareas = new JComboBox(listaTareas);
         contenedor.add(tareas);

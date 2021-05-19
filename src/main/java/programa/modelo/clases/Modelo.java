@@ -95,13 +95,7 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
         return new ArrayList<>(personas);
     }
 
-    public String[] personas(){
-        String[] aux = new String[personas.size()];
-        for(int i = 0; i < personas.size(); i++){
-            aux[i] = personas.get(i).toString();
-        }
-        return aux;
-    }
+
 
     public String[] tareas(){
         String[] aux = new String[tareas.size()];

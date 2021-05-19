@@ -7,6 +7,7 @@ import programa.modelo.clases.Tarea;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 public class VentanaAltaTarea extends JFrame{
@@ -84,13 +85,20 @@ public class VentanaAltaTarea extends JFrame{
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
-        contenedor.add(boton);
+        boton.addActionListener(aceptar(ventana));
         boton.addActionListener(actionEvent -> controlador.altaTarea(modelo,nombre.getText(),des.getText(),personas.get(per.getSelectedIndex()),Integer.parseInt(prio.getSelectedItem().toString()),eti.getText(),type.getSelectedItem().toString(),Double.parseDouble(textField1.getText()),im.getSelectedItem().toString()));
+        contenedor.add(boton);
 
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.pack();
         ventana.setVisible(true);
     }
+
+    public ActionListener aceptar(JFrame ventana){
+        ventanAnterior.setVisible(true);
+        return actionEvent -> ventana.setVisible(false);
+    }
+
     public static void main(Controlador controlador, Modelo modelo, JFrame ventana) {
         new VentanaAltaTarea(controlador, modelo,ventana).ejecuta(modelo);
     }
