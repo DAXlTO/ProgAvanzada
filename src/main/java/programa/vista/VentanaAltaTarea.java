@@ -27,12 +27,12 @@ public class VentanaAltaTarea extends JFrame{
         JPanel contenedor = new JPanel();
         ventana.add(contenedor);
 
-        JTextField nombre = new JTextField(20);
+
         JLabel nom = new JLabel("Nombre de la tarea: ");
+        JTextField nombre = new JTextField(20);
 
-
-        JTextField des = new JTextField(20);
         JLabel descr = new JLabel("Descripcion: ");
+        JTextField des = new JTextField(20);
 
 
         List<Persona> personas = controlador.getPersonas(modelo);
@@ -85,7 +85,7 @@ public class VentanaAltaTarea extends JFrame{
 
         boton = new JButton("Aceptar");
         contenedor.add(boton);
-        boton.addActionListener(actionEvent -> controlador.altaTarea(modelo,nom.getText(),descr.getText(),personas.get(per.getSelectedIndex()),Integer.parseInt(prio.getSelectedItem().toString()),eti.getText(),type.getSelectedItem().toString(),Double.parseDouble(textField1.getText()),im.getSelectedItem().toString()));
+        boton.addActionListener(actionEvent -> controlador.altaTarea(modelo,nombre.getText(),des.getText(),personas.get(per.getSelectedIndex()),Integer.parseInt(prio.getSelectedItem().toString()),eti.getText(),type.getSelectedItem().toString(),Double.parseDouble(textField1.getText()),im.getSelectedItem().toString()));
 
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.pack();

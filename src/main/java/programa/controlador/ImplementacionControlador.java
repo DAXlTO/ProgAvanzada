@@ -52,7 +52,7 @@ public class ImplementacionControlador implements Controlador{
         Importe impor = modelo.comprobarImporte(importe);
         Tarea tarea = new Tarea(titulo,descripcion,responsable,prioridad,etiquetas,tipo,coste,impor);
         try {
-            System.out.println(tarea.getTitulo()+tarea.getResponsable());
+            System.out.println(titulo);
             modelo.añadirTarea(tarea);
         } catch (TareaRepetidaException e) {
             e.printStackTrace();

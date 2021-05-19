@@ -28,44 +28,7 @@ public class VentanaResultado extends JFrame {
         boton.addActionListener(new BotonAltaPersona(con, modelo,ventana)); //Registro escuchador
         contenedor.add(boton);
 
-        boton = new JButton("Dar de baja a una persona");
-        boton.addActionListener(new BotonBajaPersona(con, modelo,ventana));
-        contenedor.add(boton);
 
-
-        boton = new JButton("Dar de alta una tarea");
-        boton.addActionListener(new BotonAltaTarea(modelo,con,ventana)); //Registro escuchador
-
-        contenedor.add(boton);
-
-        boton = new JButton("Marcar tarea como finalizada");
-        boton.addActionListener(new BotonMarcarFinalizada(con, modelo, ventana));
-        contenedor.add(boton);
-
-        boton = new JButton("Añadir una persona a una tarea");
-        boton.addActionListener(new BotonAñadirPersonaTarea(con,modelo,ventana));
-        contenedor.add(boton);
-
-        boton = new JButton("Eliminar una persona de una tarea");
-        contenedor.add(boton);
-
-        boton = new JButton("Listar personas del proyecto");
-        contenedor.add(boton);
-
-        boton = new JButton("Listar tareas del proyecto");
-        contenedor.add(boton);
-
-        boton = new JButton("Listar las personas de una tarea");
-        contenedor.add(boton);
-
-        boton = new JButton("Listar las personas que no son responsables");
-        contenedor.add(boton);
-
-        boton = new JButton("Listar tareas sin personas");
-        contenedor.add(boton);
-
-        boton = new JButton("Guardar y salir");
-        contenedor.add(boton);
 
         ventana.pack();
         ventana.setVisible(true);
