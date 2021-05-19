@@ -9,7 +9,6 @@ import programa.modelo.interfaces.Importe;
 import programa.vista.Vista;
 
 import java.util.List;
-import java.util.Map;
 
 public class ImplementacionControlador implements Controlador{
     private programa.modelo.interfaces.Modelo modelo;
@@ -26,9 +25,9 @@ public class ImplementacionControlador implements Controlador{
         return this.modelo.getPersonas();
     }
 
-    public Map<String, Tarea> getTareas(Modelo modelo){
+    public String[] getTareas(Modelo modelo){
         this.modelo = modelo;
-        return this.modelo.getTareas();
+        return this.modelo.tareas();
     }
 
     public void eliminarPersona(int persona, Modelo modelo){
