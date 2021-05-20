@@ -105,7 +105,6 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
     }
 
 
-
     public String[] tareas(){
         String[] aux = new String[tareas.size()];
         int i = 0;

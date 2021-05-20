@@ -4,6 +4,7 @@ import programa.modelo.clases.*;
 import programa.modelo.excepciones.TareaRepetidaException;
 import programa.modelo.interfaces.Importe;
 import java.util.List;
+import java.util.Map;
 
 public class ImplementacionControlador implements Controlador{
     private Modelo modelo;
@@ -22,6 +23,11 @@ public class ImplementacionControlador implements Controlador{
     public String[] getTareas(Modelo modelo){
         this.modelo = modelo;
         return this.modelo.tareas();
+    }
+
+    public Map<String, Tarea> getTareas1(Modelo modelo){
+        this.modelo = modelo;
+        return this.modelo.getTareas();
     }
     public String[] getPersonasTarea(String tarea){
         return modelo.getPersonasTarea(tarea);

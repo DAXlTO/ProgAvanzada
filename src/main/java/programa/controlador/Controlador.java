@@ -7,10 +7,12 @@ import programa.modelo.clases.Tarea;
 
 import javax.jws.WebParam;
 import java.util.List;
+import java.util.Map;
 
 public interface Controlador {
     void altaPersona(String nombre,String email, Modelo modelo);
     List<Persona> getPersonas(Modelo modelo);
+    Map<String, Tarea> getTareas1(Modelo modelo);
     String[] getTareas(Modelo modelo);
     void eliminarPersona(int persona, Modelo modelo);
     void finalizarTarea(String tarea, String tipo,String idem,String time, String internoCOmercial,String camp1,String camp2,String camp3, Modelo modelo);

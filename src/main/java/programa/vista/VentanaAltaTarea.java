@@ -88,8 +88,8 @@ public class VentanaAltaTarea extends JFrame{
         boton.addActionListener(aceptar(ventana));
         boton.addActionListener(actionEvent -> controlador.altaTarea(modelo,nombre.getText(),des.getText(),personas.get(per.getSelectedIndex()),Integer.parseInt(prio.getSelectedItem().toString()),eti.getText(),type.getSelectedItem().toString(),Double.parseDouble(textField1.getText()),im.getSelectedItem().toString()));
         contenedor.add(boton);
-
-        ventana.pack();
+        ventana.setSize(320,400);
+        //ventana.pack();
         ventana.setVisible(true);
     }
 

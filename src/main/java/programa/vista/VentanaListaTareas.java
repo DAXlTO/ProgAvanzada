@@ -7,6 +7,7 @@ import programa.modelo.clases.Tarea;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Map;
 
 public class VentanaListaTareas extends JFrame implements Vista {
 
@@ -25,10 +26,13 @@ public class VentanaListaTareas extends JFrame implements Vista {
         JFrame ventana = new JFrame("Listado de tareas");
         JPanel contenedor  = new JPanel();
         ventana.add(contenedor);
-        String[] listaTareas = controlador.getTareas(modelo);
+        Map<String, Tarea> listaTareas = controlador.getTareas1(modelo);
         String html = "<html>"+"Lista de tareas del proyecto:<br><ol>";
-        for (int i = 0; i < listaTareas.length ;i++){
-            html += "<li>" + "Nombre: " + listaTareas[i] + "</li>";
+        for (Map.Entry<String,Tarea> entrada : listaTareas.entrySet()){
+        //for (int i = 0; i < listaTareas.length ;i++){
+            html += "<li>" + "Nombre: " + entrada.getValue().getTitulo() + "\n"
+                    + "Resultado: " + entrada.getValue().getResultado() +
+                    "Coste: " + entrada.getKey().toString() +"</li>";
         }
         html += "<ol></html>";
 
