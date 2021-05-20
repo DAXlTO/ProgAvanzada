@@ -22,5 +22,6 @@ public class BotonGuardarSalir implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("Pulsaste el botón de guardar y salir");
         controlador.guardaSalir(modelo);
+        System.exit(0);
     }
 }
