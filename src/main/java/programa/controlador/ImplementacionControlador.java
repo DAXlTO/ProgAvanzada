@@ -3,8 +3,6 @@ package programa.controlador;
 import programa.modelo.clases.*;
 import programa.modelo.excepciones.TareaRepetidaException;
 import programa.modelo.interfaces.Importe;
-
-import javax.swing.*;
 import java.util.List;
 
 public class ImplementacionControlador implements Controlador{
@@ -56,12 +54,19 @@ public class ImplementacionControlador implements Controlador{
         modelo.finalizarTarea(tarea,resultado);
     }
 
+    public Modelo cargarInformacion(Modelo modelo){
+        return modelo.cargarInformacion();
+    }
+
     public boolean añadirPersonaATarea(String tarea, String persona, Modelo modelo){
         this.modelo = modelo;
         this.modelo.añadirPersonaATarea(tarea, persona);
         return true;
     }
-
+    public void guardaSalir(Modelo modelo){
+        this.modelo = modelo;
+        modelo.almacenarInformacion(modelo);
+    }
     public List<String> getTareasNoFinalizadas(Modelo modelo){
         return modelo.getTareasNoFinalizadas();
     }

@@ -3,17 +3,19 @@ package programa.vista;
 import programa.controlador.Controlador;
 import programa.controlador.ImplementacionControlador;
 import programa.modelo.clases.Modelo;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class Ventana extends JFrame {
+
+    private Modelo modelo;
+
     private Ventana() {
         super("Inicio");
     }
+
     private void ejecuta() {
-        Modelo modelo = new Modelo("Pr");
         JFrame ventana = new JFrame("Opciones del Proyecto");
         ventana.addWindowListener(new EscuchadorVentana());
         JPanel contenedor = new JPanel();
@@ -21,6 +23,7 @@ public class Ventana extends JFrame {
         ventana.add(contenedor);
 
         Controlador con = new ImplementacionControlador();
+        this.modelo = con.cargarInformacion(new Modelo("pepe"));
 
         JButton boton = new JButton("Dar de alta a una persona");
         boton.addActionListener(new BotonAltaPersona(con, modelo,ventana)); //Registro escuchador
@@ -70,6 +73,8 @@ public class Ventana extends JFrame {
         contenedor.add(boton);
 
         boton = new JButton("Guardar y salir");
+        boton.addActionListener(new BotonGuardarSalir(con, modelo,ventana));
+
         contenedor.add(boton);
 
         ventana.pack();

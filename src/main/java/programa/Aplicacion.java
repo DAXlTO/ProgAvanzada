@@ -27,7 +27,6 @@ public class Aplicacion {
             switch (opcionMenu) {
                 case SALIR:
                     System.out.println("Has terminado de editar el proyecto " + modelo.getNombre());
-                    Modelo.almacenarInformacion(modelo);
                     System.exit(0);
                     break;
 
@@ -352,7 +351,6 @@ public class Aplicacion {
         Modelo modelo = null;
         File in = new File("proyecto.bin");
         if(in.exists()){
-            modelo = Modelo.cargarInformacion();
         }
         else{
             System.out.print("Introduce el nombre del proyecto: ");

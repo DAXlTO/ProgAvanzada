@@ -162,7 +162,7 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
         return solucion;
     }
 
-    public static void almacenarInformacion(Modelo modelo){
+    public void almacenarInformacion(Modelo modelo){
         try{
             FileOutputStream fos = new FileOutputStream("proyecto.bin");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -183,7 +183,7 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
 
     }
 
-    public static Modelo cargarInformacion() {
+    public Modelo cargarInformacion() {
         Modelo modelo = null;
         try {
             FileInputStream fis = new FileInputStream("proyecto.bin");
@@ -193,8 +193,7 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
             return modelo;
         }
         catch (Exception e) {
-            e.printStackTrace();
+           return new Modelo("Prueba");
         }
-        return modelo;
     }
 }
