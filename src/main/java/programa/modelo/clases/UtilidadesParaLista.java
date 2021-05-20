@@ -12,8 +12,10 @@ public class UtilidadesParaLista<T>{
         if (list.size() > 0){
             for (T t : list) {
                 List<T> auxiliar = t.getLista();
-                if (auxiliar.size() == 0)
+                if (auxiliar.size() == 0){
                     solucion.add(t);
+                    System.out.println(t);
+                }
             }
         }
         return solucion;

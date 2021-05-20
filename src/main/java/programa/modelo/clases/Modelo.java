@@ -73,6 +73,14 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
         }
     }
 
+    public List<Persona> listarPersonasNoResponsables(){
+        List<Persona> aux = getPersonas();
+        for(Persona value: personas){
+            System.out.println(value.getNombre());
+        }
+        return UtilidadesParaLista.elementosConListaVacia(aux);
+    }
+
     public boolean eliminarPersonaDeTarea(String persona, String tarea){
         tareas.get(tarea).eliminarPersona(persona);
         for (Persona value : personas) {

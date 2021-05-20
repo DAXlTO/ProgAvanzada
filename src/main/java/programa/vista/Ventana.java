@@ -71,6 +71,8 @@ public class Ventana extends JFrame {
         contenedor.add(boton);
 
         boton = new JButton("Listar las personas que no son responsables");
+        boton.addActionListener(new BotonNoResponsables(con, modelo,ventana));
+
         contenedor.add(boton);
 
         boton = new JButton("Listar tareas sin personas");

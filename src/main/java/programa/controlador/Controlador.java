@@ -5,6 +5,7 @@ import programa.modelo.clases.Persona;
 import programa.modelo.clases.Resultado;
 import programa.modelo.clases.Tarea;
 
+import javax.jws.WebParam;
 import java.util.List;
 
 public interface Controlador {
@@ -15,11 +16,11 @@ public interface Controlador {
     void finalizarTarea(String tarea, String tipo,String idem,String time, String internoCOmercial,String camp1,String camp2,String camp3, Modelo modelo);
     boolean añadirPersonaATarea(String nombreTarea, String nombrePersona, Modelo modelo);
     void altaTarea(Modelo modelo, String titulo, String descripcion, Persona responsable, int prioridad, String etiquetas, String tipo, Double coste, String importe);
-    String[] getPersonasTarea(String tarea, Modelo modelo);
+    String[] getPersonasTarea(String tarea,Modelo modelo);
     boolean darBajaPersonaTarea(String persona, String tarea, Modelo modelo);
     List<String> getTareasNoFinalizadas(Modelo modelo);
     Tarea getTarea(Modelo modelo, String tarea);
     void guardaSalir(Modelo modelo);
     Modelo cargarInformacion(Modelo modelo);
-
+    List<Persona> listarPersonasNoResponsables(Modelo modelo);
 }

@@ -58,6 +58,10 @@ public class ImplementacionControlador implements Controlador{
         return modelo.cargarInformacion();
     }
 
+    public List<Persona> listarPersonasNoResponsables(Modelo modelo){
+        return modelo.listarPersonasNoResponsables();
+    }
+
     public boolean añadirPersonaATarea(String tarea, String persona, Modelo modelo){
         this.modelo = modelo;
         this.modelo.añadirPersonaATarea(tarea, persona);
