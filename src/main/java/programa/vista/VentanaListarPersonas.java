@@ -42,17 +42,16 @@ public class VentanaListarPersonas extends JFrame{
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
-        boton.addActionListener(aceptar(ventana));
+        boton.addActionListener(aceptar());
+        boton.addActionListener(actionEvent -> ventana.setVisible(false) );
         contenedor.add(boton);
-
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.pack();
         ventana.setVisible(true);
     }
 
-    public ActionListener aceptar(JFrame ventana){
-        ventanAnterior.setVisible(true);
-        return actionEvent -> ventana.setVisible(false);
+    public ActionListener aceptar(){
+        return actionEvent -> ventanAnterior.setVisible(true);
+
     }
 
     public static void main(Controlador controlador, Modelo modelo, JFrame ventana) {

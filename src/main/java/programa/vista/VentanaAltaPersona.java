@@ -50,7 +50,6 @@ public class VentanaAltaPersona extends JFrame implements Vista{
     }
 
     public ActionListener aceptar(JFrame ventana){
-
         return actionEvent ->  ventanAnterior.setVisible(true);
     }
 

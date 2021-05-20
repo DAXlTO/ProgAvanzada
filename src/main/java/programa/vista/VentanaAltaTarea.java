@@ -89,7 +89,6 @@ public class VentanaAltaTarea extends JFrame{
         boton.addActionListener(actionEvent -> controlador.altaTarea(modelo,nombre.getText(),des.getText(),personas.get(per.getSelectedIndex()),Integer.parseInt(prio.getSelectedItem().toString()),eti.getText(),type.getSelectedItem().toString(),Double.parseDouble(textField1.getText()),im.getSelectedItem().toString()));
         contenedor.add(boton);
 
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.pack();
         ventana.setVisible(true);
     }

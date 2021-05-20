@@ -61,9 +61,13 @@ public class Ventana extends JFrame {
         contenedor.add(boton);
 
         boton = new JButton("Listar tareas del proyecto");
+        boton.addActionListener(new BotonListaTareas(con, modelo, ventana));
+        boton.addActionListener(getAvanzar(ventana));
         contenedor.add(boton);
 
         boton = new JButton("Listar las personas de una tarea");
+        boton.addActionListener(new BotonListarPersonasTarea(con, modelo, ventana));
+        boton.addActionListener(getAvanzar(ventana));
         contenedor.add(boton);
 
         boton = new JButton("Listar las personas que no son responsables");

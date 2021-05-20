@@ -48,7 +48,6 @@ public class VentanaBajaPersona extends JFrame implements Vista{
         boton.setAlignmentX(Component.RIGHT_ALIGNMENT);
         contenedor.add(boton);
 
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.pack();
         ventana.setVisible(true);
     }

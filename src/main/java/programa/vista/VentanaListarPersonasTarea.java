@@ -2,56 +2,52 @@ package programa.vista;
 
 import programa.controlador.Controlador;
 import programa.modelo.clases.Modelo;
-import programa.modelo.clases.Persona;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.List;
 
-public class VentanaSiguienteEliminarPersona extends JFrame implements Vista {
+public class VentanaListarPersonasTarea extends JFrame implements Vista {
+
     private Controlador controlador;
     private Modelo modelo;
     JFrame ventanAnterior;
-    String tarea;
 
-    private VentanaSiguienteEliminarPersona(Controlador controlador, Modelo modelo, JFrame ventanAnterior, String tarea) {
+    private VentanaListarPersonasTarea(Controlador controlador, Modelo modelo, JFrame ventanAnterior){
+        super("");
         this.controlador = controlador;
         this.modelo = modelo;
         this.ventanAnterior=ventanAnterior;
-        this.tarea = tarea;
     }
 
-    public void ejecuta(){
+    public static void main(Controlador controlador, Modelo modelo, JFrame ventana) {
+        new VentanaListarPersonasTarea(controlador, modelo,ventana).ejecuta();
+    }
 
-        JFrame ventana = new JFrame("Añadir una persona a una tarea");
-        JPanel contenedor = new JPanel();
+    public void ejecuta() {
+        JFrame ventana = new JFrame("Listado de tareas");
+        JPanel contenedor  = new JPanel();
         ventana.add(contenedor);
 
-
-        String[] personas = controlador.getPersonasTarea(tarea, modelo);
-        JLabel nombreTarea = new JLabel("Nombre de la persona: ");
-        JComboBox perso = new JComboBox(personas);
+        String[] listaTareas = controlador.getTareas(modelo);
+        JLabel nombreTarea = new JLabel("Nombre de la tarea: ");
+        JComboBox tareas = new JComboBox(listaTareas);
+        contenedor.add(tareas);
 
         contenedor.setLayout(new FlowLayout());
         contenedor.add(nombreTarea);
-        contenedor.add(perso);
-
 
         JButton boton = new JButton("Volver");
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
-        boton.addActionListener(actionEvent -> controlador.darBajaPersonaTarea(personas[perso.getSelectedIndex()],tarea,modelo));
+        boton.addActionListener(new BotonSiguienteListarPersonasTarea(controlador,modelo,ventana,listaTareas[tareas.getSelectedIndex()]));
         boton.addActionListener(aceptar(ventana));
         contenedor.add(boton);
 
         ventana.pack();
         ventana.setVisible(true);
-    }
 
-    public static void main(Controlador controlador, Modelo modelo, JFrame ventana, String tarea) {
-        new VentanaSiguienteEliminarPersona(controlador, modelo,ventana,tarea).ejecuta();
     }
 
     public ActionListener aceptar(JFrame ventana){

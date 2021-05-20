@@ -53,7 +53,6 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
 
         contenedor.add(boton);
 
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.pack();
         ventana.setVisible(true);
     }

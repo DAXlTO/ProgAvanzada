@@ -33,7 +33,6 @@ public class VentanaResultado extends JFrame {
         Controlador con = new ImplementacionControlador();
 
 
-
         if(tipo.equals("Documento")){
             formato = new JLabel("Formato del documento: ");
             format = new JTextField(20);
@@ -43,6 +42,7 @@ public class VentanaResultado extends JFrame {
 
              espacio = new JLabel("Introduce el espacio utilizado");
              esp = new JTextField(20);
+
         }else if(tipo.equals("PaginaWeb")){
              formato = new JLabel("Estatica o dinamica: ");
              format = new JTextField(20);
@@ -74,7 +74,6 @@ public class VentanaResultado extends JFrame {
 
         ventana.pack();
         ventana.setVisible(true);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public static void main(String tipo) {
         new VentanaResultado(tipo).ejecuta();

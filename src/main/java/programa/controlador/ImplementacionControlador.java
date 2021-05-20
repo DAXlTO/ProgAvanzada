@@ -84,7 +84,14 @@ public class ImplementacionControlador implements Controlador{
         }
     }
 
+    @Override
+    public String[] getPersonasTarea(String tarea, Modelo modelo) {
+        this.modelo = modelo;
+        return modelo.getPersonasTarea(tarea);
+    }
+
     public void setModelo(Modelo modelo){
         this.modelo=modelo;
     }
+
 }
