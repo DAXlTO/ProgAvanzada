@@ -12,6 +12,28 @@ public class ResultadoDocumento extends Resultado{
        this.numPag = numPag;
        this.espacio = espacio;
     }
+    public ResultadoDocumento(){}
+    public String getFormato() {
+        return formato;
+    }
 
+    public void setFormato(String formato) {
+        this.formato = formato;
+    }
 
+    public void setNumPag(int numPag) {
+        this.numPag = numPag;
+    }
+
+    public void setEspacio(float espacio) {
+        this.espacio = espacio;
+    }
+
+    public int getNumPag() {
+        return numPag;
+    }
+
+    public float getEspacio() {
+        return espacio;
+    }
 }

@@ -22,7 +22,6 @@ public class BotonAltaPersona implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("Pulsaste el botón de dar de alta a una persona.");
         VentanaAltaPersona.main(controlador, modelo, ventana);
-
     }
 }
 

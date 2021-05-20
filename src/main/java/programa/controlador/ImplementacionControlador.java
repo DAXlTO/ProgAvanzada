@@ -1,12 +1,10 @@
 package programa.controlador;
 
-import programa.modelo.clases.Persona;
-import programa.modelo.clases.Modelo;
-import programa.modelo.clases.Resultado;
-import programa.modelo.clases.Tarea;
+import programa.modelo.clases.*;
 import programa.modelo.excepciones.TareaRepetidaException;
 import programa.modelo.interfaces.Importe;
 
+import javax.swing.*;
 import java.util.List;
 
 public class ImplementacionControlador implements Controlador{
@@ -40,9 +38,22 @@ public class ImplementacionControlador implements Controlador{
         this.modelo.eliminarPersona(persona);
     }
 
-    public void finalizarTarea(String tarea, Resultado resultado, Modelo modelo){
+    public Tarea getTarea(Modelo modelo, String tarea){
+        return modelo.getTarea(tarea);
+    }
+
+    public void finalizarTarea(String tarea, String tipo,String idem,String time, String internoCOmercial,String camp1,String camp2,String camp3, Modelo modelo){
         this.modelo = modelo;
-        this.modelo.finalizarTarea(tarea,resultado);
+        Resultado resultado = new Resultado();
+        System.out.println(tarea+ " ######" +tipo+ " ######"+idem+ " ######"+time+ " ######"+internoCOmercial+ " ######"+camp1+ " ######"+camp2+ " ######"+camp3);
+        if(tipo.equals("Documento")){
+           resultado = new ResultadoDocumento(idem,Integer.parseInt(time),internoCOmercial,camp1,Integer.parseInt(camp2),Float.parseFloat(camp3));
+        }else if(tipo.equals("PaginaWeb")){
+            resultado = new ResultadoPaginaWeb(idem,Integer.parseInt(time),internoCOmercial,camp1,camp2,camp3);
+        }else{
+            resultado = new ResultadoPrograma(idem,Integer.parseInt(time),internoCOmercial,camp1,Integer.parseInt(camp2),Integer.parseInt(camp3));
+        }
+        modelo.finalizarTarea(tarea,resultado);
     }
 
     public boolean añadirPersonaATarea(String tarea, String persona, Modelo modelo){

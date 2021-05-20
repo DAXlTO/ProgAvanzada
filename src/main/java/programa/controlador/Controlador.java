@@ -12,10 +12,11 @@ public interface Controlador {
     List<Persona> getPersonas(Modelo modelo);
     String[] getTareas(Modelo modelo);
     void eliminarPersona(int persona, Modelo modelo);
-    void finalizarTarea(String tarea, Resultado resultado, Modelo modelo);
+    void finalizarTarea(String tarea, String tipo,String idem,String time, String internoCOmercial,String camp1,String camp2,String camp3, Modelo modelo);
     boolean añadirPersonaATarea(String nombreTarea, String nombrePersona, Modelo modelo);
     void altaTarea(Modelo modelo, String titulo, String descripcion, Persona responsable, int prioridad, String etiquetas, String tipo, Double coste, String importe);
     String[] getPersonasTarea(String tarea);
     boolean darBajaPersonaTarea(String persona, String tarea, Modelo modelo);
     List<String> getTareasNoFinalizadas(Modelo modelo);
+    Tarea getTarea(Modelo modelo, String tarea);
 }

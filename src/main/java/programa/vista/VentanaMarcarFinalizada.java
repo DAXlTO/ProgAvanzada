@@ -13,11 +13,13 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
     JFrame ventanAnterior;
     Resultado resultado;
 
+
     private VentanaMarcarFinalizada(Controlador controlador, Modelo modelo, JFrame ventanAnterior) {
         this.controlador = controlador;
         this.modelo = modelo;
         this.ventanAnterior=ventanAnterior;
     }
+
     public void setResultado(Resultado resultado){
         this.resultado = resultado;
     }
@@ -36,23 +38,18 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
         JComboBox tareas = new JComboBox(noFinalizadas);
         contenedor.add(tareas);
 
-        String[] cadena = {"Documento","PaginaWeb","Programa"};
-        JLabel tipo = new JLabel("Resultado: ");
-        JComboBox type = new JComboBox(cadena);
+
 
 
         contenedor.add(nombre);
         contenedor.add(tareas);
-        contenedor.add(tipo);
-        contenedor.add(type);
         contenedor.setLayout(new FlowLayout());
-
         JButton boton = new JButton("Volver");
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
         //boton.addActionListener(actionEvent -> controlador.finalizarTarea(listaTareas[tareas.getSelectedIndex()],type.getSelectedIndex(), modelo));
-        boton.addActionListener(new BotonSiguienteFinalizarTarea(controlador,modelo,ventana,noFinalizadas[tareas.getSelectedIndex()],cadena[type.getSelectedIndex()]));
+        boton.addActionListener(new BotonSiguienteFinalizarTarea(controlador,modelo,ventanAnterior,noFinalizadas[tareas.getSelectedIndex()]));
 
         contenedor.add(boton);
 

@@ -39,10 +39,9 @@ public class VentanaAltaPersona extends JFrame implements Vista{
 
         boton = new JButton("Aceptar");
         boton.addActionListener(aceptar(ventana));
+        boton.addActionListener(actionEvent -> ventana.setVisible(false) );
         boton.addActionListener(actionEvent -> controlador.altaPersona(nombre.getText(),email.getText(), modelo));
         contenedor.add(boton);
-
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.pack();
         ventana.setVisible(true);
     }
@@ -51,8 +50,8 @@ public class VentanaAltaPersona extends JFrame implements Vista{
     }
 
     public ActionListener aceptar(JFrame ventana){
-        ventanAnterior.setVisible(true);
-        return actionEvent -> ventana.setVisible(false);
+
+        return actionEvent ->  ventanAnterior.setVisible(true);
     }
 
     @Override

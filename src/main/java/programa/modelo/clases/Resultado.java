@@ -10,6 +10,7 @@ public class Resultado {
         this.horas = horas;
         this.internoOcomercial = internoOcomercial;
     }
+    public Resultado(){}
 
     public String getIdentificador() {
         return identificador;

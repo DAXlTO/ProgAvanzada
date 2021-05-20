@@ -63,6 +63,7 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         return titulo;
     }
 
+    public String getTipo(){return tipo;}
     public List<Persona> getPersonas(){
         return personas;
     }

@@ -14,17 +14,20 @@ public class BotonSiguienteFinalizarTarea implements ActionListener {
     String tarea;
     String tipo;
 
-    public BotonSiguienteFinalizarTarea(Controlador controlador, Modelo modelo, JFrame ventana, String nomTarea, String tipo){
+
+    public BotonSiguienteFinalizarTarea(Controlador controlador, Modelo modelo, JFrame ventana, String nomTarea){
         this.controlador = controlador;
         this.modelo = modelo;
         this.ventana=ventana;
         this.tarea = nomTarea;
         this.tipo=tipo;
+
+
     }
     @Override
 
     public void actionPerformed(ActionEvent e) {
         System.out.println("Has pulsado el boton de finaliza una tarea");
-        VentanaSiguienteFinalizarTarea.main(controlador,modelo,ventana,tarea,tipo);
+        VentanaSiguienteFinalizarTarea.main(controlador,modelo,ventana,tarea);
     }
 }
