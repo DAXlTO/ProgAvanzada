@@ -19,4 +19,5 @@ public interface Controlador {
     boolean darBajaPersonaTarea(String persona, String tarea, Modelo modelo);
     List<String> getTareasNoFinalizadas(Modelo modelo);
     Tarea getTarea(Modelo modelo, String tarea);
+
 }

@@ -21,6 +21,9 @@ public class Persona implements tieneLista, tieneClave, Serializable {
         lista.add(tarea);
     }
 
+    public String getEmail() {
+        return email;
+    }
 
     public boolean eliminarTarea(String tarea){
         for(int i = 0; i < lista.size(); i++){
