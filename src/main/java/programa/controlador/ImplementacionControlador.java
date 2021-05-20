@@ -51,6 +51,10 @@ public class ImplementacionControlador implements Controlador{
         return true;
     }
 
+    public List<String> getTareasNoFinalizadas(Modelo modelo){
+        return modelo.getTareasNoFinalizadas();
+    }
+
     public void altaTarea(Modelo modelo, String titulo, String descripcion, Persona responsable, int prioridad, String etiquetas, String tipo, Double coste, String importe){
         this.modelo = modelo;
 

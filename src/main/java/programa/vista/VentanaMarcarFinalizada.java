@@ -3,9 +3,9 @@ package programa.vista;
 import programa.controlador.Controlador;
 import programa.modelo.clases.Modelo;
 import programa.modelo.clases.Resultado;
-
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class VentanaMarcarFinalizada extends JFrame implements Vista{
     private Controlador controlador;
@@ -27,27 +27,22 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
         JPanel contenedor = new JPanel();
         ventana.add(contenedor);
 
-        String[] listaTareas = controlador.getTareas(modelo);
+        List<String> listaTareas = controlador.getTareasNoFinalizadas(modelo);
+        String[] noFinalizadas = new String[listaTareas.size()];
+        for (int i = 0; i < listaTareas.size();i++){
+            noFinalizadas[i] = listaTareas.get(i);
+        }
         JLabel nombre = new JLabel("Nombre de la tarea: ");
-        JComboBox tareas = new JComboBox(listaTareas);
+        JComboBox tareas = new JComboBox(noFinalizadas);
         contenedor.add(tareas);
 
         String[] cadena = {"Documento","PaginaWeb","Programa"};
         JLabel tipo = new JLabel("Resultado: ");
         JComboBox type = new JComboBox(cadena);
-        type.addActionListener(new BotonResultado(cadena[type.getSelectedIndex()]));
-        JLabel horas = new JLabel("¿Cuantas horas se han trabajado? ");
-        JTextField respuestaHoras = new JTextField(20);
 
-        JLabel formato = new JLabel("¿Que formato se ha utilizado? ");
-        JTextField respuestaFormato = new JTextField(20);
 
         contenedor.add(nombre);
         contenedor.add(tareas);
-        contenedor.add(horas);
-        contenedor.add(respuestaHoras);
-        contenedor.add(formato);
-        contenedor.add(respuestaFormato);
         contenedor.add(tipo);
         contenedor.add(type);
         contenedor.setLayout(new FlowLayout());
@@ -57,6 +52,7 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
 
         boton = new JButton("Aceptar");
         //boton.addActionListener(actionEvent -> controlador.finalizarTarea(listaTareas[tareas.getSelectedIndex()],type.getSelectedIndex(), modelo));
+        boton.addActionListener(new BotonSiguienteFinalizarTarea(controlador,modelo,ventana,noFinalizadas[tareas.getSelectedIndex()],cadena[type.getSelectedIndex()]));
 
         contenedor.add(boton);
 
