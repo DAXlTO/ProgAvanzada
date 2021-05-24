@@ -32,7 +32,7 @@ public class VentanaListaTareas extends JFrame implements Vista {
         //for (int i = 0; i < listaTareas.length ;i++){
             html += "<li>" + "Nombre: " + entrada.getValue().getTitulo() + "\n"
                     + "Tipo de tarea: " + entrada.getValue().getTipo() + "\n"
-                    + "Coste: " + entrada.getValue().getResultado() +"</li>";
+                    + "Coste: " + entrada.getValue().calcularImporte() +"</li>";
         }
         html += "<ol></html>";
 

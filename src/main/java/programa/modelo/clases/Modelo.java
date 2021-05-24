@@ -184,7 +184,7 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
         Importe importe1 = new ConsumoInterno();
         if(importe.equals("Descuento"))
             importe1 = new Descuento();
-        else if(importe1.equals("Urgente"))
+        else if(importe.equals("Urgente"))
             importe1 = new Urgente();
         return importe1;
 
