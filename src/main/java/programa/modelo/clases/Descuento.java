@@ -2,7 +2,9 @@ package programa.modelo.clases;
 
 import programa.modelo.interfaces.Importe;
 
-public class Descuento implements Importe {
+import java.io.Serializable;
+
+public class Descuento implements Importe, Serializable {
 
     private double descuento = 0.1;
     @Override

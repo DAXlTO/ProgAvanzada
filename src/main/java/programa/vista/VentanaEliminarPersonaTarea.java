@@ -45,7 +45,7 @@ public class VentanaEliminarPersonaTarea extends JFrame implements Vista {
         boton.addActionListener(aceptar(ventana));
         contenedor.add(boton);
 
-        ventana.pack();
+        ventana.setSize(310,100);
         ventana.setVisible(true);
     }
 

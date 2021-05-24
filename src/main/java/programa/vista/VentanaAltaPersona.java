@@ -29,6 +29,7 @@ public class VentanaAltaPersona extends JFrame implements Vista{
         email = new JTextField(20);
         JLabel mail = new JLabel("Correo electronico: ");
         contenedor.setLayout(new FlowLayout());
+
         contenedor.add(nom);
         contenedor.add(nombre);
         contenedor.add(mail);

@@ -32,7 +32,7 @@ public class VentanaSiguienteFinalizarTarea extends JFrame implements Vista {
 
     public void ejecuta(){
 
-        JFrame ventana = new JFrame("Añadir una persona a una tarea");
+        JFrame ventana = new JFrame("Marcar una tarea como finalizada");
         JPanel contenedor = new JPanel();
         ventana.add(contenedor);
         Resultado resultado;
@@ -92,7 +92,7 @@ public class VentanaSiguienteFinalizarTarea extends JFrame implements Vista {
         boton.addActionListener(aceptar(ventana));
         contenedor.add(boton);
 
-        ventana.pack();
+        ventana.setSize(310,380);
         ventana.setVisible(true);
     }
 

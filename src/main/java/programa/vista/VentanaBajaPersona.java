@@ -25,30 +25,28 @@ public class VentanaBajaPersona extends JFrame implements Vista{
     private void ejecuta() {
         JFrame ventana = new JFrame("Dar de baja a una persona");
         Container contenedor = ventana.getContentPane();
-        contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.PAGE_AXIS));
-
         List<Persona> personas = controlador.getPersonas(modelo);
         String[] persona = new String[personas.size()];
         for (int i = 0; i < personas.size();i++){
             persona[i]=personas.get(i).getNombre();
         }
+
+        JLabel pers = new JLabel("Nombre de la persona:");
         JComboBox per = new JComboBox(persona);
+
+        contenedor.setLayout(new FlowLayout());
+        contenedor.add(pers);
         contenedor.add(per);
 
-
-        JButton boton = new JButton("Dar de alta a una persona");
-        boton = new JButton("Volver");
-        boton.addActionListener(aceptar(ventana));
-        boton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        JButton boton = new JButton("Volver");
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
         boton.addActionListener(aceptar(ventana));
         boton.addActionListener(actionEvent -> controlador.eliminarPersona(per.getSelectedIndex(), modelo));
-        boton.setAlignmentX(Component.RIGHT_ALIGNMENT);
         contenedor.add(boton);
 
-        ventana.pack();
+        ventana.setSize(290,100);
         ventana.setVisible(true);
     }
 

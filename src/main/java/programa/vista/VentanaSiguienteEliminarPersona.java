@@ -46,7 +46,7 @@ public class VentanaSiguienteEliminarPersona extends JFrame implements Vista {
         boton.addActionListener(aceptar(ventana));
         contenedor.add(boton);
 
-        ventana.pack();
+        ventana.setSize(290,100);
         ventana.setVisible(true);
     }
 

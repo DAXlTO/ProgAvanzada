@@ -31,8 +31,8 @@ public class VentanaListaTareas extends JFrame implements Vista {
         for (Map.Entry<String,Tarea> entrada : listaTareas.entrySet()){
         //for (int i = 0; i < listaTareas.length ;i++){
             html += "<li>" + "Nombre: " + entrada.getValue().getTitulo() + "\n"
-                    + "Resultado: " + entrada.getValue().getResultado() +
-                    "Coste: " + entrada.getKey().toString() +"</li>";
+                    + "Tipo de tarea: " + entrada.getValue().getTipo() + "\n"
+                    + "Coste: " + entrada.getValue().getResultado() +"</li>";
         }
         html += "<ol></html>";
 

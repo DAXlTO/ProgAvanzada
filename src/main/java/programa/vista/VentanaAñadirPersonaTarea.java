@@ -55,7 +55,7 @@ public class VentanaAñadirPersonaTarea extends JFrame implements Vista {
         boton.addActionListener(aceptar(ventana));
         contenedor.add(boton);
 
-        ventana.pack();
+        ventana.setSize(310,140);
         ventana.setVisible(true);
     }
 

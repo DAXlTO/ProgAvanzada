@@ -38,9 +38,6 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
         JComboBox tareas = new JComboBox(noFinalizadas);
         contenedor.add(tareas);
 
-
-
-
         contenedor.add(nombre);
         contenedor.add(tareas);
         contenedor.setLayout(new FlowLayout());
@@ -53,7 +50,7 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
 
         contenedor.add(boton);
 
-        ventana.pack();
+        ventana.setSize(290,100);
         ventana.setVisible(true);
     }
 

@@ -37,7 +37,7 @@ public class VentanaAltaTarea extends JFrame{
 
 
         List<Persona> personas = controlador.getPersonas(modelo);
-        JLabel resp = new JLabel("Personas responsable: ");
+        JLabel resp = new JLabel("Persona responsable: ");
         String[] persona = new String[personas.size()];
         for (int i = 0; i < personas.size();i++){
             persona[i]=personas.get(i).getNombre();
