@@ -39,13 +39,15 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
     }
 
     public void eliminarPersona(int persona) {
-        personas.remove(persona);
-        System.out.println("Todo ok");
+        if(personas.size() > 0) {
+            personas.remove(persona);
+            System.out.println("Todo ok");
+        }
     }
 
 
     public String añadirTarea(Tarea tarea) throws TareaRepetidaException {
-        if(UtilidadesParaLista.elementosNoRepetidos(getTareasLista(),tarea)){
+        if(UtilidadesParaLista.elementosNoRepetidos(getTareasLista(),tarea) && personas.size()>0){
             tareas.put(tarea.getTitulo(),tarea);
             añadirTareaAPersona(tarea.getResponsable().getNombre(),tarea.getTitulo());
         }else{
@@ -56,10 +58,12 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
     }
 
     public boolean añadirPersonaATarea(String nomTarea, String persona){
-        for(int i = 0; i < personas.size(); i++){
-            if (personas.get(i).nombre.equals(persona)){
-                tareas.get(nomTarea).añadirPersona(personas.get(i));
-                return true;
+        if(personas.size() > 0 && tareas.size()>0) {
+            for (int i = 0; i < personas.size(); i++) {
+                if (personas.get(i).nombre.equals(persona)) {
+                    tareas.get(nomTarea).añadirPersona(personas.get(i));
+                    return true;
+                }
             }
         }
         return false;
@@ -85,18 +89,21 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
     }
 
     public boolean eliminarPersonaDeTarea(String persona, String tarea){
-        tareas.get(tarea).eliminarPersona(persona);
-        for (Persona value : personas) {
-            if (value.getNombre().equals(persona)) {
-                System.out.println("true");
-                return value.eliminarTarea(tarea);
+        if(tareas.size() > 0 && personas.size() > 0) {
+            tareas.get(tarea).eliminarPersona(persona);
+            for (Persona value : personas) {
+                if (value.getNombre().equals(persona)) {
+                    System.out.println("true");
+                    return value.eliminarTarea(tarea);
+                }
             }
         }
         return false;
     }
 
     public void finalizarTarea(String tarea, Resultado resultado){
-        tareas.get(tarea).finalizarTarea(resultado);
+        if(tareas.size() > 0)
+            tareas.get(tarea).finalizarTarea(resultado);
     }
 
     public Map<String,Tarea> getTareas(){
