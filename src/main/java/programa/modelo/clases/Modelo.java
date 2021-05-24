@@ -47,6 +47,7 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
     public String añadirTarea(Tarea tarea) throws TareaRepetidaException {
         if(UtilidadesParaLista.elementosNoRepetidos(getTareasLista(),tarea)){
             tareas.put(tarea.getTitulo(),tarea);
+            añadirTareaAPersona(tarea.getResponsable().getNombre(),tarea.getTitulo());
         }else{
             throw new TareaRepetidaException();
 
