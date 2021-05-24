@@ -76,7 +76,10 @@ public class Ventana extends JFrame {
         contenedor.add(boton);
 
         boton = new JButton("Listar tareas sin personas");
+        boton.addActionListener(new BotonListarTareaSinPersonas(modelo,con,ventana));
+
         contenedor.add(boton);
+
 
         boton = new JButton("Guardar y salir");
         boton.addActionListener(new BotonGuardarSalir(con, modelo,ventana));
