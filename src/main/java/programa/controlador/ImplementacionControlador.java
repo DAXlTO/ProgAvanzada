@@ -68,6 +68,10 @@ public class ImplementacionControlador implements Controlador{
         return modelo.listarPersonasNoResponsables();
     }
 
+    public List<Tarea> listarTareasSinPersonas(Modelo modelo){
+        return modelo.listarTareasSinPersonas(modelo);
+    }
+
     public boolean añadirPersonaATarea(String tarea, String persona, Modelo modelo){
         this.modelo = modelo;
         this.modelo.añadirPersonaATarea(tarea, persona);
@@ -77,6 +81,8 @@ public class ImplementacionControlador implements Controlador{
         this.modelo = modelo;
         modelo.almacenarInformacion(modelo);
     }
+
+
     public List<String> getTareasNoFinalizadas(Modelo modelo){
         return modelo.getTareasNoFinalizadas();
     }

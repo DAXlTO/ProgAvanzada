@@ -25,4 +25,5 @@ public interface Controlador {
     void guardaSalir(Modelo modelo);
     Modelo cargarInformacion(Modelo modelo);
     List<Persona> listarPersonasNoResponsables(Modelo modelo);
+    List<Tarea> listarTareasSinPersonas(Modelo modelo);
 }
