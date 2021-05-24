@@ -30,7 +30,6 @@ public class VentanaSiguienteListarPersonasTarea extends JFrame implements Vista
         for (int i = 0; i < personas.length ;i++){
             html +=  "<li>" + "Nombre: " + personas[i] +"</li>";
         }
-
         html += "<ol></html>";
 
         JLabel etiqueta = new JLabel(html);
