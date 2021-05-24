@@ -45,7 +45,7 @@ public class VentanaAltaTarea extends JFrame{
         JComboBox per = new JComboBox(persona);
 
         String[] intervalo = {"1","2","3","4","5"};
-        JLabel prioridad = new JLabel("Priotidad de la tarea: ");
+        JLabel prioridad = new JLabel("Prioridad de la tarea: ");
         JComboBox prio = new JComboBox(intervalo);
 
         JLabel etiqueta = new JLabel("Introduce una etiqueta :");
@@ -55,8 +55,8 @@ public class VentanaAltaTarea extends JFrame{
         JLabel tipo = new JLabel("Priotidad de la tarea: ");
         JComboBox type = new JComboBox(cadena);
 
-        JFormattedTextField textField1 = new JFormattedTextField (new Float(5));
         JLabel coste = new JLabel("Introduce el coste de la tarea: ");
+        JFormattedTextField textField1 = new JFormattedTextField (new Float(5));
 
         String[] impor = {"Consumo Interno","Descuento","Urgente"};
         JLabel importe = new JLabel("Importe de la tarea: ");
@@ -86,7 +86,7 @@ public class VentanaAltaTarea extends JFrame{
 
         boton = new JButton("Aceptar");
         boton.addActionListener(aceptar(ventana));
-        boton.addActionListener(actionEvent -> controlador.altaTarea(modelo,nombre.getText(),des.getText(),personas.get(per.getSelectedIndex()),Integer.parseInt(prio.getSelectedItem().toString()),eti.getText(),type.getSelectedItem().toString(),Double.parseDouble(textField1.getText()),im.getSelectedItem().toString()));
+        boton.addActionListener(actionEvent -> controlador.altaTarea(modelo,nombre.getText(),des.getText(),personas.get(per.getSelectedIndex()),Integer.parseInt(prio.getSelectedItem().toString()),eti.getText(),cadena[type.getSelectedIndex()],Double.parseDouble(textField1.getText()),impor[im.getSelectedIndex()]));
         contenedor.add(boton);
         ventana.setSize(320,400);
         //ventana.pack();
