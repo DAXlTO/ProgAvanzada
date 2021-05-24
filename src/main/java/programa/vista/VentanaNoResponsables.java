@@ -40,7 +40,6 @@ public class VentanaNoResponsables extends JFrame{
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
-        boton.addActionListener(aceptar(ventana));
         contenedor.add(boton);
 
         ventana.pack();

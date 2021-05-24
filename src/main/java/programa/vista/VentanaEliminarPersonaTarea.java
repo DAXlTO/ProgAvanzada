@@ -24,7 +24,7 @@ public class VentanaEliminarPersonaTarea extends JFrame implements Vista {
 
     public void ejecuta(Modelo modelo){
 
-        JFrame ventana = new JFrame("Añadir una persona a una tarea");
+        JFrame ventana = new JFrame("Eliminar persona de una tarea");
         JPanel contenedor = new JPanel();
         ventana.add(contenedor);
 

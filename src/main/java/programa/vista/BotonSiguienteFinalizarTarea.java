@@ -12,7 +12,6 @@ public class BotonSiguienteFinalizarTarea implements ActionListener {
     private Modelo modelo;
     JFrame ventana;
     String tarea;
-    String tipo;
 
 
     public BotonSiguienteFinalizarTarea(Controlador controlador, Modelo modelo, JFrame ventana, String nomTarea){
@@ -20,9 +19,6 @@ public class BotonSiguienteFinalizarTarea implements ActionListener {
         this.modelo = modelo;
         this.ventana=ventana;
         this.tarea = nomTarea;
-        this.tipo=tipo;
-
-
     }
     @Override
 

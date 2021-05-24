@@ -32,17 +32,16 @@ public class VentanaListarPersonasTarea extends JFrame implements Vista {
         String[] listaTareas = controlador.getTareas(modelo);
         JLabel nombreTarea = new JLabel("Nombre de la tarea: ");
         JComboBox tareas = new JComboBox(listaTareas);
-        contenedor.add(tareas);
 
         contenedor.setLayout(new FlowLayout());
         contenedor.add(nombreTarea);
+        contenedor.add(tareas);
 
         JButton boton = new JButton("Volver");
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
         boton.addActionListener(new BotonSiguienteListarPersonasTarea(controlador,modelo,ventana,listaTareas[tareas.getSelectedIndex()]));
-        boton.addActionListener(aceptar(ventana));
         contenedor.add(boton);
 
         ventana.pack();

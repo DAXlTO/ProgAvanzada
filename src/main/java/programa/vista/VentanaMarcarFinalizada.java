@@ -45,7 +45,6 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
-        //boton.addActionListener(actionEvent -> controlador.finalizarTarea(listaTareas[tareas.getSelectedIndex()],type.getSelectedIndex(), modelo));
         boton.addActionListener(new BotonSiguienteFinalizarTarea(controlador,modelo,ventanAnterior,noFinalizadas[tareas.getSelectedIndex()]));
 
         contenedor.add(boton);

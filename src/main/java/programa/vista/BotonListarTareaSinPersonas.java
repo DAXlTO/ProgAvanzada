@@ -22,6 +22,6 @@ public class BotonListarTareaSinPersonas implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Pulsaste el botón de listar tareas sin personas.");
-        VentanaAltaTarea.main(controlador, modelo,ventana);
+        VentanaListarTareaSinPersonas.main(controlador, modelo,ventana);
     }
 }

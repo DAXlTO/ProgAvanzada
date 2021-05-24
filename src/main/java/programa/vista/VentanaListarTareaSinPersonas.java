@@ -43,7 +43,6 @@ public class VentanaListarTareaSinPersonas extends JFrame{
         boton.addActionListener(aceptar(ventana));
         contenedor.add(boton);
 
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.pack();
         ventana.setVisible(true);
     }
