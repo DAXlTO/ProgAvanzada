@@ -6,6 +6,7 @@ import programa.modelo.clases.Persona;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class VentanaEliminarPersonaTarea extends JFrame implements Vista {
     private Controlador controlador;
     private Modelo modelo;
     JFrame ventanAnterior;
+    String auxiliar = "";
 
     private VentanaEliminarPersonaTarea(Controlador controlador, Modelo modelo, JFrame ventanAnterior) {
         this.controlador = controlador;
@@ -30,7 +32,12 @@ public class VentanaEliminarPersonaTarea extends JFrame implements Vista {
         JLabel nombreTarea = new JLabel("Nombre de la tarea: ");
         JComboBox tareas = new JComboBox(listaTareas);
         contenedor.add(tareas);
-
+        tareas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                auxiliar = tareas.getSelectedItem().toString();
+            }
+        });
 
         contenedor.setLayout(new FlowLayout());
         contenedor.add(nombreTarea);
@@ -41,7 +48,7 @@ public class VentanaEliminarPersonaTarea extends JFrame implements Vista {
         contenedor.add(boton);
 
         boton = new JButton("Siguiente");
-        boton.addActionListener(new BotonSiguienteEliminarPersona(controlador,modelo,ventana,listaTareas[tareas.getSelectedIndex()]));
+        boton.addActionListener(new BotonSiguienteEliminarPersona(controlador,modelo,ventana,auxiliar));
         boton.addActionListener(aceptar(ventana));
         contenedor.add(boton);
 
