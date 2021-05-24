@@ -79,7 +79,9 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
     }
 
     public List<Tarea> listarTareasSinPersonas(Modelo modelo){
-        return  UtilidadesParaLista.elementosConListaVacia(modelo.getTareasLista());
+        if(tareas.size() > 0)
+            return  UtilidadesParaLista.elementosConListaVacia(modelo.getTareasLista());
+        return new ArrayList<>();
     }
 
     public boolean eliminarPersonaDeTarea(String persona, String tarea){
