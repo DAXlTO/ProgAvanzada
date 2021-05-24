@@ -32,7 +32,6 @@ public class VentanaNoResponsables extends JFrame{
         for (int i = 0; i < personas.size();i++){
             html +=  "<li>" + "Nombre: " + personas.get(i).getNombre() + "<br>Correo: " +personas.get(i).getEmail() +"</li>";
         }
-
         html += "<ol></html>";
 
         JLabel etiqueta = new JLabel(html);
