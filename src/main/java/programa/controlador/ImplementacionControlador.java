@@ -74,6 +74,7 @@ public class ImplementacionControlador implements Controlador{
 
     public boolean añadirPersonaATarea(String tarea, String persona, Modelo modelo){
         System.out.println(tarea);
+        System.out.println(persona);
         this.modelo = modelo;
         this.modelo.añadirPersonaATarea(tarea, persona);
         return true;
