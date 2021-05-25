@@ -34,6 +34,7 @@ public class ImplementacionControlador implements Controlador{
     }
 
     public boolean darBajaPersonaTarea(String persona, String tarea, Modelo modelo){
+        System.out.println(tarea);
         this.modelo = modelo;
         return modelo.eliminarPersonaDeTarea(persona,tarea);
     }

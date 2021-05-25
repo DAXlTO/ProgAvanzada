@@ -47,8 +47,8 @@ public class VentanaMarcarFinalizada extends JFrame {
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
+        boton.addActionListener(actionEvent -> VentanaSiguienteFinalizarTarea.main(controlador,modelo,ventana,noFinalizadas[tareas.getSelectedIndex()]));
         boton.addActionListener(actionEvent -> ventana.setVisible(false));
-        boton.addActionListener(new BotonSiguienteFinalizarTarea(controlador,modelo,ventana,noFinalizadas[tareas.getSelectedIndex()]));
 
         contenedor.add(boton);
 

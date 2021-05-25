@@ -24,7 +24,8 @@ public class BotonSiguienteListarPersonasTarea implements ActionListener {
     @Override
 
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Has pulsado el boton de eliminar una persona a una tarea");
+        System.out.println("Has pulsado el boton de listar personas de una tarea");
+        System.out.println(tarea);
         VentanaSiguienteListarPersonasTarea.main(controlador,modelo,ventana,tarea);
     }
 }

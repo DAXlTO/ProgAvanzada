@@ -29,11 +29,12 @@ public class VentanaListaTareas extends JFrame  {
         Map<String, Tarea> listaTareas = controlador.getTareas1(modelo);
         String html = "<html>"+"Lista de tareas del proyecto:<br><ol>";
         for (Map.Entry<String,Tarea> entrada : listaTareas.entrySet()){
-        //for (int i = 0; i < listaTareas.length ;i++){
             html += "<li>" + "Nombre: " + entrada.getValue().getTitulo() + "\n"
                     + "Responsable (" + entrada.getValue().getResponsable() + ")\n"
                     + "Tipo de tarea: " + entrada.getValue().getTipo() + "\n"
-                    + "Coste: " + entrada.getValue().calcularImporte() +"</li>";
+                    + "Coste: " + entrada.getValue().calcularImporte() + "\n"
+                    + "Finalizada: " + entrada.getValue().getRealizada() + "</li>";
+
         }
         html += "<ol></html>";
 
