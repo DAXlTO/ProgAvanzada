@@ -15,7 +15,6 @@ public class VentanaAltaTarea extends JFrame{
     private Controlador controlador;
     private Modelo modelo;
     JFrame ventanAnterior;
-
     private VentanaAltaTarea(Controlador controlador, Modelo modelo, JFrame ventanAnterior) {
         super("");
         this.controlador = controlador;
@@ -24,7 +23,7 @@ public class VentanaAltaTarea extends JFrame{
     }
 
     private void ejecuta(Modelo modelo) {
-        JFrame ventana = new JFrame("Dar de alta tarea");
+       JFrame ventana = new JFrame("Dar de alta tarea");
         JPanel contenedor = new JPanel();
         ventana.add(contenedor);
 
@@ -82,22 +81,17 @@ public class VentanaAltaTarea extends JFrame{
 
 
         JButton boton = new JButton("Volver");
+        boton.addActionListener(new BotonVolver(controlador,modelo,ventana));
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
-        boton.addActionListener(aceptar(ventana));
+        boton.addActionListener(actionEvent -> ventana.setVisible(false));
+        boton.addActionListener(actionEvent -> ventanAnterior.setVisible(true));
         boton.addActionListener(actionEvent -> controlador.altaTarea(modelo,nombre.getText(),des.getText(),personas.get(per.getSelectedIndex()),Integer.parseInt(prio.getSelectedItem().toString()),eti.getText(),cadena[type.getSelectedIndex()],Double.parseDouble(textField1.getText()),impor[im.getSelectedIndex()]));
         contenedor.add(boton);
         ventana.setSize(320,400);
-        //ventana.pack();
         ventana.setVisible(true);
     }
-
-    public ActionListener aceptar(JFrame ventana){
-        ventanAnterior.setVisible(true);
-        return actionEvent -> ventana.setVisible(false);
-    }
-
     public static void main(Controlador controlador, Modelo modelo, JFrame ventana) {
         new VentanaAltaTarea(controlador, modelo,ventana).ejecuta(modelo);
     }

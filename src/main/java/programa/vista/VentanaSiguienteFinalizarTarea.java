@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class VentanaSiguienteFinalizarTarea extends JFrame implements Vista {
+public class VentanaSiguienteFinalizarTarea extends JFrame {
     private Controlador controlador;
     private Modelo modelo;
     JFrame ventanAnterior;
@@ -85,11 +85,14 @@ public class VentanaSiguienteFinalizarTarea extends JFrame implements Vista {
 
         contenedor.setLayout(new FlowLayout());
         JButton boton = new JButton("Volver");
+        boton.addActionListener(actionEvent ->  ventanAnterior.setVisible(true));
+        boton.addActionListener(actionEvent ->  ventana.setVisible(false));
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
         boton.addActionListener(actionEvent -> controlador.finalizarTarea(tarea,tipo,identificador.getText(),time.getText(),comer.getText(),campo1.getText(),campo2.getText(),campo3.getText(),modelo));
-        boton.addActionListener(aceptar(ventana));
+        boton.addActionListener(actionEvent -> ventana.setVisible(false));
+        boton.addActionListener(new BotonVolver(controlador,modelo,ventana));
         contenedor.add(boton);
 
         ventana.setSize(310,380);
@@ -100,13 +103,7 @@ public class VentanaSiguienteFinalizarTarea extends JFrame implements Vista {
         new VentanaSiguienteFinalizarTarea(controlador, modelo,ventana,tarea).ejecuta();
     }
 
-    public ActionListener aceptar(JFrame ventana){
-        ventanAnterior.setVisible(true);
-        return actionEvent -> ventana.setVisible(false);
-    }
 
-    @Override
-    public String getEntrada() {
-        return null;
-    }
+
+
 }

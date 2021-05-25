@@ -5,13 +5,13 @@ import programa.modelo.clases.Modelo;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
-public class VentanaListarPersonasTarea extends JFrame implements Vista {
+public class VentanaListarPersonasTarea extends JFrame {
 
     private Controlador controlador;
     private Modelo modelo;
     JFrame ventanAnterior;
+    String tarea;
 
     private VentanaListarPersonasTarea(Controlador controlador, Modelo modelo, JFrame ventanAnterior){
         super("");
@@ -38,24 +38,18 @@ public class VentanaListarPersonasTarea extends JFrame implements Vista {
         contenedor.add(tareas);
 
         JButton boton = new JButton("Volver");
+        boton.addActionListener(new BotonVolver(controlador,modelo,ventana));
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
-        boton.addActionListener(new BotonSiguienteListarPersonasTarea(controlador,modelo,ventana,listaTareas[tareas.getSelectedIndex()]));
+        boton.addActionListener(actionEvent -> ventanAnterior.setVisible(true));
+        boton.addActionListener(actionEvent -> ventana.setVisible(false));
+
+        boton.addActionListener(actionEvent -> VentanaSiguienteListarPersonasTarea.main(controlador,modelo,ventana,listaTareas[tareas.getSelectedIndex()]));
         contenedor.add(boton);
 
         ventana.pack();
         ventana.setVisible(true);
-
     }
 
-    public ActionListener aceptar(JFrame ventana){
-        ventanAnterior.setVisible(true);
-        return actionEvent -> ventana.setVisible(false);
-    }
-
-    @Override
-    public String getEntrada() {
-        return null;
-    }
 }

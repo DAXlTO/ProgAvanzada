@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 
-public class VentanaListaTareas extends JFrame implements Vista {
+public class VentanaListaTareas extends JFrame  {
 
     private Controlador controlador;
     private Modelo modelo;
@@ -46,7 +46,7 @@ public class VentanaListaTareas extends JFrame implements Vista {
         boton.addActionListener(aceptar(ventana));
         contenedor.add(boton);
 
-        ventana.pack();
+        ventana.setSize(600,300);
         ventana.setVisible(true);
 
     }
@@ -60,8 +60,5 @@ public class VentanaListaTareas extends JFrame implements Vista {
         return actionEvent -> ventana.setVisible(false);
     }
 
-    @Override
-    public String getEntrada() {
-        return null;
-    }
+
 }

@@ -10,11 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class VentanaEliminarPersonaTarea extends JFrame implements Vista {
+public class VentanaEliminarPersonaTarea extends JFrame {
     private Controlador controlador;
     private Modelo modelo;
     JFrame ventanAnterior;
-    String auxiliar = "";
+
 
     private VentanaEliminarPersonaTarea(Controlador controlador, Modelo modelo, JFrame ventanAnterior) {
         this.controlador = controlador;
@@ -32,12 +32,6 @@ public class VentanaEliminarPersonaTarea extends JFrame implements Vista {
         JLabel nombreTarea = new JLabel("Nombre de la tarea: ");
         JComboBox tareas = new JComboBox(listaTareas);
         contenedor.add(tareas);
-        tareas.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                auxiliar = tareas.getSelectedItem().toString();
-            }
-        });
 
         contenedor.setLayout(new FlowLayout());
         contenedor.add(nombreTarea);
@@ -45,11 +39,13 @@ public class VentanaEliminarPersonaTarea extends JFrame implements Vista {
 
 
         JButton boton = new JButton("Volver");
+        boton.addActionListener(new BotonVolver(controlador,modelo,ventana));
         contenedor.add(boton);
 
+
         boton = new JButton("Siguiente");
-        boton.addActionListener(new BotonSiguienteEliminarPersona(controlador,modelo,ventana,auxiliar));
-        boton.addActionListener(aceptar(ventana));
+        boton.addActionListener(actionEvent -> VentanaSiguienteEliminarPersona.main(controlador,modelo,ventana,listaTareas[tareas.getSelectedIndex()]));
+        boton.addActionListener(actionEvent -> ventana.setVisible(false));
         contenedor.add(boton);
 
         ventana.setSize(310,100);
@@ -65,8 +61,5 @@ public class VentanaEliminarPersonaTarea extends JFrame implements Vista {
         return actionEvent -> ventana.setVisible(false);
     }
 
-    @Override
-    public String getEntrada() {
-        return null;
-    }
+
 }

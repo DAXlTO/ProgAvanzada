@@ -21,6 +21,7 @@ public class BotonListarPersonasTarea implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Pulsaste el botón de dar de alta a una persona.");
+        ventana.setVisible(false);
         VentanaListarPersonasTarea.main(controlador, modelo, ventana);
     }
 }

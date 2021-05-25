@@ -21,6 +21,7 @@ public class BotonEliminarPersonaTarea implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         System.out.println("Has pulsado el boton de añadir una persona a una tarea");
+        ventana.setVisible(false);
         VentanaEliminarPersonaTarea.main(controlador,modelo,ventana);
     }
 }

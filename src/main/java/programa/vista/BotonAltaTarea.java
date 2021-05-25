@@ -22,6 +22,7 @@ public class BotonAltaTarea implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Pulsaste el botón de dar de añadir una tarea.");
+        ventana.setVisible(false);
         VentanaAltaTarea.main(controlador, modelo,ventana);
     }
 }

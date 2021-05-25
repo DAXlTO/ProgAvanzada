@@ -22,6 +22,7 @@ public class BotonMarcarFinalizada implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Pulsaste el botón de dar de marcar una tarea como finalizada.");
+        ventana.setVisible(false);
         VentanaMarcarFinalizada.main(controlador, modelo, ventana);
     }
 }

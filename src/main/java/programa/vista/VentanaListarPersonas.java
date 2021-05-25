@@ -45,7 +45,7 @@ public class VentanaListarPersonas extends JFrame{
         boton.addActionListener(aceptar());
         boton.addActionListener(actionEvent -> ventana.setVisible(false) );
         contenedor.add(boton);
-        ventana.pack();
+        ventana.setSize(300,300);
         ventana.setVisible(true);
     }
 

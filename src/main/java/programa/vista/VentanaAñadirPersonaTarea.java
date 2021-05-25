@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class VentanaAñadirPersonaTarea extends JFrame implements Vista {
+public class VentanaAñadirPersonaTarea extends JFrame{
     private Controlador controlador;
     private Modelo modelo;
     JFrame ventanAnterior;
@@ -48,11 +48,13 @@ public class VentanaAñadirPersonaTarea extends JFrame implements Vista {
         contenedor.add(per);
 
         JButton boton = new JButton("Volver");
+        boton.addActionListener(new BotonVolver(controlador,modelo,ventana));
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
         boton.addActionListener(actionEvent -> controlador.añadirPersonaATarea(listaTareas[tareas.getSelectedIndex()],listaPersonas.get(per.getSelectedIndex()).getNombre(), modelo));
-        boton.addActionListener(aceptar(ventana));
+        boton.addActionListener(actionEvent -> ventana.setVisible(false));
+        boton.addActionListener(actionEvent -> ventanAnterior.setVisible(true));
         contenedor.add(boton);
 
         ventana.setSize(310,140);
@@ -68,8 +70,5 @@ public class VentanaAñadirPersonaTarea extends JFrame implements Vista {
         return actionEvent -> ventana.setVisible(false);
     }
 
-    @Override
-    public String getEntrada() {
-        return null;
-    }
+
 }

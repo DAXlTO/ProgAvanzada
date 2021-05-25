@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class VentanaMarcarFinalizada extends JFrame implements Vista{
+public class VentanaMarcarFinalizada extends JFrame {
     private Controlador controlador;
     private Modelo modelo;
     JFrame ventanAnterior;
@@ -42,10 +42,13 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
         contenedor.add(tareas);
         contenedor.setLayout(new FlowLayout());
         JButton boton = new JButton("Volver");
+        boton.addActionListener(new BotonVolver(controlador,modelo,ventana));
+
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
-        boton.addActionListener(new BotonSiguienteFinalizarTarea(controlador,modelo,ventanAnterior,noFinalizadas[tareas.getSelectedIndex()]));
+        boton.addActionListener(actionEvent -> ventana.setVisible(false));
+        boton.addActionListener(new BotonSiguienteFinalizarTarea(controlador,modelo,ventana,noFinalizadas[tareas.getSelectedIndex()]));
 
         contenedor.add(boton);
 
@@ -57,8 +60,5 @@ public class VentanaMarcarFinalizada extends JFrame implements Vista{
         new VentanaMarcarFinalizada(controlador, modelo,ventana).ejecuta(modelo);
     }
 
-    @Override
-    public String getEntrada() {
-        return null;
-    }
+
 }

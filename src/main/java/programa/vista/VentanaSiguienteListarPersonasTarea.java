@@ -6,7 +6,7 @@ import programa.modelo.clases.Modelo;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class VentanaSiguienteListarPersonasTarea extends JFrame implements Vista{
+public class VentanaSiguienteListarPersonasTarea extends JFrame{
 
     private Controlador controlador;
     private Modelo modelo;
@@ -34,28 +34,12 @@ public class VentanaSiguienteListarPersonasTarea extends JFrame implements Vista
 
         JLabel etiqueta = new JLabel(html);
         ventana.add(etiqueta);
-        JButton boton = new JButton("Volver");
-        contenedor.add(boton);
-
-        boton = new JButton("Aceptar");
-        boton.addActionListener(aceptar(ventana));
-        boton.addActionListener(actionEvent -> ventana.setVisible(false) );
-        contenedor.add(boton);
-        ventana.pack();
+        ventana.setSize(300,300);
         ventana.setVisible(true);
+
     }
 
     public static void main(Controlador controlador, Modelo modelo, JFrame ventana, String tarea) {
         new VentanaSiguienteListarPersonasTarea(controlador, modelo,ventana,tarea).ejecuta();
-    }
-
-    public ActionListener aceptar(JFrame ventana){
-        ventanAnterior.setVisible(true);
-        return actionEvent -> ventana.setVisible(false);
-    }
-
-    @Override
-    public String getEntrada() {
-        return null;
     }
 }

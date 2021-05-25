@@ -37,6 +37,8 @@ public class VentanaNoResponsables extends JFrame{
         JLabel etiqueta = new JLabel(html);
         ventana.add(etiqueta);
         JButton boton = new JButton("Volver");
+        boton.addActionListener(new BotonVolver(controlador,modelo,ventana));
+
         contenedor.add(boton);
 
         boton = new JButton("Aceptar");
