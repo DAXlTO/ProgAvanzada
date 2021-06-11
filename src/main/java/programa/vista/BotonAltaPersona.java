@@ -25,4 +25,3 @@ public class BotonAltaPersona implements ActionListener {
         VentanaAltaPersona.main(controlador, modelo, ventana);
     }
 }
-

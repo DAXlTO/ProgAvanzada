@@ -61,6 +61,9 @@ public class VentanaAltaTarea extends JFrame{
         JLabel importe = new JLabel("Importe de la tarea: ");
         JComboBox im = new JComboBox(impor);
 
+        JLabel variacion = new JLabel("¿Qué importe base quieres aplicar? ");
+        JFormattedTextField var = new JFormattedTextField (new Float(5));
+
         contenedor.setLayout(new FlowLayout());
         contenedor.add(nom);
         contenedor.add(nombre);
@@ -78,7 +81,8 @@ public class VentanaAltaTarea extends JFrame{
         contenedor.add(textField1);
         contenedor.add(importe);
         contenedor.add(im);
-
+        contenedor.add(variacion);
+        contenedor.add(var);
 
         JButton boton = new JButton("Volver");
         boton.addActionListener(new BotonVolver(controlador,modelo,ventana));
@@ -87,7 +91,7 @@ public class VentanaAltaTarea extends JFrame{
         boton = new JButton("Aceptar");
         boton.addActionListener(actionEvent -> ventana.setVisible(false));
         boton.addActionListener(actionEvent -> ventanAnterior.setVisible(true));
-        boton.addActionListener(actionEvent -> controlador.altaTarea(modelo,nombre.getText(),des.getText(),personas.get(per.getSelectedIndex()),Integer.parseInt(prio.getSelectedItem().toString()),eti.getText(),cadena[type.getSelectedIndex()],Double.parseDouble(textField1.getText()),impor[im.getSelectedIndex()]));
+        boton.addActionListener(actionEvent -> controlador.altaTarea(modelo,nombre.getText(),des.getText(),personas.get(per.getSelectedIndex()),Integer.parseInt(prio.getSelectedItem().toString()),eti.getText(),cadena[type.getSelectedIndex()],Double.parseDouble(textField1.getText()),impor[im.getSelectedIndex()],Float.parseFloat(var.getText())));
         contenedor.add(boton);
         ventana.setSize(320,400);
         ventana.setVisible(true);

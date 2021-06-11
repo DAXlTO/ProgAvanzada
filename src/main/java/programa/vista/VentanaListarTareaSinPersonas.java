@@ -27,7 +27,7 @@ public class VentanaListarTareaSinPersonas extends JFrame{
         JPanel contenedor = new JPanel();
         ventana.add(contenedor);
 
-        List<Tarea> tareas = controlador.listarTareasSinPersonas(modelo);
+        List<Tarea> tareas = modelo.listarTareasSinPersonas(modelo);
         String html = "<html>"+"Lista de tareas del proyecto que no tiene personas:<br><ol>";
         for (int i = 0; i < tareas.size();i++){
             html +=  "<li>" + "Titulo: " + tareas.get(i).getTitulo() + "</li>";

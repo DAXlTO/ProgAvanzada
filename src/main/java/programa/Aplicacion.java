@@ -139,10 +139,9 @@ public class Aplicacion {
                 importe = new ConsumoInterno();
                 break;
             case 1:
-                importe = new Descuento();
+
                 break;
             case 2:
-                importe = new Urgente();
                 break;
         }
 

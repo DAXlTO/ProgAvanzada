@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Modelo implements Serializable, tieneClave, programa.modelo.interfaces.Modelo {
+public class Modelo implements Serializable, tieneClave {
     String nombre;
     private final Map<String,Tarea> tareas;
     private final List<Persona> personas;
@@ -183,12 +183,12 @@ public class Modelo implements Serializable, tieneClave, programa.modelo.interfa
         }
     }
 
-    public Importe comprobarImporte(String importe){
+    public Importe comprobarImporte(float variacion, String importe){
         Importe importe1 = new ConsumoInterno();
         if(importe.equals("Descuento"))
-            importe1 = new Descuento();
+            importe1 = new Descuento(variacion);
         else if(importe.equals("Urgente"))
-            importe1 = new Urgente();
+            importe1 = new Urgente(variacion);
         return importe1;
 
     }

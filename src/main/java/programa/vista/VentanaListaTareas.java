@@ -26,17 +26,18 @@ public class VentanaListaTareas extends JFrame  {
         JFrame ventana = new JFrame("Listado de tareas");
         JPanel contenedor  = new JPanel();
         ventana.add(contenedor);
-        Map<String, Tarea> listaTareas = controlador.getTareas1(modelo);
+        Map<String, Tarea> listaTareas = modelo.getTareas();
+        float coste = 0;
         String html = "<html>"+"Lista de tareas del proyecto:<br><ol>";
-        for (Map.Entry<String,Tarea> entrada : listaTareas.entrySet()){
-            html += "<li>" + "Nombre: " + entrada.getValue().getTitulo() + "\n"
-                    + "Responsable (" + entrada.getValue().getResponsable() + ")\n"
-                    + "Tipo de tarea: " + entrada.getValue().getTipo() + "\n"
-                    + "Coste: " + entrada.getValue().calcularImporte() + "\n"
-                    + "Finalizada: " + entrada.getValue().getRealizada() + "</li>";
-
+        for (String key : listaTareas.keySet()){
+            html += "<li>" + "Nombre: " + listaTareas.get(key).getTitulo() + "\n"
+                    + "Responsable (" + listaTareas.get(key).getResponsable() + ")\n"
+                    + "Tipo de tarea: " +listaTareas.get(key).getTipo() + "\n"
+                    + "Coste: " + listaTareas.get(key).calcularImporte() + "\n" + "</li>";
+                    coste += listaTareas.get(key).calcularImporte();
         }
-        html += "<ol></html>";
+
+        html += "Coste total del proyecto: " + coste + "<ol></html>";
 
         JLabel etiqueta = new JLabel(html);
         ventana.add(etiqueta);

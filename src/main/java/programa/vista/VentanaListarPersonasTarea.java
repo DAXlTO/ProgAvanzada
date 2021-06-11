@@ -29,7 +29,7 @@ public class VentanaListarPersonasTarea extends JFrame {
         JPanel contenedor  = new JPanel();
         ventana.add(contenedor);
 
-        String[] listaTareas = controlador.getTareas(modelo);
+        String[] listaTareas = modelo.tareas();
         JLabel nombreTarea = new JLabel("Nombre de la tarea: ");
         JComboBox tareas = new JComboBox(listaTareas);
 

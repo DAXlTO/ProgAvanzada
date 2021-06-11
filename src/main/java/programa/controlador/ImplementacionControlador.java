@@ -29,6 +29,7 @@ public class ImplementacionControlador implements Controlador{
         this.modelo = modelo;
         return this.modelo.getTareas();
     }
+
     public String[] getPersonasTarea(String tarea){
         return modelo.getPersonasTarea(tarea);
     }
@@ -90,10 +91,11 @@ public class ImplementacionControlador implements Controlador{
         return modelo.getTareasNoFinalizadas();
     }
 
-    public void altaTarea(Modelo modelo, String titulo, String descripcion, Persona responsable, int prioridad, String etiquetas, String tipo, Double coste, String importe){
+
+    public void altaTarea(Modelo modelo, String titulo, String descripcion, Persona responsable, int prioridad, String etiquetas, String tipo, Double coste, String importe, float variacion){
         this.modelo = modelo;
 
-        Importe impor = modelo.comprobarImporte(importe);
+        Importe impor = modelo.comprobarImporte(variacion, importe);
         Tarea tarea = new Tarea(titulo,descripcion,responsable,prioridad,etiquetas,tipo,coste,impor);
         try {
             System.out.println(titulo);

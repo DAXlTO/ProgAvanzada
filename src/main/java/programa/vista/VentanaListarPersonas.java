@@ -28,7 +28,7 @@ public class VentanaListarPersonas extends JFrame{
         JPanel contenedor = new JPanel();
         ventana.add(contenedor);
 
-        List<Persona> personas = controlador.getPersonas(modelo);
+        List<Persona> personas = modelo.getPersonas();
         String html = "<html>"+"Lista de personas del proyecto:<br><ol>";
         for (int i = 0; i < personas.size();i++){
             html +=  "<li>" + "Nombre: " + personas.get(i).getNombre() + "<br>Correo: " +personas.get(i).getEmail() +"</li>";

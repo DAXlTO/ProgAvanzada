@@ -25,7 +25,7 @@ public class VentanaSiguienteListarPersonasTarea extends JFrame{
         JPanel contenedor = new JPanel();
         ventana.add(contenedor);
 
-        String[] personas = controlador.getPersonasTarea(tarea, modelo);
+        String[] personas = modelo.getPersonasTarea(tarea);
         String html = "<html>"+"Lista de personas del proyecto:<br><ol>";
         for (int i = 0; i < personas.length ;i++){
             html +=  "<li>" + "Nombre: " + personas[i] +"</li>";
