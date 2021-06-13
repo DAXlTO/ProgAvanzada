@@ -27,14 +27,13 @@ public class VentanaListaTareas extends JFrame  {
         JPanel contenedor  = new JPanel();
         ventana.add(contenedor);
         Map<String, Tarea> listaTareas = modelo.getTareas();
-        float coste = 0;
+        Double coste = controlador.calcularCosteProyecto(modelo);
         String html = "<html>"+"Lista de tareas del proyecto:<br><ol>";
         for (String key : listaTareas.keySet()){
             html += "<li>" + "Nombre: " + listaTareas.get(key).getTitulo() + "\n"
                     + "Responsable (" + listaTareas.get(key).getResponsable() + ")\n"
                     + "Tipo de tarea: " +listaTareas.get(key).getTipo() + "\n"
                     + "Coste: " + listaTareas.get(key).calcularImporte() + "\n" + "</li>";
-                    coste += listaTareas.get(key).calcularImporte();
         }
 
         html += "Coste total del proyecto: " + coste + "<ol></html>";

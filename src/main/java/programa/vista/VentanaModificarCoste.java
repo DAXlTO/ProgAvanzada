@@ -22,7 +22,7 @@ public class VentanaModificarCoste extends JFrame{
     }
 
     private void ejecuta() {
-        ventana = new JFrame("Dar de alta persona");
+        ventana = new JFrame("Modificar costes");
         Container contenedor = ventana.getContentPane();
 
 

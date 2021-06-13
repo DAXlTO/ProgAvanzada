@@ -74,6 +74,14 @@ public class Modelo implements Serializable, tieneClave {
         }
     }
 
+    public Double calcularCosteProyecto(){
+        Double coste = (double) 0;
+        for(String key : tareas.keySet()){
+            coste += tareas.get(key).calcularImporte();
+        }
+        return coste;
+    }
+
     public List<Persona> listarPersonasNoResponsables(){
         return UtilidadesParaLista.elementosConListaVacia(getPersonas());
     }
@@ -172,20 +180,11 @@ public class Modelo implements Serializable, tieneClave {
         return solucion;
     }
 
-    public void almacenarInformacion(Modelo modelo){
-        try{
-            FileOutputStream fos = new FileOutputStream("proyecto.bin");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(modelo);
-            oos.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+
 
     public void modificarCostes(String tarea, double var, double coste){
         tareas.get(tarea).cambiarVariacion(var);
-        tareas.get(tarea).setCoste(coste);
+        tareas.get(tarea).cambiarCoste(coste);
     }
 
     public Importe comprobarImporte(float variacion, String importe, double coste){
@@ -207,7 +206,18 @@ public class Modelo implements Serializable, tieneClave {
             return modelo;
         }
         catch (Exception e) {
-           return new Modelo("Prueba");
+            return new Modelo("Prueba");
+        }
+    }
+
+    public void almacenarInformacion(Modelo modelo){
+        try{
+            FileOutputStream fos = new FileOutputStream("proyecto.bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(modelo);
+            oos.close();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

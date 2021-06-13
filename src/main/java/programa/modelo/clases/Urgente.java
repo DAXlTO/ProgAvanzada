@@ -23,4 +23,9 @@ public class Urgente implements Importe, Serializable {
     public void setFacturacion(double sobreCoste) {
         this.sobreCoste = sobreCoste;
     }
+
+    @Override
+    public void setCoste(double coste) {
+        this.coste = coste;
+    }
 }

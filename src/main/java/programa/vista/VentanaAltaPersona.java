@@ -28,7 +28,7 @@ public class VentanaAltaPersona extends JFrame{
         nombre = new JTextField(20);
         JLabel nom = new JLabel("Nombre: ");
         email = new JTextField(20);
-        JLabel mail = new JLabel("Correo electronico: ");
+        JLabel mail = new JLabel("Correo electrónico: ");
         contenedor.setLayout(new FlowLayout());
 
         contenedor.add(nom);

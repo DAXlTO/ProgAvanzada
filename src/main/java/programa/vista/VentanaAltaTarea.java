@@ -51,7 +51,7 @@ public class VentanaAltaTarea extends JFrame{
         JTextField eti = new JTextField(15);
 
         String[] cadena = {"Documento","PaginaWeb","Programa"};
-        JLabel tipo = new JLabel("Priotidad de la tarea: ");
+        JLabel tipo = new JLabel("Tipo de archivo: ");
         JComboBox type = new JComboBox(cadena);
 
         JLabel coste = new JLabel("Introduce el coste de la tarea: ");

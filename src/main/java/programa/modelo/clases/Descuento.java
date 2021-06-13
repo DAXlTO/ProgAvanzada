@@ -16,12 +16,17 @@ public class Descuento implements Importe, Serializable {
 
     @Override
     public double calcularImporte(){
-        return coste - coste * descuento * 0.01;
+        return coste - (coste * descuento * 0.01);
     }
 
     @Override
     public void setFacturacion(double descuento) {
         this.descuento = descuento;
+    }
+
+    @Override
+    public void setCoste(double coste) {
+        this.coste = coste;
     }
 
 

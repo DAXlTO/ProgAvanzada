@@ -21,4 +21,9 @@ public class ConsumoInterno implements Importe, Serializable {
     public void setFacturacion(double sobreCoste) {
         return;
     }
+
+    @Override
+    public void setCoste(double coste) {
+        this.coste = coste;
+    }
 }

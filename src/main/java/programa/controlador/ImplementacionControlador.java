@@ -83,6 +83,10 @@ public class ImplementacionControlador implements Controlador{
         modelo.modificarCostes(tarea,var,coste);
     }
 
+    public Double calcularCosteProyecto(Modelo modelo){
+       return modelo.calcularCosteProyecto();
+    }
+
     public List<String> getTareasNoFinalizadas(Modelo modelo){
         return modelo.getTareasNoFinalizadas();
     }
@@ -92,7 +96,7 @@ public class ImplementacionControlador implements Controlador{
         this.modelo = modelo;
 
         Importe impor = modelo.comprobarImporte(variacion, importe,coste);
-        Tarea tarea = new Tarea(titulo,descripcion,responsable,prioridad,etiquetas,tipo,coste,impor);
+        Tarea tarea = new Tarea(titulo,descripcion,responsable,prioridad,etiquetas,tipo,impor);
         try {
             System.out.println(titulo);
             modelo.añadirTarea(tarea);

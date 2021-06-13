@@ -93,9 +93,9 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         importe.setFacturacion(nuevaCantidad);
     }
 
-    public void setCoste(double coste) {
+    public void cambiarCoste(double coste){
+        importe.setCoste(coste);
     }
-
     public String getClave() {return titulo; }
 
     public double calcularImporte(){

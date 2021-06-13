@@ -1,6 +1,6 @@
 package programa;
 
-//import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;
 import programa.modelo.clases.*;
 import programa.modelo.excepciones.PersonaRepetidaException;
 import programa.modelo.excepciones.TareaException;
@@ -9,25 +9,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-//import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ProyectoTest {
-    /*
+
     @Test
     void añadirTarea() throws TareaException, TareaRepetidaException {
         //Añadiendo tareas...
-        Proyecto proyecto = new Proyecto("Prueba");
+        Modelo proyecto = new Modelo("Prueba");
         Persona responsable = new Persona("Daniel","daniel@uji.es");
         Persona responsable1 = new Persona("Sergio", "sergio@uji.es");
 
         List<String> etiquetas = new ArrayList<>();
-        Tarea tarea = new Tarea("Cocina","Limpiar",responsable,3, etiquetas,"Documento",12.5,new Urgente());
+        Tarea tarea = new Tarea("Cocina","Limpiar",responsable,3, "etiquetas","Documento",new Urgente(12.5,10));
         proyecto.añadirTarea(tarea);
 
-        Tarea tarea1 = new Tarea("Salon","Recoger",responsable1,2,etiquetas,"PaginaWeb", 10, new Urgente());
+        Tarea tarea1 = new Tarea("Salon","Recoger",responsable1,2,"etiquetas","PaginaWeb",  new Urgente(12,10));
         proyecto.añadirTarea(tarea1);
 
-        Tarea tarea2 = new Tarea("Comer","Desayuno",responsable,8, etiquetas,"Programa", 7.5, new ConsumoInterno());
+        Tarea tarea2 = new Tarea("Comer","Desayuno",responsable,8, "etiquetas","Programa", new ConsumoInterno(10));
         proyecto.añadirTarea(tarea2);
 
         Map<String,Tarea> tareas = new HashMap<>();
@@ -41,33 +41,33 @@ class ProyectoTest {
     @Test
     void añadirPersona() throws PersonaRepetidaException {
         //Con lista vacia
-        Proyecto proyecto = new Proyecto("Prueba");
+        Modelo proyecto = new Modelo("Prueba");
         assertEquals(proyecto.getPersonas(),new ArrayList<>());
 
         //Con una persona
         Persona responsable = new Persona("Daniel","daniel@uji.es");
-        proyecto.añadirPersona(responsable);
+        proyecto.altaPersona(responsable);
         List<Persona> personas = new ArrayList<>();
         personas.add(responsable);
         assertEquals(proyecto.getPersonas(),personas);
 
         //Con dos personas
         Persona responsable1 = new Persona("Sergio","sergio@uji.es");
-        proyecto.añadirPersona(responsable1);
+        proyecto.altaPersona(responsable1);
         personas.add(responsable1);
         assertEquals(proyecto.getPersonas(),personas);
     }
 
     @Test
     void añadirPersonaATarea() throws PersonaRepetidaException, TareaException, TareaRepetidaException {
-        Proyecto proyecto = new Proyecto("Prueba");
+        Modelo proyecto = new Modelo("Prueba");
         Persona añadida = new Persona("Sergio", "sergio@uji.es");
         Persona añadida1 = new Persona("Daniel","daniel@uji.es");
         List<String> etiquetas = new ArrayList<>();
-        Tarea tarea = new Tarea("Cocina","Limpiar",añadida,3, etiquetas,"Documento", 5, new Descuento());
+        Tarea tarea = new Tarea("Cocina","Limpiar",añadida,3, "etiquetas","Documento",  new Descuento(100,10));
 
-        proyecto.añadirPersona(añadida);
-        proyecto.añadirPersona(añadida1);
+        proyecto.altaPersona(añadida);
+        proyecto.altaPersona(añadida1);
         proyecto.añadirTarea(tarea);
         proyecto.añadirPersonaATarea(tarea.getTitulo(),añadida.getNombre());
         proyecto.añadirPersonaATarea(tarea.getTitulo(),añadida1.getNombre());
@@ -83,14 +83,14 @@ class ProyectoTest {
     @Test
     void eliminarPersonaDeTarea() throws PersonaRepetidaException, TareaException, TareaRepetidaException {
         //Eliminamos a la persona del proyecto
-        Proyecto proyecto = new Proyecto("Prueba");
+        Modelo proyecto = new Modelo("Prueba");
         Persona eliminada = new Persona("Daniel","daniel@uji.es");
         Persona eliminada1 = new Persona("Sergio", "sergio@uji.es");
         List<String> etiquetas = new ArrayList<>();
-        Tarea tarea = new Tarea("Cocina","Limpiar",eliminada,3, etiquetas,"Documento", 20, new Urgente());
+        Tarea tarea = new Tarea("Cocina","Limpiar",eliminada,3, "etiquetas","Documento", new Urgente(100,5));
 
-        proyecto.añadirPersona(eliminada);
-        proyecto.añadirPersona(eliminada1);
+        proyecto.altaPersona(eliminada);
+        proyecto.altaPersona(eliminada1);
         proyecto.añadirTarea(tarea);
         proyecto.añadirPersonaATarea(tarea.getTitulo(),eliminada.getNombre());
         proyecto.eliminarPersonaDeTarea(eliminada.getNombre(),tarea.getTitulo());
@@ -129,21 +129,29 @@ class ProyectoTest {
     }
 
     @Test
-    void calcularImporte(){
-        Proyecto proyecto = new Proyecto("Prueba");
+    void calcularImporte() throws TareaRepetidaException {
+        Modelo proyecto = new Modelo("Prueba");
         Persona persona = new Persona("Sergio", "sergio@uji.es");
         Persona persona1 = new Persona("Daniel","daniel@uji.es");
-        List<String> etiquetas = new ArrayList<>();
-        Tarea tareaConDescuento = new Tarea("Cocina","Limpiar",persona1,3, etiquetas,"Documento", 5, new Descuento());
-        Tarea tareaConsumoInterno = new Tarea("Lavar","Ropa",persona,1, etiquetas,"Programa", 7.50, new ConsumoInterno());
-        Tarea tareaUrgente = new Tarea("Programar","Codigo",persona,5, etiquetas,"Programa", 10, new Urgente());
-        Tarea tareaIncorrecta = new Tarea("Jugar","Rocket League",persona1,5, etiquetas,"Programa", 100, new Urgente());
 
-        assertEquals(tareaConDescuento.calcularImporte(), 4.50);
+        Tarea tareaConDescuento = new Tarea("Cocina","Limpiar",persona1,3, "probando","Documento",  new Descuento(5,5));
+        Tarea tareaConsumoInterno = new Tarea("Lavar","Ropa",persona,1, "probando","Programa",  new ConsumoInterno(7.50));
+        Tarea tareaUrgente = new Tarea("Programar","Codigo",persona,5, "probando","Programa",  new Urgente(10,25));
+        Tarea tareaIncorrecta = new Tarea("Jugar","Rocket League",persona1,5, "probandi","Programa",  new Urgente(10,100));
+
+        proyecto.añadirTarea(tareaConDescuento);
+        proyecto.añadirTarea(tareaConsumoInterno);
+        proyecto.añadirTarea(tareaUrgente);
+        proyecto.añadirTarea(tareaIncorrecta);
+
+
+        assertEquals(proyecto.calcularCosteProyecto(),149.75);
+
+        assertEquals(tareaConDescuento.calcularImporte(), 4.75);
         assertEquals(tareaConsumoInterno.calcularImporte(), 7.50);
-        assertEquals(tareaUrgente.calcularImporte(), 12.50);
+        assertEquals(tareaUrgente.calcularImporte(), 27.50);
         assertNotEquals(tareaIncorrecta.calcularImporte(), 100);
     }
 
-     */
+
 }
