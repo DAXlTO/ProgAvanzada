@@ -86,6 +86,9 @@ public class ImplementacionControlador implements Controlador{
         modelo.almacenarInformacion(modelo);
     }
 
+    public void modificarCostes(String tarea, double var, double coste){
+
+    }
 
     public List<String> getTareasNoFinalizadas(Modelo modelo){
         return modelo.getTareasNoFinalizadas();
@@ -95,7 +98,7 @@ public class ImplementacionControlador implements Controlador{
     public void altaTarea(Modelo modelo, String titulo, String descripcion, Persona responsable, int prioridad, String etiquetas, String tipo, Double coste, String importe, float variacion){
         this.modelo = modelo;
 
-        Importe impor = modelo.comprobarImporte(variacion, importe);
+        Importe impor = modelo.comprobarImporte(variacion, importe,coste);
         Tarea tarea = new Tarea(titulo,descripcion,responsable,prioridad,etiquetas,tipo,coste,impor);
         try {
             System.out.println(titulo);

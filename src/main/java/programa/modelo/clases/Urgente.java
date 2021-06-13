@@ -7,12 +7,20 @@ import java.io.Serializable;
 public class Urgente implements Importe, Serializable {
 
     private double sobreCoste;
-    public Urgente(float coste){
-        sobreCoste = coste;
+    private double coste;
+
+    public Urgente(double sobreCoste, double coste){
+        this.sobreCoste = sobreCoste;
+        this.coste = coste;
     }
 
     @Override
-    public double calcularImporte(double coste){
-        return coste + coste * sobreCoste;
+    public double calcularImporte(){
+        return coste + coste * sobreCoste * 0.01;
+    }
+
+    @Override
+    public void setFacturacion(double sobreCoste) {
+        this.sobreCoste = sobreCoste;
     }
 }

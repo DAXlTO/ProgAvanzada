@@ -183,14 +183,13 @@ public class Modelo implements Serializable, tieneClave {
         }
     }
 
-    public Importe comprobarImporte(float variacion, String importe){
-        Importe importe1 = new ConsumoInterno();
+    public Importe comprobarImporte(float variacion, String importe, double coste){
+        Importe importe1 = new ConsumoInterno(coste);
         if(importe.equals("Descuento"))
-            importe1 = new Descuento(variacion);
+            importe1 = new Descuento(variacion,coste);
         else if(importe.equals("Urgente"))
-            importe1 = new Urgente(variacion);
+            importe1 = new Urgente(variacion,coste);
         return importe1;
-
     }
 
     public Modelo cargarInformacion() {

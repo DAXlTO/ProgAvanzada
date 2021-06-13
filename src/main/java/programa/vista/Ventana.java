@@ -5,6 +5,7 @@ import programa.controlador.ImplementacionControlador;
 import programa.modelo.clases.Modelo;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Ventana extends JFrame {
@@ -50,6 +51,15 @@ public class Ventana extends JFrame {
         boton.addActionListener(new BotonEliminarPersonaTarea(con,modelo,ventana));
         contenedor.add(boton);
 
+        boton = new JButton("Modificar el coste de una tarea");
+        boton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VentanaModificarCoste.main(con,modelo,ventana);
+            }
+        });
+        contenedor.add(boton);
+
         boton = new JButton("Listar personas del proyecto");
         boton.addActionListener(new BotonListarPersonas(con, modelo,ventana));
         contenedor.add(boton);
@@ -69,6 +79,8 @@ public class Ventana extends JFrame {
 
         boton = new JButton("Listar tareas sin personas");
         boton.addActionListener(new BotonListarTareaSinPersonas(modelo,con,ventana));
+
+
 
         contenedor.add(boton);
 

@@ -1,5 +1,6 @@
 package programa.modelo.interfaces;
 
 public interface Importe {
-    double calcularImporte(double coste);
+    double calcularImporte();
+    void setFacturacion(double nuevaCantidad);
 }

@@ -6,8 +6,19 @@ import java.io.Serializable;
 
 public class ConsumoInterno implements Importe, Serializable {
 
+    private double coste;
+
+    public ConsumoInterno(double coste){
+        this.coste=coste;
+    }
+
     @Override
-    public double calcularImporte(double coste) {
+    public double calcularImporte() {
         return coste;
+    }
+
+    @Override
+    public void setFacturacion(double sobreCoste) {
+        return;
     }
 }

@@ -91,11 +91,18 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         return personas;
     }
 
+    public void cambiarVariacion(float nuevaCantidad){
+        importe.setFacturacion(nuevaCantidad);
+    }
+
+    public void setCoste(double coste) {
+        this.coste = coste;
+    }
 
     public String getClave() {return titulo; }
 
     public double calcularImporte(){
-        return importe.calcularImporte(coste);
+        return importe.calcularImporte();
     }
 }
 
