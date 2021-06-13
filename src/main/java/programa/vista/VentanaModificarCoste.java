@@ -33,9 +33,9 @@ public class VentanaModificarCoste extends JFrame{
 
 
         JLabel cost = new JLabel("Introduce el nuevo coste de la tarea: ");
-        JTextField coste = new JTextField();
+        JFormattedTextField coste = new JFormattedTextField (new Float(00));
         JLabel var = new JLabel("Introduce la variación del producto: ");
-        JTextField variacion = new JTextField();
+        JFormattedTextField variacion = new JFormattedTextField (new Float(00));
 
 
         contenedor.setLayout(new FlowLayout());
@@ -54,7 +54,7 @@ public class VentanaModificarCoste extends JFrame{
         boton = new JButton("Aceptar");
         boton.addActionListener(actionEvent -> ventana.setVisible(false));
         boton.addActionListener(actionEvent -> ventanAnterior.setVisible(true));
-        boton.addActionListener(actionEvent -> controlador.altaPersona(nombre.getText(),email.getText(), modelo));
+        boton.addActionListener(actionEvent -> controlador.modificarCostes(listaTareas[tareas.getSelectedIndex()],Double.parseDouble(variacion.getText()),Double.parseDouble(coste.getText())));
         contenedor.add(boton);
 
         ventana.setSize(250,175);

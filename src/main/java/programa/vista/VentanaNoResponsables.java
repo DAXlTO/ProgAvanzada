@@ -26,8 +26,7 @@ public class VentanaNoResponsables extends JFrame{
         JFrame ventana = new JFrame("Dar de alta tarea");
         JPanel contenedor = new JPanel();
         ventana.add(contenedor);
-
-        List<Persona> personas = controlador.listarPersonasNoResponsables(modelo);
+        List<Persona> personas =     modelo.listarPersonasNoResponsables();
         String html = "<html>"+"Lista de personas del proyecto que no son responsables:<br><ol>";
         for (int i = 0; i < personas.size();i++){
             html +=  "<li>" + "Nombre: " + personas.get(i).getNombre() + "<br>Correo: " +personas.get(i).getEmail() +"</li>";

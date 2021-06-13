@@ -20,10 +20,9 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
     Resultado resultado;
     String etiquetas;
     String tipo;
-    double coste;
     Importe importe;
 
-    public Tarea(String titulo, String descripcion, Persona responsable, int prioridad, String etiquetas, String tipo, double coste, Importe importe){
+    public Tarea(String titulo, String descripcion, Persona responsable, int prioridad, String etiquetas, String tipo, Importe importe){
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.responsable = responsable;
@@ -33,7 +32,6 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         personas = new ArrayList<>();
         this.etiquetas = etiquetas;
         this.tipo = tipo;
-        this.coste = coste;
         this.importe = importe;
     }
 
@@ -91,12 +89,11 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         return personas;
     }
 
-    public void cambiarVariacion(float nuevaCantidad){
+    public void cambiarVariacion(double nuevaCantidad){
         importe.setFacturacion(nuevaCantidad);
     }
 
     public void setCoste(double coste) {
-        this.coste = coste;
     }
 
     public String getClave() {return titulo; }

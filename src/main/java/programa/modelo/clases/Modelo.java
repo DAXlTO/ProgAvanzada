@@ -183,6 +183,11 @@ public class Modelo implements Serializable, tieneClave {
         }
     }
 
+    public void modificarCostes(String tarea, double var, double coste){
+        tareas.get(tarea).cambiarVariacion(var);
+        tareas.get(tarea).setCoste(coste);
+    }
+
     public Importe comprobarImporte(float variacion, String importe, double coste){
         Importe importe1 = new ConsumoInterno(coste);
         if(importe.equals("Descuento"))

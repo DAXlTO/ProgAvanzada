@@ -55,6 +55,7 @@ public class Ventana extends JFrame {
         boton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                ventana.setVisible(false);
                 VentanaModificarCoste.main(con,modelo,ventana);
             }
         });

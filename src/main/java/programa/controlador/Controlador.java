@@ -25,5 +25,4 @@ public interface Controlador {
     void guardaSalir(Modelo modelo);
     Modelo cargarInformacion(Modelo modelo);
     void modificarCostes(String tarea, double var, double coste);
-    List<Persona> listarPersonasNoResponsables(Modelo modelo);
 }

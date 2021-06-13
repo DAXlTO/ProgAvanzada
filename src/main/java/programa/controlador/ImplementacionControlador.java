@@ -66,13 +66,6 @@ public class ImplementacionControlador implements Controlador{
         return modelo.cargarInformacion();
     }
 
-    public List<Persona> listarPersonasNoResponsables(Modelo modelo){
-        return modelo.listarPersonasNoResponsables();
-    }
-
-    public List<Tarea> listarTareasSinPersonas(Modelo modelo){
-        return modelo.listarTareasSinPersonas(modelo);
-    }
 
     public boolean añadirPersonaATarea(String tarea, String persona, Modelo modelo){
         System.out.println(tarea);
@@ -87,7 +80,7 @@ public class ImplementacionControlador implements Controlador{
     }
 
     public void modificarCostes(String tarea, double var, double coste){
-
+        modelo.modificarCostes(tarea,var,coste);
     }
 
     public List<String> getTareasNoFinalizadas(Modelo modelo){
